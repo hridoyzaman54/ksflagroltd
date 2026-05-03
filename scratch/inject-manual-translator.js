@@ -180,7 +180,7 @@ window.addEventListener("DOMContentLoaded", function() {
         "We envision a future where innovation enhances sustainable agriculture and supports the environment.": "আমরা এমন এক ভবিষ্যতের কল্পনা করি যেখানে উদ্ভাবন টেকসই কৃষিকে উন্নত করে এবং পরিবেশকে সাহায্য করে।",
         "GreenTech Innovation Award 2024": "গ্রিনটেক ইনোভেশন অ্যাওয়ার্ড ২০২৪",
         "Our products": "আমাদের পণ্যসমূহ",
-        "Our product is grown naturally, with sustainable, organic principles": "আমাদের পণ্য প্রাকৃতিকভাবে এবং টেকসই, জৈব নীতি মেনে উৎপাদিত হয়।",
+        "Our product is grown naturally, with sustainable, organic principles": "Our product is grown naturally, with sustainable, organic principles",
         "Organic seeds, compost, and gardening kits — perfect for home growers and eco-hobbyists.": "জৈব বীজ, সার এবং বাগান করার কিট — বাড়ির চাষি এবং পরিবেশ-প্রেমীদের জন্য নিখুঁত।",
         "Herbal teas, dried herbs, and natural extracts — crafted for wellness and a balanced lifestyle.": "ভেষজ চা, শুকনো ভেষজ এবং প্রাকৃতিক নির্যাস — সুস্থতা এবং ভারসাম্যপূর্ণ জীবনযাপনের জন্য তৈরি।",
         "Milk, butter, cheese, and eggs — made with care from healthy animals.": "দুধ, মাখন, পনির এবং ডিম — সুস্থ পশু থেকে অত্যন্ত যত্নে উৎপাদিত।",
