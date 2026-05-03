@@ -739,6 +739,22 @@ window.addEventListener("DOMContentLoaded", function() {
     let savedLang = localStorage.getItem('ai-site-lang') || 'en';
 
     function translateDOM(toLang) {
+        const aboutH2 = document.querySelector('h2[data-kirki="dp7zhfz1"]');
+        if (aboutH2) {
+            aboutH2.textContent = toLang === 'bn' ? 
+                'আমরা এমন এক ভবিষ্যতের কল্পনা করি যেখানে উদ্ভাবন পৃথিবীকে পুষ্ট করে এবং টেকসই কৃষিকে উন্নত করে। ঐতিহ্যবাহী পদ্ধতির সাথে প্রযুক্তির সংমিশ্রণে আমরা পরিবেশকে সাহায্য করতে চাই।' : 
+                'We envision a future where innovation nourishes the earth and enhances sustainable agriculture. By integrating technology with traditional methods, we aim to support the environment.';
+            aboutH2.originalText = 'We envision a future where innovation nourishes the earth and enhances sustainable agriculture. By integrating technology with traditional methods, we aim to support the environment.';
+        }
+
+        if (aboutH2 && aboutH2.nextElementSibling) {
+            const aboutP = aboutH2.nextElementSibling;
+            aboutP.textContent = toLang === 'bn' ? 
+                'কেএসএফএল এগ্রো লিমিটেড: বীজ উৎপাদন ও প্রক্রিয়াজাতকরণ, পাশাপাশি উচ্চমানের কীটনাশক, মাইক্রোনিউট্রিয়েন্ট এবং পরিবেশবান্ধব কৃষিভিত্তিক সমাধান প্রদানে আমাদের সর্বশেষ উদ্যোগ।' : 
+                'KSFL Agro Limited: Our latest venture dedicated to seed production and processing, along with high-quality pesticides, micronutrients, and eco-friendly agro-based solutions.';
+            aboutP.originalText = 'KSFL Agro Limited: Our latest venture dedicated to seed production and processing, along with high-quality pesticides, micronutrients, and eco-friendly agro-based solutions.';
+        }
+
         document.querySelectorAll('.awwards-item p.tag-2').forEach(p => {
             if (p.textContent.includes('Best startup 2024') || p.textContent.includes('বেস্ট স্টার্টআপ ২০২৪')) {
                 p.textContent = toLang === 'bn' ? 'বেস্ট স্টার্টআপ ২০২৪' : 'Best startup 2024';
