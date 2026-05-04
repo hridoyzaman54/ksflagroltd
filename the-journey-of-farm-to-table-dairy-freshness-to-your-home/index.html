@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Journey of Farm-to-Table Dairy: Freshness to Your Home</title>
+    <!-- Premium Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --premade_template_dpw2cmzz: rgba(90, 109, 63, 1.00);
+            --premade_template_dpuu8y8d: rgba(240, 208, 19, 1.00);
+            --premade_template_dphdxhps: rgba(243, 240, 235, 1.00);
+            --premade_template_dprt5n21: rgba(41, 57, 32, 1.00);
+            --premade_template_dp8lt4p6: rgba(184, 197, 149, 1.00);
+            --premade_template_dpr6ma7w: rgba(220, 231, 182, 1.00);
+            --dptshojw: rgba(255, 255, 255, 0.4);
+            --premade_template_dpao3w1d: rgba(197, 201, 183, 1.00);
+            --premade_template_dp0jl7mf: rgba(255, 255, 255, 1);
+            --premade_template_dpd6mm8p: #000000;
+        }
+
+        /* Responsive reset & core styles */
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--premade_template_dphdxhps);
+            font-family: 'Roboto', 'Inter', sans-serif;
+            color: var(--premade_template_dprt5n21);
+            line-height: 1.6;
+        }
+
+        /* Mobile optimization & overflow fix */
+        @media screen and (max-width: 768px) {
+            html, body {
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+                width: 100% !important;
+            }
+        }
+
+        /* Header layout & styles */
+        header {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(41, 57, 32, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0 24px;
+        }
+        .header-container {
+            width: 100%;
+            max-width: 1620px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .logo-area a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-area img {
+            height: 48px;
+            width: auto;
+        }
+        .logo-area span {
+            color: #FDE251;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 16px;
+            letter-spacing: -0.5px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: var(--premade_template_dpuu8y8d);
+        }
+        .contact-btn a {
+            background-color: var(--premade_template_dpuu8y8d);
+            color: #293920;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+        .contact-btn a:hover {
+            background-color: var(--premade_template_dphdxhps);
+            color: #293920;
+        }
+
+        /* Article layout */
+        main {
+            padding: 130px 24px 80px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--premade_template_dpw2cmzz);
+        }
+        .post-category {
+            background-color: rgba(206, 217, 169, 1.00);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 44px;
+            line-height: 1.2;
+            color: var(--premade_template_dprt5n21);
+            margin-bottom: 24px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+        }
+        @media screen and (max-width: 768px) {
+            h1 { font-size: 32px; }
+            main { padding-top: 110px; }
+        }
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding-bottom: 16px;
+        }
+        .author-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .author-name {
+            font-weight: bold;
+            color: var(--premade_template_dprt5n21);
+            font-size: 16px;
+        }
+        .post-date {
+            color: #777;
+            font-size: 14px;
+        }
+        .featured-img-wrapper {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            overflow: hidden;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .featured-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .article-content {
+            font-size: 18px;
+            color: #333333;
+            line-height: 1.8;
+            font-family: 'Inter', sans-serif;
+        }
+        .article-content p {
+            margin-bottom: 24px;
+        }
+        .article-content h2, .article-content h3 {
+            color: var(--premade_template_dprt5n21);
+            margin: 40px 0 20px 0;
+            font-weight: 600;
+        }
+        .article-content h2 {
+            font-size: 28px;
+            letter-spacing: -0.5px;
+        }
+        .article-content blockquote {
+            margin: 40px 0;
+            padding: 24px 32px;
+            background-color: rgba(90, 109, 63, 0.05);
+            border-left: 4px solid var(--premade_template_dpw2cmzz);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: var(--premade_template_dprt5n21);
+            font-size: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--premade_template_dprt5n21);
+            color: #fff;
+            padding: 60px 24px 40px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-container {
+            max-width: 1620px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        .footer-bottom a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Mobile Hamburger & Drawer Styles */
+        .hamburger-icon {
+            display: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            z-index: 1005;
+        }
+        .hamburger-icon span {
+            width: 100%;
+            height: 3px;
+            background-color: #FFFFFF;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .mobile-menu-drawer {
+            display: none;
+            flex-direction: column;
+            background-color: #293920;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            padding: 90px 24px 40px 24px;
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        .mobile-menu-drawer.open {
+            display: flex !important;
+        }
+        .mobile-menu-drawer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mobile-menu-drawer ul li {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .mobile-menu-drawer ul li a {
+            font-size: 20px;
+            color: #FFFFFF;
+            text-decoration: none;
+            display: block;
+        }
+
+        @media only screen and (max-width: 991px) {
+            .hamburger-icon { display: flex; }
+            nav { display: none; }
+        }
+
+        /* AI Translator styles */
+        html body.lang-bn, 
+        html body.lang-bn *,
+        html body.lang-bn span,
+        html body.lang-bn p,
+        html body.lang-bn a,
+        html body.lang-bn div,
+        html body.lang-bn h1,
+        html body.lang-bn h2,
+        html body.lang-bn h3,
+        html body.lang-bn h4 {
+            font-family: 'Hind Siliguri', 'Noto Serif Bengali', Arial, sans-serif !important;
+            letter-spacing: 0px !important;
+        }
+    </style>
+</head>
+<body class="wp-singular">
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <a href="../preview.html">
+                    <img src="../assets/logo.png" alt="KSFL Agro Ltd.">
+                    <span>KSFL Agro Ltd.</span>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../preview.html">Home</a></li>
+                    <li><a href="../about.html">Our Story</a></li>
+                    <li><a href="../products.html">Our Products</a></li>
+                    <li><a href="../blogs.html" style="color: var(--premade_template_dpuu8y8d);">Blogs</a></li>
+                </ul>
+            </nav>
+            <div class="contact-btn">
+                <a href="../contact.html">
+                    <span>Contact us</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M1.6102 7.74994L14.2348 7.74994L11.5675 5.28022C11.2512 4.98732 11.2512 4.51256 11.5675 4.21967C11.8838 3.92678 12.3966 3.92678 12.7129 4.21967L16.7629 7.96967L16.8183 8.0268C17.0777 8.32138 17.0594 8.75563 16.7629 9.03022L12.7129 12.7802C12.3966 13.0731 11.8838 13.0731 11.5675 11.7197L14.2348 9.24994L1.6102 9.24994C1.16285 9.24994 0.800201 8.91416 0.800201 8.49994C0.800201 8.49994 1.16285 7.74994 1.6102 7.74994Z" fill="#293920" />
+                    </svg>
+                </a>
+            </div>
+            <div class="hamburger-icon" id="hamburger-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="mobile-menu-drawer" id="mobile-drawer">
+        <ul>
+            <li><a href="../preview.html">Home</a></li>
+            <li><a href="../about.html">Our Story</a></li>
+            <li><a href="../products.html">Our Products</a></li>
+            <li><a href="../blogs.html">Blogs</a></li>
+            <li><a href="../contact.html">Contact us</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="post-meta">
+            <span class="post-category">Farm Life</span>
+            <span class="post-date">November 13, 2025</span>
+        </div>
+        <h1>The Journey of Farm-to-Table Dairy: Freshness to Your Home</h1>
+        
+        <div class="author-box">
+            <img src="../assets/wp-content/uploads/2025/11/contact-page-img-2-300x176.webp" alt="David Chen" class="author-img">
+            <div>
+                <div class="author-name">David Chen</div>
+                <div class="post-date">Head of Farm Operations</div>
+            </div>
+        </div>
+
+        <div class="featured-img-wrapper">
+            <img src="../assets/wp-content/uploads/2025/11/blog-img-12.webp" alt="Farm to Table Dairy" class="featured-img">
+        </div>
+
+        <div class="article-content">
+            <p>High-quality dairy starts long before it reaches a bottle. At KSFL Agro Ltd., our farm-to-table practices guarantee that each serving of milk, butter, and cheese retains its original organic purity and rich flavor from our healthy animals to your home.</p>
+            
+            <h2>1. Ethical Animal Husbandry</h2>
+            <p>Our commitment to excellence begins with the well-being of our cattle. We provide our herd with direct access to chemical-free open pastures and natural feed, eliminating the use of artificial growth hormones or preventative antibiotics.</p>
+            
+            <blockquote>
+                "Happy, well-cared-for animals naturally produce the most nutritious and pure dairy."
+            </blockquote>
+
+            <h2>2. Preserving Cold-Chain Integrity</h2>
+            <p>To retain maximum vitamins and absolute freshness, we process our dairy products quickly. Our clean facilities and specialized cold-chain logistics help preserve freshness at every step of distribution.</p>
+
+            <h2>3. Direct to Local Families</h2>
+            <p>By shortening our supply network, we eliminate traditional commercial transit times. Our customers receive fresh goods within hours of harvest, providing a standard of quality that exceeds standard supermarket options.</p>
+
+            <h2>Conclusion</h2>
+            <p>Our careful attention to farming details delivers unparalleled freshness. Discover the real difference of organic dairy with our sustainable farm-to-table service today.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <span>©KSFL Agro Ltd. 2026. All rights reserved.</span>
+                <span>Address: 1240/7 Kazipara Mirpur, 10, Dhaka, Bangladesh | Call: +8801715249371</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Translation Toggle -->
+    <div class="ai-lang-toggle" style="position: fixed; bottom: 30px; right: 30px; z-index: 999999; display: flex; align-items: center; background-color: var(--premade_template_dpw2cmzz, #5A6D3F); border-radius: 50px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid rgba(253, 226, 81, 0.4); cursor: pointer; transition: transform 0.3s ease;">
+        <div id="btn-en" style="padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: bold; font-family: 'Roboto', sans-serif; color: #293920; background-color: #FDE251; transition: all 0.3s ease;">EN</div>
+        <div id="btn-bn" style="padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: bold; font-family: 'Hind Siliguri', sans-serif; color: #fff; background-color: transparent; transition: all 0.3s ease;">BN</div>
+    </div>
+
+    <script>
+        // Hamburger toggle
+        const toggleBtn = document.getElementById('hamburger-toggle');
+        const drawer = document.getElementById('mobile-drawer');
+        if (toggleBtn && drawer) {
+            toggleBtn.addEventListener('click', () => {
+                drawer.classList.toggle('open');
+            });
+        }
+
+        // Translation dictionary & logic
+        const dict = {
+            "Home": "হোম",
+            "Our Story": "আমাদের কথা",
+            "Our Products": "আমাদের পণ্যসমূহ",
+            "Blogs": "ব্লগ",
+            "Contact us": "যোগাযোগ করুন",
+            "Farm Life": "খামার জীবন",
+            "The Journey of Farm-to-Table Dairy: Freshness to Your Home": "খামার থেকে ঘরে দুগ্ধজাত পণ্যের যাত্রা",
+            "Head of Farm Operations": "খামার কার্যক্রম প্রধান",
+            "David Chen": "ডেভিড চেন",
+            "November 13, 2025": "১৩ নভেম্বর, ২০২৫",
+            "High-quality dairy starts long before it reaches a bottle. At KSFL Agro Ltd., our farm-to-table practices guarantee that each serving of milk, butter, and cheese retains its original organic purity and rich flavor from our healthy animals to your home.": "উচ্চ-মানের দুগ্ধজাত পণ্যের যাত্রা বোতলে পৌঁছানোর অনেক আগেই শুরু হয়। কেএসএফএল এগ্রো লিঃ-এ আমাদের খামার-থেকে-টেবিল পদ্ধতি নিশ্চিত করে যে প্রতিটি দুধ, মাখন এবং পনির তার আসল পুষ্টি এবং সমৃদ্ধ স্বাদ ধরে রাখে।",
+            "1. Ethical Animal Husbandry": "১. নৈতিক পশুপালন",
+            "Our commitment to excellence begins with the well-being of our cattle. We provide our herd with direct access to chemical-free open pastures and natural feed, eliminating the use of artificial growth hormones or preventative antibiotics.": "আমাদের প্রতিশ্রুতি শুরু হয় আমাদের গবাদি পশুর সুস্থতার মাধ্যমে। আমরা আমাদের পশুপালকে রাসায়নিক মুক্ত খোলা চারণভূমি এবং প্রাকৃতিক খাবারের সুযোগ দিই।",
+            "\"Happy, well-cared-for animals naturally produce the most nutritious and pure dairy.\"": "\"সুখী ও ভালো পরিচর্যা করা পশু প্রাকৃতিকভাবেই সবচেয়ে পুষ্টিকর এবং খাঁটি দুধ দেয়।\"",
+            "2. Preserving Cold-Chain Integrity": "২. কোল্ড-চেইন বজায় রাখা",
+            "To retain maximum vitamins and absolute freshness, we process our dairy products quickly. Our clean facilities and specialized cold-chain logistics help preserve freshness at every step of distribution.": "সর্বোচ্চ ভিটামিন এবং সতেজতা ধরে রাখতে আমরা আমাদের দুগ্ধজাত পণ্য দ্রুত প্রক্রিয়াজাত করি। আমাদের পরিষ্কার সুবিধা এবং বিশেষ কোল্ড-চেইন লজিস্টিকস বিতরণের প্রতিটি ধাপে সতেজতা রক্ষা করতে সহায়তা করে।",
+            "3. Direct to Local Families": "৩. সরাসরি স্থানীয় পরিবারের কাছে",
+            "By shortening our supply network, we eliminate traditional commercial transit times. Our customers receive fresh goods within hours of harvest, providing a standard of quality that exceeds standard supermarket options.": "আমাদের সরবরাহ নেটওয়ার্ক ছোট করার মাধ্যমে আমরা অতিরিক্ত পরিবহন সময় কমিয়ে দিই। আমাদের গ্রাহকরা পণ্য সংগ্রহের কয়েক ঘণ্টার মধ্যেই তাজা জিনিস পান।",
+            "Conclusion": "উপসংহার",
+            "Our careful attention to farming details delivers unparalleled freshness. Discover the real difference of organic dairy with our sustainable farm-to-table service today.": "আমাদের প্রতিটি পদক্ষেপে যত্নশীল নজরদারি অতুলনীয় সতেজতা প্রদান করে। আজই আমাদের টেকসই খামার-থেকে-টেবিল পরিষেবার মাধ্যমে খাঁটি দুগ্ধজাত পণ্যের আসল পার্থক্য আবিষ্কার করুন।",
+            "©KSFL Agro Ltd. 2026. All rights reserved.": "©কেএসএফএল এগ্রো লিঃ ২০২৬। সর্বস্বত্ব সংরক্ষিত।",
+            "Address: 1240/7 Kazipara Mirpur, 10, Dhaka, Bangladesh | Call: +8801715249371": "ঠিকানা: ১২৪০/৭ কাজীপাড়া মিরপুর, ১০, ঢাকা, বাংলাদেশ | কল করুন: +৮৮০ ১৭১৫ ২৪৯৩৭১"
+        };
+
+        function decodeEntities(str) {
+            const txt = document.createElement('textarea');
+            txt.innerHTML = str;
+            return txt.value;
+        }
+
+        const sortedKeys = Object.keys(dict).sort((a, b) => b.length - a.length);
+        const sortedDict = {};
+        for (const k of sortedKeys) {
+            sortedDict[k] = dict[k];
+        }
+
+        let savedLang = localStorage.getItem('ai-site-lang') || 'en';
+
+        function translateDOM(toLang) {
+            const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+            let n;
+            while (n = walk.nextNode()) {
+                if (n.parentNode && n.parentNode.nodeName !== 'SCRIPT' && n.parentNode.nodeName !== 'STYLE') {
+                    if (n.originalText === undefined) {
+                        n.originalText = n.textContent;
+                    }
+                    if (toLang === 'bn') {
+                        const orig = decodeEntities(n.originalText.trim().replace(/\s+/g, ' '));
+                        if (sortedDict[orig]) {
+                            n.textContent = sortedDict[orig];
+                        } else {
+                            let translated = orig;
+                            for (const [en, bn] of Object.entries(sortedDict)) {
+                                const decodedEn = decodeEntities(en);
+                                if (decodedEn.length > 3 && translated.includes(decodedEn)) {
+                                    translated = translated.replace(new RegExp(decodedEn, 'g'), bn);
+                                }
+                            }
+                            if (translated !== orig) {
+                                n.textContent = translated;
+                            }
+                        }
+                    } else {
+                        n.textContent = n.originalText;
+                    }
+                }
+            }
+        }
+
+        function setToggleUI(lang) {
+            const btnEn = document.querySelector('#btn-en');
+            const btnBn = document.querySelector('#btn-bn');
+            if (lang === 'bn') {
+                if (btnEn) btnEn.style.backgroundColor = 'transparent';
+                if (btnEn) btnEn.style.color = '#fff';
+                if (btnBn) btnBn.style.backgroundColor = '#FDE251';
+                if (btnBn) btnBn.style.color = '#293920';
+                document.body.classList.add('lang-bn');
+                translateDOM('bn');
+            } else {
+                if (btnBn) btnBn.style.backgroundColor = 'transparent';
+                if (btnBn) btnBn.style.color = '#fff';
+                if (btnEn) btnEn.style.backgroundColor = '#FDE251';
+                if (btnEn) btnEn.style.color = '#293920';
+                document.body.classList.remove('lang-bn');
+                translateDOM('en');
+            }
+        }
+
+        setToggleUI(savedLang);
+
+        const toggle = document.querySelector('.ai-lang-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                const currentLang = localStorage.getItem('ai-site-lang') || 'en';
+                const targetLang = currentLang === 'en' ? 'bn' : 'en';
+                localStorage.setItem('ai-site-lang', targetLang);
+                setToggleUI(targetLang);
+            });
+        }
+    </script>
+</body>
+</html>
