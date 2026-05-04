@@ -118,74 +118,9 @@
 
         /* Article layout */
         main {
-            padding: 130px 24px 80px 24px;
+            padding: 60px 24px 80px 24px;
             max-width: 900px;
             margin: 0 auto;
-        }
-        .post-meta {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--premade_template_dpw2cmzz);
-        }
-        .post-category {
-            background-color: rgba(206, 217, 169, 1.00);
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        h1 {
-            font-size: 44px;
-            line-height: 1.2;
-            color: var(--premade_template_dprt5n21);
-            margin-bottom: 24px;
-            font-weight: 700;
-            letter-spacing: -1.5px;
-        }
-        @media screen and (max-width: 768px) {
-            h1 { font-size: 32px; }
-            main { padding-top: 110px; }
-        }
-        .author-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 32px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding-bottom: 16px;
-        }
-        .author-img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .author-name {
-            font-weight: bold;
-            color: var(--premade_template_dprt5n21);
-            font-size: 16px;
-        }
-        .post-date {
-            color: #777;
-            font-size: 14px;
-        }
-        .featured-img-wrapper {
-            width: 100%;
-            height: auto;
-            max-height: 480px;
-            overflow: hidden;
-            border-radius: 24px;
-            margin-bottom: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-        .featured-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
         .article-content {
             font-size: 18px;
@@ -216,32 +151,163 @@
             font-size: 20px;
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--premade_template_dprt5n21);
-            color: #fff;
-            padding: 60px 24px 40px 24px;
+        /* Bottom CTA Section & Footer Premium Styling */
+        .bottom-cta {
+            background-color: var(--premade_template_dprt5n21, #293920);
+            padding: 80px 24px;
+            text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .footer-container {
-            max-width: 1620px;
+        .bottom-cta-container {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 40px;
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 24px;
-            font-size: 14px;
-            color: #aaa;
+            gap: 32px;
         }
-        .footer-bottom a {
-            color: #fff;
+        .bottom-cta h2 {
+            color: #FDE251;
+            font-size: 38px;
+            margin: 0;
+            font-weight: 700;
+        }
+        .bottom-cta p {
+            color: #FFFFFF;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .bottom-cta-btn {
+            background-color: #FDE251;
+            color: #293920;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: bold;
             text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .bottom-cta-btn:hover {
+            background-color: #FFFFFF;
+            color: #293920;
+            transform: translateY(-2px);
+        }
+
+        .premium-footer {
+            background-color: #212F1A;
+            color: #FFFFFF;
+            padding: 80px 24px 40px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding-bottom: 60px;
+        }
+        .footer-col h3 {
+            color: #FDE251;
+            font-size: 18px;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        .footer-col ul li a:hover {
+            color: #FDE251;
+        }
+        .footer-subscribe p {
+            margin: 0 0 15px 0;
+        }
+        .footer-subscribe form {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .footer-subscribe input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 20px;
+            border-radius: 50px;
+            color: #FFFFFF;
+            font-size: 15px;
+            flex: 1;
+            outline: none;
+        }
+        .footer-subscribe input:focus {
+            border-color: #FDE251;
+        }
+        .footer-subscribe button {
+            background-color: #FDE251;
+            color: #293920;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .footer-subscribe button:hover {
+            background-color: #FFFFFF;
+        }
+
+        .footer-bottom-bar {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            text-align: center;
+        }
+        .footer-logo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+        .footer-logo-link img {
+            height: 48px;
+            width: auto;
+        }
+        .footer-logo-link span {
+            color: #FDE251;
+            font-size: 32px;
+            font-weight: 700;
+        }
+        .footer-info-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 15px;
+            margin: 0;
+        }
+        .footer-social-link {
+            color: #FDE251;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-left: 5px;
         }
 
         /* Mobile Hamburger & Drawer Styles */
@@ -297,6 +363,10 @@
         @media only screen and (max-width: 991px) {
             .hamburger-icon { display: flex; }
             nav { display: none; }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
 
         /* AI Translator styles */
@@ -359,25 +429,21 @@
         </ul>
     </div>
 
-    <main>
-        <div class="post-meta">
-            <span class="post-category">Organic Farming</span>
-            <span class="post-date">November 13, 2025</span>
-        </div>
-        <h1>KSFL Agro Ltd.'s Guide to ZeroWaste Farming</h1>
-        
-        <div class="author-box">
-            <img src="../assets/wp-content/uploads/2025/11/contact-page-img-2-300x176.webp" alt="Monwar Hossain" class="author-img">
-            <div>
-                <div class="author-name">Monwar Hossain</div>
-                <div class="post-date">Chief Executive Officer & Visionary</div>
+    <!-- Dynamic Hero Banner Section -->
+    <div class="blog-hero" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../assets/wp-content/uploads/2025/11/blog-img-56.webp'); background-size: cover; background-position: center; min-height: 400px; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; padding: 120px 24px 60px 24px; margin-top: 72px;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <span class="post-category" style="background-color: #FDE251; color: #293920; padding: 6px 16px; border-radius: 4px; font-weight: bold; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 20px;">Organic Farming</span>
+            <h1 style="color: #FFFFFF; font-size: 48px; line-height: 1.2; margin: 0 0 20px 0; font-weight: 700; letter-spacing: -1.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">KSFL Agro Ltd.'s Guide to ZeroWaste Farming</h1>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 16px; color: rgba(255, 255, 255, 0.9); flex-wrap: wrap;">
+                <img src="../assets/wp-content/uploads/2025/11/contact-page-img-2-300x176.webp" alt="Monwar Hossain" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #FDE251;">
+                <span>By <strong>Monwar Hossain</strong></span>
+                <span>•</span>
+                <span>November 13, 2025</span>
             </div>
         </div>
+    </div>
 
-        <div class="featured-img-wrapper">
-            <img src="../assets/wp-content/uploads/2025/11/blog-img-56.webp" alt="Zero Waste Farming" class="featured-img">
-        </div>
-
+    <main>
         <div class="article-content">
             <p>At KSFL Agro Ltd., zero-waste farming isn't just a marketing buzzword — it is the bedrock of our operational philosophy. By using modern circular principles in every stage of agriculture, we can maximize efficiency, eliminate contamination, and cultivate food that promotes planetary health.</p>
             
@@ -399,12 +465,64 @@
         </div>
     </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-bottom">
-                <span>©KSFL Agro Ltd. 2026. All rights reserved.</span>
-                <span>Address: 1240/7 Kazipara Mirpur, 10, Dhaka, Bangladesh | Call: +8801715249371</span>
+    <!-- Bottom CTA Section -->
+    <div class="bottom-cta">
+        <div class="bottom-cta-container">
+            <h2>Let’s grow healthier together</h2>
+            <p>We envision a future where innovation nourishes the earth and enhances sustainable agriculture.</p>
+            <a href="../contact.html" class="bottom-cta-btn">
+                <span>Contact Us</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M1.6102 7.74994L14.2348 7.74994L11.5675 5.28022C11.2512 4.98732 11.2512 4.51256 11.5675 4.21967C11.8838 3.92678 12.3966 3.92678 12.7129 4.21967L16.7629 7.96967L16.8183 8.0268C17.0777 8.32138 17.0594 8.75563 16.7629 9.03022L12.7129 12.7802C12.3966 13.0731 11.8838 13.0731 11.5675 12.7802C11.2512 12.4873 11.2512 12.0126 11.5675 11.7197L14.2348 9.24994L1.6102 9.24994C1.16285 9.24994 0.800201 8.91416 0.800201 8.49994C0.800201 8.49994 1.16285 7.74994 1.6102 7.74994Z" fill="#293920" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Premium Footer Section -->
+    <footer class="premium-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../preview.html">Home</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../blogs.html">Blogs</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h3>Products</h3>
+                <ul>
+                    <li><a href="../products.html#farm-experiences">Farm Experiences & Kits</a></li>
+                    <li><a href="../seeds.html">Seeds & Farm Goods</a></li>
+                    <li><a href="../products.html#herbal">Herbal & Wellness Products</a></li>
+                    <li><a href="../products.html#dairy">Dairy & Animal Products</a></li>
+                    <li><a href="../products.html#pantry">Natural Pantry Items</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Others</h3>
+                <ul>
+                    <li><a href="../terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-subscribe">
+                <h3>Newsletter</h3>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 15px; margin-bottom: 15px;">Subscribe to our newsletter for recipes, tips, and seasonal updates.</p>
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <a href="../preview.html" class="footer-logo-link">
+                <img src="../assets/logo.png" alt="KSFL Agro Ltd.">
+                <span>KSFL Agro Ltd.</span>
+            </a>
+            <p class="footer-info-text">Address: 1240/7 Kazipara Mirpur, 10, Dhaka, Bangladesh | Call to know more: +8801715249371 (9 am-10 pm)</p>
+            <p class="footer-info-text">©KSFL Agro Ltd. 2026. All rights reserved. | <a href="https://www.facebook.com/share/1CiLQmp3z2/" target="_blank" class="footer-social-link">Follow us on Facebook</a></p>
         </div>
     </footer>
 
@@ -431,6 +549,20 @@
             "Our Products": "আমাদের পণ্যসমূহ",
             "Blogs": "ব্লগ",
             "Contact us": "যোগাযোগ করুন",
+            "About": "আমাদের কথা",
+            "Contact": "যোগাযোগ করুন",
+            "Contact Us": "আমাদের সাথে যোগাযোগ করুন",
+            "Let’s grow healthier together": "চলুন একসাথে স্বাস্থ্যকরভাবে গড়ে উঠি",
+            "We envision a future where innovation nourishes the earth and enhances sustainable agriculture.": "আমরা এমন একটি ভবিষ্যতের স্বপ্ন দেখি যেখানে উদ্ভাবন মাটিকে উর্বর করে এবং টেকসই কৃষিকে এগিয়ে নিয়ে যায়।",
+            "Quick Links": "দ্রুত লিঙ্ক",
+            "Products": "পণ্যসমূহ",
+            "Others": "অন্যান্য",
+            "Newsletter": "নিউজলেটার",
+            "Terms of Service": "শর্তাবলী",
+            "Subscribe to our newsletter for recipes, tips, and seasonal updates.": "রেসিপি, টিপস এবং মৌসুমী আপডেটের জন্য আমাদের নিউজলেটারে সাবস্ক্রাইব করুন।",
+            "Subscribe": "সাবস্ক্রাইব করুন",
+            "Enter your email": "আপনার ইমেল প্রবেশ করুন",
+            "Follow us on Facebook": "ফেসবুকে আমাদের অনুসরণ করুন",
             "Organic Farming": "জৈব কৃষি",
             "KSFL Agro Ltd.'s Guide to ZeroWaste Farming": "কেএসএফএল এগ্রো লিঃ এর শূন্য-বর্জ্য চাষ নির্দেশিকা",
             "Chief Executive Officer & Visionary": "প্রধান নির্বাহী কর্মকর্তা এবং স্বপ্নদর্শী",
@@ -447,7 +579,7 @@
             "Conclusion": "উপসংহার",
             "Sustainable, zero-waste methods enable the earth to naturally replenish its abundance. We welcome you to support ethical, high-quality agro practices today for a greener future tomorrow.": "টেকসই, শূন্য-বর্জ্য পদ্ধতি পৃথিবীকে প্রাকৃতিকভাবে তার প্রাচুর্য ফিরিয়ে দিতে সাহায্য করে। আমরা আপনাকে একটি সুন্দর ভবিষ্যতের জন্য নৈতিক ও উচ্চ-মানের কৃষি অনুশীলনকে সমর্থন করার আমন্ত্রণ জানাই।",
             "©KSFL Agro Ltd. 2026. All rights reserved.": "©কেএসএফএল এগ্রো লিঃ ২০২৬। সর্বস্বত্ব সংরক্ষিত।",
-            "Address: 1240/7 Kazipara Mirpur, 10, Dhaka, Bangladesh | Call: +8801715249371": "ঠিকানা: ১২৪০/৭ কাজীপাড়া মিরপুর, ১০, ঢাকা, বাংলাদেশ | কল করুন: +৮৮০ ১৭১৫ ২৪৯৩৭১"
+            "Address: 1240/7 Kazipara Mirpur, 10, Dhaka, Bangladesh | Call to know more: +8801715249371 (9 am-10 pm)": "ঠিকানা: ১২৪০/৭ কাজীপাড়া মিরপুর, ১০, ঢাকা, বাংলাদেশ | কল করুন: +৮৮০ ১৭১৫ ২৪৯৩৭১ (সকাল ৯ টা - রাত ১০ টা)"
         };
 
         function decodeEntities(str) {
