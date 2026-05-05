@@ -581,6 +581,8 @@ html body.lang-bn h6 {
 <script>
 window.addEventListener("DOMContentLoaded", function() {
     const dict = {
+        "Kamal Hossain": "কামাল হোসেন",
+        "Nahida Begum": "নাহিদা বেগম",
         "About &#8211; KSFL Agro Ltd.": "আমাদের সম্পর্কে – কেএসএফএল এগ্রো লিঃ",
         "KSFL Agro Ltd.": "কেএসএফএল এগ্রো লিঃ",
         "Home": "হোম",
@@ -868,6 +870,22 @@ window.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem('ai-site-lang', targetLang);
         setToggleUI(targetLang);
     });
+
+    // Footer Subscription Logic
+    const footerForm = document.querySelector('form[name="footer"]');
+    if (footerForm) {
+        footerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const successMsg = footerForm.querySelector('[kirki-form="success-message"]');
+            if (successMsg) {
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            }
+            footerForm.reset();
+        });
+    }
 });
 </script>
 <!-- END TOGGLE -->
