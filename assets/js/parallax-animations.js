@@ -331,4 +331,62 @@ document.addEventListener('DOMContentLoaded', () => {
       videoObserver.observe(video);
     });
   }
+
+  // ----------------------------------------------------
+  // 7. Premium Dark/Light Theme Switcher & Controller
+  // ----------------------------------------------------
+  initThemeSwitcher();
+  
+  function initThemeSwitcher() {
+    if (document.querySelector('.ai-theme-toggle')) return;
+    
+    // Create toggle container element
+    const toggleContainer = document.createElement('div');
+    toggleContainer.className = 'ai-theme-toggle';
+    toggleContainer.setAttribute('style', "position: fixed; bottom: 90px; right: 30px; z-index: 999999; display: flex; justify-content: center; align-items: center; background-color: var(--premade_template_dpw2cmzz, #5A6D3F); width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid rgba(253, 226, 81, 0.4); cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);");
+    
+    // Sun and Moon premium SVGs
+    toggleContainer.innerHTML = `
+      <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FDE251" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; opacity: 1; transform: rotate(0deg);"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FDE251" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease; opacity: 0; transform: rotate(-90deg);"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    `;
+    
+    document.body.appendChild(toggleContainer);
+    
+    const sunIcon = toggleContainer.querySelector('.theme-icon-sun');
+    const moonIcon = toggleContainer.querySelector('.theme-icon-moon');
+    
+    let currentTheme = localStorage.getItem('ai-site-theme');
+    
+    // Respect system preference if no user preference is stored
+    if (!currentTheme) {
+      currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        sunIcon.style.opacity = '0';
+        sunIcon.style.transform = 'rotate(90deg)';
+        moonIcon.style.opacity = '1';
+        moonIcon.style.transform = 'rotate(0deg)';
+      } else {
+        document.body.classList.remove('dark-mode');
+        sunIcon.style.opacity = '1';
+        sunIcon.style.transform = 'rotate(0deg)';
+        moonIcon.style.opacity = '0';
+        moonIcon.style.transform = 'rotate(-90deg)';
+      }
+      localStorage.setItem('ai-site-theme', theme);
+    }
+    
+    // Initial theme load
+    applyTheme(currentTheme);
+    
+    // Toggle on user click
+    toggleContainer.addEventListener('click', () => {
+      const targetTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+      applyTheme(targetTheme);
+    });
+  }
 });
