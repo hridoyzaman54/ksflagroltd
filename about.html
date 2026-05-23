@@ -624,7 +624,7 @@ window.addEventListener("DOMContentLoaded", function() {
         const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
         let n;
         while (n = walk.nextNode()) {
-            if (n.parentNode && n.parentNode.nodeName !== 'SCRIPT' && n.parentNode.nodeName !== 'STYLE') {
+            if (n.parentNode && n.parentNode.nodeName !== 'SCRIPT' && n.parentNode.nodeName !== 'STYLE' && n.parentNode.nodeName !== 'VIDEO' && n.parentNode.nodeName !== 'AUDIO') {
                 if (n.originalText === undefined) {
                     n.originalText = n.textContent;
                 }
