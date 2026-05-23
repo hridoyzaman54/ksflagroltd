@@ -12,29 +12,33 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 2. Initialize Controllers
   initReveals();
+  initVideoAutopause();
   
+  // Set up MutationObserver to watch for dynamic Kirki renders (for both desktop and mobile)
+  const observer = new MutationObserver((mutations) => {
+    let needsReinit = false;
+    for (let mutation of mutations) {
+      if (mutation.addedNodes.length > 0) {
+        needsReinit = true;
+        break;
+      }
+    }
+    if (needsReinit) {
+      autoAttachTriggers();
+      initReveals();
+      initVideoAutopause();
+      if (!isTouch) {
+        init3DTilts();
+        initMouseParallax();
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
   if (!isTouch) {
     initScrollParallax();
     initMouseParallax();
     init3DTilts();
-    
-    // Set up MutationObserver to watch for dynamic Kirki renders
-    const observer = new MutationObserver((mutations) => {
-      let needsReinit = false;
-      for (let mutation of mutations) {
-        if (mutation.addedNodes.length > 0) {
-          needsReinit = true;
-          break;
-        }
-      }
-      if (needsReinit) {
-        autoAttachTriggers();
-        initReveals();
-        init3DTilts();
-        initMouseParallax();
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
   } else {
     initMobileTaptics();
   }
@@ -293,6 +297,38 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!btn.hasAttribute('data-taptic')) {
         btn.setAttribute('data-taptic', 'true');
       }
+    });
+  }
+
+  // ----------------------------------------------------
+  // 6. High-Performance Video Autopause/Automute on Scroll
+  // ----------------------------------------------------
+  function initVideoAutopause() {
+    const videos = document.querySelectorAll('video:not(.video-observer-inited)');
+    if (videos.length === 0) return;
+
+    const videoObserverOptions = {
+      root: null, // Viewport boundary
+      rootMargin: '0px',
+      threshold: 0.0 // Fires immediately as soon as a single pixel leaves/enters screen
+    };
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (!entry.isIntersecting) {
+          // If the video section has been scrolled past/offscreen, pause playback completely
+          if (!video.paused) {
+            video.pause();
+            console.log('Automuted/Paused offscreen video container: ', video);
+          }
+        }
+      });
+    }, videoObserverOptions);
+
+    videos.forEach(video => {
+      video.classList.add('video-observer-inited');
+      videoObserver.observe(video);
     });
   }
 });
