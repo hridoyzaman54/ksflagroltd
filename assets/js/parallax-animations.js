@@ -358,9 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentTheme = localStorage.getItem('ai-site-theme');
     
-    // Respect system preference if no user preference is stored
+    // Always default to original light mode if no user preference is stored
     if (!currentTheme) {
-      currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      currentTheme = 'light';
     }
     
     function applyTheme(theme) {
