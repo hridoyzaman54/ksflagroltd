@@ -256,3 +256,13 @@ body.dark-mode .kirki-s219-dpacv87r.kirki-s219-dpa5h9k9 {
   pointer-events: none;
 }
 
+/* Gallery Carousel Slow-down Override (stutter-free linear movement) */
+.discover-slider,
+[data-kirki="dp0cghbm"] {
+  animation-duration: 35s !important;
+  animation-timing-function: linear !important;
+  will-change: transform !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
