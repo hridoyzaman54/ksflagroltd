@@ -356,9 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sunIcon = toggleContainer.querySelector('.theme-icon-sun');
     const moonIcon = toggleContainer.querySelector('.theme-icon-moon');
     
-    let currentTheme = localStorage.getItem('ai-site-theme');
+    let currentTheme = sessionStorage.getItem('ai-site-theme');
     
-    // Always default to original light mode if no user preference is stored
+    // Always default to original light mode if no user preference is stored in this session
     if (!currentTheme) {
       currentTheme = 'light';
     }
@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
         moonIcon.style.opacity = '0';
         moonIcon.style.transform = 'rotate(-90deg)';
       }
-      localStorage.setItem('ai-site-theme', theme);
+      sessionStorage.setItem('ai-site-theme', theme);
     }
     
     // Initial theme load
