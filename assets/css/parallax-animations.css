@@ -1,5 +1,11 @@
 /* Premium Parallax & Mouse Navigation Animations stylesheet */
 
+/* Global Scroll Lock against Accidental Horizontal Overflows */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Smooth Reveal on Scroll Styles */
 .parallax-reveal {
   opacity: 0;
