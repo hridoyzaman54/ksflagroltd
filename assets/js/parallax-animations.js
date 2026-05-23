@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         init3DTilts();
         initMouseParallax();
       }
+      fixBanglaSpans();
     }
   });
   observer.observe(document.body, { childList: true, subtree: true });
@@ -387,6 +388,42 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleContainer.addEventListener('click', () => {
       const targetTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
       applyTheme(targetTheme);
+    });
+  }
+
+  // 8. Self-healing Bangla Font Ligature Splitting Resolver
+  function fixBanglaSpans() {
+    if (!document.body.classList.contains('lang-bn')) return;
+    
+    // Temporarily disconnect the observer to avoid infinite loops during DOM mutation
+    if (typeof observer !== 'undefined') observer.disconnect();
+    
+    // Select all potential text containers
+    const containers = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, span');
+    containers.forEach(el => {
+      if (el.children.length > 1 && /[\u0980-\u09FF]/.test(el.textContent)) {
+        const spans = Array.from(el.children).filter(c => c.tagName === 'SPAN');
+        if (spans.length > 1 && spans.every(s => s.textContent.trim().length <= 2)) {
+          el.textContent = el.textContent; // Merges the text into a single cohesive node
+        }
+      }
+    });
+    
+    // Re-engage the MutationObserver
+    if (typeof observer !== 'undefined') {
+      observer.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  // Hook immediately at page load in case it starts in Bangla mode
+  fixBanglaSpans();
+
+  // Listen for language toggles
+  const langToggle = document.querySelector('.ai-lang-toggle');
+  if (langToggle) {
+    langToggle.addEventListener('click', () => {
+      // Small timeout to let translation scripts do their work before we recombine spans
+      setTimeout(fixBanglaSpans, 40);
     });
   }
 });
