@@ -83,6 +83,20 @@ html body.lang-bn .kirki-s220-dpeid32n * {
   line-height: 1 !important;
 }
 
+/* Prevent menu overflow past the right edge of the screen in Bangla mode */
+@media (min-width: 992px) {
+  html body.lang-bn .kirki-s220-dph9mfsm {
+    width: auto !important;
+    min-width: 500px !important;
+  }
+  html body.lang-bn .kirki-s220-dp425u34 {
+    column-gap: 10px !important;
+  }
+  html body.lang-bn .kirki-s220-dplwwalk {
+    padding: 10px 6px !important;
+  }
+}
+
 /* Premium Theme Switcher UI & Transition */
 body, 
 .theme-body, 
