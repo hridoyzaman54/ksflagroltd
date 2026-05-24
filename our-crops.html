@@ -1537,6 +1537,24 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
   }
 })();
 </script>
+
+<script id="ksfl-products-fix">
+// Prevent kirki from animating the old products dropdown
+(function(){
+  function killKirkiDropdown(){
+    if(window.kirkiInteractions&&window.kirkiInteractions.dpkzemwd){
+      delete window.kirkiInteractions.dpkzemwd;
+    }
+    // Also force-hide the original kirki dropdown
+    var dd=document.querySelector('.kirki-s220-dpi8cdrc');
+    if(dd){dd.style.cssText='display:none!important;height:0!important;overflow:hidden!important;pointer-events:none!important';}
+  }
+  killKirkiDropdown();
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',killKirkiDropdown);}
+  setTimeout(killKirkiDropdown,500);
+  setTimeout(killKirkiDropdown,2000);
+})();
+</script>
 </body>
 </html>
   

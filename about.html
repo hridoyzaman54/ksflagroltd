@@ -285,77 +285,98 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             <h2 class="h3 center team-header-title">The People Behind KSFL Agro Ltd.</h2>
         </div>
 
-        <!-- CEO Spotlight -->
-        <div class="team-ceo-card">
-            <div style="flex: 1 1 400px; min-width: 300px;" class="team-member-img-wrap">
-                <img src="./assets/wp-content/uploads/team/team_ceo.png" alt="CEO" class="team-member-img" style="object-fit: cover; width: 100%; height: 100%; border-radius: 16px;" style="object-position: center top;">
-            </div>
-            <div style="flex: 1 1 500px; padding: 60px 40px; display: flex; flex-direction: column; justify-content: center;">
-                <h3 style="font-size: 32px; color: var(--premade_template_dprt5n21); margin: 0 0 10px 0;">Monwar Hossain</h3>
-                <span style="color: #FDE251; font-weight: bold; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; display: inline-block; background-color: var(--premade_template_dprt5n21); padding: 5px 15px; border-radius: 5px; width: fit-content;">Chief Executive Officer</span>
-                <p style="color: #4a5d4e; font-size: 18px; line-height: 1.6; margin: 0;">Monwar is a visionary leader with over 20 years of experience in sustainable agriculture. He believes that the future of farming lies in the perfect balance of traditional wisdom and modern innovation. Under his guidance, KSFL Agro Ltd. has expanded its reach globally while maintaining its core commitment to organic, eco-friendly farming practices that nourish both people and the planet.</p>
-            </div>
+        <!-- TEAM MEMBERS -->
+        <style>
+        .ksfl-team-grid { display: grid; gap: 24px; }
+        .ksfl-team-row-2 { grid-template-columns: repeat(2, 1fr); }
+        .ksfl-team-row-3 { grid-template-columns: repeat(3, 1fr); }
+        .ksfl-team-card {
+            background: #fff; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 4px 24px rgba(41,57,32,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ksfl-team-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(41,57,32,0.15); }
+        .ksfl-team-avatar {
+            width: 90px; height: 90px; border-radius: 50%;
+            background: linear-gradient(135deg, #293920, #3d5a2e);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Roboto', sans-serif; font-size: 28px; font-weight: 700;
+            color: #FDE251; letter-spacing: 1px; margin: 0 auto 16px;
+            box-shadow: 0 4px 16px rgba(41,57,32,0.2);
+        }
+        .ksfl-team-body { padding: 32px 28px; text-align: center; }
+        .ksfl-team-name { font-family: 'Roboto', sans-serif; font-size: 20px; font-weight: 600; color: var(--premade_template_dprt5n21, #293920); margin: 0 0 10px; letter-spacing: -0.5px; }
+        .ksfl-team-badge { display: inline-block; background: #FDE251; color: var(--premade_template_dprt5n21, #293920); font-family: 'Roboto', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 5px 14px; border-radius: 20px; margin-bottom: 18px; }
+        .ksfl-team-contact { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+        .ksfl-team-contact a { display: flex; align-items: center; gap: 8px; color: #5a6d3f; font-family: 'Roboto', sans-serif; font-size: 13px; text-decoration: none; transition: color 0.2s; }
+        .ksfl-team-contact a:hover { color: #293920; }
+        .ksfl-team-contact svg { width: 15px; height: 15px; flex-shrink: 0; }
+        @media (max-width: 991px) { .ksfl-team-row-3 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 575px) { .ksfl-team-row-2, .ksfl-team-row-3 { grid-template-columns: 1fr; } .ksfl-team-body { padding: 24px 20px; } .ksfl-team-avatar { width: 72px; height: 72px; font-size: 22px; } }
+        </style>
+
+        <div class="ksfl-team-grid ksfl-team-row-2">
+            <div class="ksfl-team-card team-member-card"><div class="ksfl-team-body">
+                <div class="ksfl-team-avatar">MH</div>
+                <h4 class="ksfl-team-name">Md Monwar Hossain</h4>
+                <span class="ksfl-team-badge"><span class="en-text">Chairman</span><span class="bn-text" style="display:none">চেয়ারম্যান</span></span>
+                <div class="ksfl-team-contact">
+                    <a href="mailto:monwar.hossain371@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg> monwar.hossain371@gmail.com</a>
+                    <a href="tel:+8801715249371"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> 01715-249371</a>
+                </div>
+            </div></div>
+            <div class="ksfl-team-card team-member-card"><div class="ksfl-team-body">
+                <div class="ksfl-team-avatar">SA</div>
+                <h4 class="ksfl-team-name">Md. Shohel Aktear Pk</h4>
+                <span class="ksfl-team-badge"><span class="en-text">Managing Director</span><span class="bn-text" style="display:none">ব্যবস্থাপনা পরিচালক</span></span>
+                <div class="ksfl-team-contact">
+                    <a href="mailto:shohelakter@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg> shohelakter@gmail.com</a>
+                    <a href="tel:+8801580371162"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> 01580-371162</a>
+                </div>
+            </div></div>
         </div>
 
-        <!-- Team Grid -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-            
-            <!-- Team Member 1 -->
-            <div class="team-member-card">
-                <div class="team-member-img-wrap">
-                    <img src="./assets/651141141_122098048281025059_3407779733275887259_n.jpg" alt="Agronomist" class="team-member-img" style="object-fit: cover; width: 100%; height: 100%; border-radius: 16px;">
+        <div class="ksfl-team-grid ksfl-team-row-3" style="margin-top: 24px;">
+            <div class="ksfl-team-card team-member-card"><div class="ksfl-team-body">
+                <div class="ksfl-team-avatar">KA</div>
+                <h4 class="ksfl-team-name">Md. Kaisar Alam</h4>
+                <span class="ksfl-team-badge"><span class="en-text">Marketing Director</span><span class="bn-text" style="display:none">মার্কেটিং পরিচালক</span></span>
+                <div class="ksfl-team-contact">
+                    <a href="mailto:welcome.tuhin1234@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg> welcome.tuhin1234@gmail.com</a>
+                    <a href="tel:+8801711076636"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> 01711-076636</a>
                 </div>
-                <div style="padding: 30px;">
-                    <h4 style="font-size: 22px; color: var(--premade_template_dprt5n21); margin: 0 0 5px 0;">Tuhin</h4>
-                    <span style="color: var(--premade_template_dprt5n21); font-weight: bold; font-size: 14px; display: block; margin-bottom: 15px; background-color: #FDE251; padding: 4px 10px; border-radius: 4px; width: fit-content;">Managing Director of KSFL Agro Ltd</span>
-                    <p style="color: #666; font-size: 15px; line-height: 1.6; margin: 0;">Over decades of immense experience and hands on experience with farming, seed and crop production</p>
+            </div></div>
+            <div class="ksfl-team-card team-member-card"><div class="ksfl-team-body">
+                <div class="ksfl-team-avatar">MA</div>
+                <h4 class="ksfl-team-name">Md Asaduzzaman</h4>
+                <span class="ksfl-team-badge"><span class="en-text">Director</span><span class="bn-text" style="display:none">পরিচালক</span></span>
+                <div class="ksfl-team-contact">
+                    <a href="mailto:asadzaman665@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg> asadzaman665@gmail.com</a>
+                    <a href="tel:+8801761302602"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> 01761-302602</a>
                 </div>
-            </div>
-
-            <!-- Team Member 2 -->
-            <div class="team-member-card">
-                <div class="team-member-img-wrap">
-                    <img src="./assets/wp-content/uploads/team/team_operations.png" alt="Operations" class="team-member-img" style="object-fit: cover; width: 100%; height: 100%; border-radius: 16px;">
+            </div></div>
+            <div class="ksfl-team-card team-member-card"><div class="ksfl-team-body">
+                <div class="ksfl-team-avatar">MN</div>
+                <h4 class="ksfl-team-name">Md Nurzaman</h4>
+                <span class="ksfl-team-badge"><span class="en-text">Finance Director</span><span class="bn-text" style="display:none">অর্থ পরিচালক</span></span>
+                <div class="ksfl-team-contact">
+                    <a href="mailto:zamankbd@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg> zamankbd@gmail.com</a>
+                    <a href="tel:+8801796930738"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg> 01796-930738</a>
                 </div>
-                <div style="padding: 30px;">
-                    <h4 style="font-size: 22px; color: var(--premade_template_dprt5n21); margin: 0 0 5px 0;">David Chen</h4>
-                    <span style="color: var(--premade_template_dprt5n21); font-weight: bold; font-size: 14px; display: block; margin-bottom: 15px; background-color: #FDE251; padding: 4px 10px; border-radius: 4px; width: fit-content;">Head of Farm Operations</span>
-                    <p style="color: #666; font-size: 15px; line-height: 1.6; margin: 0;">David oversees daily logistics, ensuring our sustainable harvesting processes are as efficient as possible.</p>
-                </div>
-            </div>
-
-            <!-- Team Member 3 -->
-            <div class="team-member-card">
-                <div class="team-member-img-wrap">
-                    <img src="./assets/wp-content/uploads/team/team_sustainability.png" alt="Sustainability" class="team-member-img" style="object-fit: cover; width: 100%; height: 100%; border-radius: 16px;">
-                </div>
-                <div style="padding: 30px;">
-                    <h4 style="font-size: 22px; color: var(--premade_template_dprt5n21); margin: 0 0 5px 0;">Sarah Jenkins</h4>
-                    <span style="color: var(--premade_template_dprt5n21); font-weight: bold; font-size: 14px; display: block; margin-bottom: 15px; background-color: #FDE251; padding: 4px 10px; border-radius: 4px; width: fit-content;">Director of Sustainability</span>
-                    <p style="color: #666; font-size: 15px; line-height: 1.6; margin: 0;">Sarah spearheads our zero-waste initiatives, continually reducing our carbon footprint across all operations.</p>
-                </div>
-            </div>
-
+            </div></div>
         </div>
-    </div>
-</section>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.team-header-badge, .team-header-title, .team-ceo-card, .team-member-card').forEach(el => {
-            observer.observe(el);
-        });
-    });
-</script>
+        <script>
+        (function(){
+          function syncTeamLang(){
+            var bn=document.body.classList.contains('bn-active');
+            document.querySelectorAll('.ksfl-team-card .en-text').forEach(function(e){e.style.display=bn?'none':'';});
+            document.querySelectorAll('.ksfl-team-card .bn-text').forEach(function(e){e.style.display=bn?'':'none';});
+          }
+          syncTeamLang();
+          new MutationObserver(syncTeamLang).observe(document.body,{attributes:true,attributeFilter:['class']});
+        })();
+        </script>
 <!-- END OUR TEAM SECTION -->
 
 <div class="kirki-s219-dps6xd5x" data-kirki="dp36mhgx"><div class="kirki-s219-dp6c8s2r kirki-s219-dpgjydqc" data-kirki="dpz081if"><div class="kirki-s219-dp3tddhy" data-kirki="dpn38jrd"><div class="kirki-s219-dptldnyq" data-kirki="dpatb7d2"><div class="kirki-s219-dp87431g" data-kirki="dpy25646"><h2 class="kirki-s219-dpk590pv kirki-s219-dpo2pb78" data-kirki="dpobo11g">Let’s grow healthier together</h2><div class="kirki-s219-dpkr8zeb" data-kirki="dp2wyv8a"><p class="kirki-s219-dp8uxjnw kirki-s219-dpo2pb78" data-kirki="dpiu53sl">We envision a future where innovation nourishes the earth and enhances sustainable agriculture.</p></div></div><a class="kirki-s219-dplr6hng kirki-inline-element" data-kirki="dpj23c7y"  target="" href="./contact.html" ><div class="kirki-s219-dpzn1un8" data-kirki="dp5nq88c"><span class="kirki-s219-dpgarj7g kirki-s219-dpclh94s" data-kirki="dpvjf80a">Contact Us</span><span class="kirki-s219-dpgarj7g kirki-s219-dpclh94s" data-kirki="dpj2ysvq">Contact Us</span></div><svg class="kirki-s219-dpv5h2iw" data-kirki="dpsgwldc" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -508,6 +529,16 @@ window.addEventListener("DOMContentLoaded", function() {
         "Our Team": "আমাদের দল",
         "The People Behind KSFL Agro Ltd.": "কেএসএফএল এগ্রো লিঃ এর পেছনের মানুষ",
         "Monwar Hossain": "মনোয়ার হোসেন",
+        "Chairman": "চেয়ারম্যান",
+        "Managing Director": "ব্যবস্থাপনা পরিচালক",
+        "Marketing Director": "মার্কেটিং পরিচালক",
+        "Director": "পরিচালক",
+        "Finance Director": "অর্থ পরিচালক",
+        "Md Monwar Hossain": "মো. মনোয়ার হোসেন",
+        "Md. Shohel Aktear Pk": "মো. শোহেল আক্তার পিকে",
+        "Md. Kaisar Alam": "মো. কায়সার আলম",
+        "Md Asaduzzaman": "মো. আসাদুজ্জামান",
+        "Md Nurzaman": "মো. নুরজামান",
         "Chief Executive Officer": "প্রধান নির্বাহী কর্মকর্তা",
         "Monwar is a visionary leader with over 20 years of experience in sustainable agriculture. He believes that the future of farming lies in the perfect balance of traditional wisdom and modern innovation. Under his guidance, KSFL Agro Ltd. has expanded its reach globally while maintaining its core commitment to organic, eco-friendly farming practices that nourish both people and the planet.": "মনোয়ার একজন দূরদর্শী নেতা যার টেকসই কৃষি ক্ষেত্রে ২০ বছরেরও বেশি অভিজ্ঞতা রয়েছে। তিনি বিশ্বাস করেন যে কৃষির ভবিষ্যৎ ঐতিহ্যগত জ্ঞান এবং আধুনিক উদ্ভাবনের নিখুঁত ভারসাম্যের মধ্যে নিহিত রয়েছে।",
         "Tuhin": "তুহিন",
@@ -1222,6 +1253,24 @@ window.addEventListener("DOMContentLoaded", function() {
   } else {
     initMegaMenu();
   }
+})();
+</script>
+
+<script id="ksfl-products-fix">
+// Prevent kirki from animating the old products dropdown
+(function(){
+  function killKirkiDropdown(){
+    if(window.kirkiInteractions&&window.kirkiInteractions.dpkzemwd){
+      delete window.kirkiInteractions.dpkzemwd;
+    }
+    // Also force-hide the original kirki dropdown
+    var dd=document.querySelector('.kirki-s220-dpi8cdrc');
+    if(dd){dd.style.cssText='display:none!important;height:0!important;overflow:hidden!important;pointer-events:none!important';}
+  }
+  killKirkiDropdown();
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',killKirkiDropdown);}
+  setTimeout(killKirkiDropdown,500);
+  setTimeout(killKirkiDropdown,2000);
 })();
 </script>
 </body>
