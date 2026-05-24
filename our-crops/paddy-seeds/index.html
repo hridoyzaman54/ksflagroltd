@@ -1245,10 +1245,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
                    </div>
                  </div>
                  <div class="kirki-s219-dpnjm05m">
-                   <p class="kirki-s219-dphywhzk kirki-s219-dpw94s95" style="color: #FDE251;">Others</p>
-                   <div class="kirki-s219-dpgjvbot">
-                     <a class="kirki-s219-dpf3ou08 kirki-inline-element" href="../../terms-conditions/"><span class="kirki-s219-dpgx9dvt kirki-s219-dpksu24y">Terms of Service</span></a>
-                   </div>
+                   
                  </div>
                </div>
              </div>
@@ -1360,7 +1357,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             "Nutrient Element": "পুষ্টি উপাদান",
             "Value Amount": "পরিমাণ",
             "Quick Links": "দ্রুত লিঙ্ক",
-            "Others": "অন্যান্য",
+            
             "Terms of Service": "ব্যবহারের শর্তাবলী",
             "Subscribe": "সাবস্ক্রাইব করুন",
             "Successfully submitted": "সফলভাবে জমা দেওয়া হয়েছে",
@@ -1805,6 +1802,43 @@ body.bn-active .ksfl-mega-nav-item .bn-text { display: inline; }
     document.addEventListener('DOMContentLoaded', initMegaMenu);
   } else {
     initMegaMenu();
+  }
+})();
+</script>
+
+<script id="ksfl-footer-fix">
+(function() {
+  function fixFooter() {
+    // Remove Others/Terms of Service section via DOM
+    var othersEl = document.querySelector('[data-kirki="dpjh2nl5"]');
+    if (othersEl) othersEl.remove();
+    
+    // Also search by text content as fallback
+    document.querySelectorAll('.kirki-s219-dphywhzk').forEach(function(el) {
+      if (el.textContent.trim() === 'Others' || el.textContent.trim() === 'অন্যান্য') {
+        var parent = el.closest('.kirki-s219-dpnjm05m');
+        if (parent) parent.remove();
+      }
+    });
+
+    // Fix footer link paths for subpages
+    var bp = '../../';
+    if (bp !== './') {
+      var footer = document.getElementById('footer');
+      if (footer) {
+        footer.querySelectorAll('a[href^="./"]').forEach(function(a) {
+          a.href = a.getAttribute('href').replace('./', bp);
+        });
+        footer.querySelectorAll('img[src^="./"]').forEach(function(img) {
+          img.src = img.getAttribute('src').replace('./', bp);
+        });
+      }
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fixFooter);
+  } else {
+    fixFooter();
   }
 })();
 </script>
