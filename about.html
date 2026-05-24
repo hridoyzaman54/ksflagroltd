@@ -1270,6 +1270,23 @@ window.addEventListener("DOMContentLoaded", function() {
   }
 })();
 </script>
+
+<script id="ksfl-force-footer">
+(function(){
+  function forceFooter(){
+    var f = document.getElementById('footer');
+    if(!f) return;
+    f.style.setProperty('background-image','url(./assets/wp-content/uploads/2025/11/footer-img.webp)','important');
+    f.style.setProperty('background-size','cover','important');
+    f.style.setProperty('background-repeat','no-repeat','important');
+    f.style.setProperty('background-position','50% 50%','important');
+    f.style.setProperty('background-color','#293920','important');
+  }
+  forceFooter();
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',forceFooter);}
+  window.addEventListener('load',forceFooter);
+})();
+</script>
 </body>
 
 </html>
