@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-US">
 
 <head>
@@ -356,7 +356,7 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 
 <!-- AI MANUAL TRANSLATOR & PREMIUM UI TOGGLE -->
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
-<div class="ai-lang-toggle" style="position: fixed; bottom: 30px; right: 30px; z-index: 999999; display: flex; align-items: center; background-color: var(--premade_template_dpw2cmzz, #5A6D3F); border-radius: 50px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid rgba(253, 226, 81, 0.4); cursor: pointer; transition: transform 0.3s ease;">
+<div class="ai-lang-toggle" style="position: fixed; bottom: 30px; right: 30px; z-index: 999999; display: flex; align-items: center; background-color: var(--premade_template_dpw2cmzz, #5A6D3F); border-radius: 50px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 1px solid rgba(253, 226, 81, 0.4); cursor: pointer; touch-action: manipulation;">
     <div id="btn-en" style="padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: bold; font-family: 'Roboto', sans-serif; color: #293920; background-color: #FDE251; transition: all 0.3s ease;">EN</div>
     <div id="btn-bn" style="padding: 8px 16px; border-radius: 50px; font-size: 14px; font-weight: bold; font-family: 'Hind Siliguri', sans-serif; color: #fff; background-color: transparent; transition: all 0.3s ease;">BN</div>
 </div>
@@ -671,13 +671,21 @@ window.addEventListener("DOMContentLoaded", function() {
 
     setToggleUI(savedLang);
 
-    toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        const currentLang = localStorage.getItem('ai-site-lang') || 'en';
-        const targetLang = currentLang === 'en' ? 'bn' : 'en';
-        
+    // Per-button pointerdown — fires reliably on touch, mouse, stylus
+    let _toggleLocked = false;
+    function doToggle(targetLang) {
+        if (_toggleLocked) return;
+        _toggleLocked = true;
         localStorage.setItem('ai-site-lang', targetLang);
         setToggleUI(targetLang);
+        setTimeout(function() { _toggleLocked = false; }, 300);
+    }
+    const btnEn = document.getElementById('btn-en');
+    const btnBn = document.getElementById('btn-bn');
+    if (btnEn) { btnEn.addEventListener('pointerdown', function(e) { e.stopPropagation(); doToggle('en'); }, { passive: true }); }
+    if (btnBn) { btnBn.addEventListener('pointerdown', function(e) { e.stopPropagation(); doToggle('bn'); }, { passive: true }); }
+    toggle.addEventListener('click', function(e) {
+        if (e.target === toggle) { const cur = localStorage.getItem('ai-site-lang') || 'en'; doToggle(cur === 'en' ? 'bn' : 'en'); }
     });
 
     // Footer Subscription Logic

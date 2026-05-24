@@ -415,15 +415,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Hook immediately at page load in case it starts in Bangla mode
-  fixBanglaSpans();
-
-  // Listen for language toggles
-  const langToggle = document.querySelector('.ai-lang-toggle');
-  if (langToggle) {
-    langToggle.addEventListener('click', () => {
-      // Small timeout to let translation scripts do their work before we recombine spans
-      setTimeout(fixBanglaSpans, 40);
-    });
+  // Listen for language toggles (debounced to avoid double-fire conflicts)
+  let _banglaFixPending = false;
+  function scheduleBanglaFix() {
+    if (_banglaFixPending) return;
+    _banglaFixPending = true;
+    setTimeout(() => {
+      fixBanglaSpans();
+      _banglaFixPending = false;
+    }, 80);
   }
+
+  // Watch for lang class changes on body (works regardless of which script triggers it)
+  const langClassObserver = new MutationObserver(() => {
+    scheduleBanglaFix();
+  });
+  langClassObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 });

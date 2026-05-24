@@ -248,16 +248,39 @@ body.dark-mode .kirki-s219-dpacv87r.kirki-s219-dpa5h9k9 {
 
 /* Dark mode theme switcher hover/active states */
 .ai-theme-toggle:hover {
-  transform: translateY(-5px) scale(1.05) !important;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25) !important;
   background-color: var(--premade_template_dprt5n21, #293920) !important;
 }
 .ai-theme-toggle:active {
-  transform: translateY(-2px) scale(0.95) !important;
+  transform: scale(0.95) !important;
 }
 .theme-icon-sun, .theme-icon-moon {
   pointer-events: none;
 }
+
+/* Language toggle: reliable touch targets */
+.ai-lang-toggle {
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: transparent !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+.ai-lang-toggle:hover {
+  /* Remove translateY — it causes touch events to miss on mobile */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;
+}
+#btn-en, #btn-bn {
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+  -webkit-tap-highlight-color: transparent !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  pointer-events: all !important;
+  transition: background-color 0.25s ease, color 0.25s ease !important;
+  min-width: 40px !important;
+  text-align: center !important;
+}
+
 
 /* Gallery Carousel Slow-down Override (stutter-free linear movement) */
 .discover-slider,
