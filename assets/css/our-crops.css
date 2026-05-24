@@ -592,3 +592,91 @@ body.dark-mode .nutrition-table td {
     height: 320px;
   }
 }
+
+/* Related Crops Carousel Section Styling */
+.crops-carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 40px auto 0 auto;
+  padding: 0 60px;
+  box-sizing: border-box;
+}
+
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  gap: 30px;
+}
+
+.carousel-track .crop-card {
+  flex: 0 0 calc((100% - 60px) / 3);
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Responsive carousel sizes */
+@media (max-width: 1024px) {
+  .carousel-track .crop-card {
+    flex: 0 0 calc((100% - 30px) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .crops-carousel-container {
+    padding: 0 10px;
+  }
+  .carousel-track .crop-card {
+    flex: 0 0 100%;
+  }
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--ksfl-forest, #293920);
+  color: var(--ksfl-gold, #FDE251);
+  border: 1px solid rgba(253, 226, 81, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.carousel-arrow:hover {
+  background-color: var(--ksfl-gold, #FDE251);
+  color: var(--ksfl-forest, #293920);
+  border-color: var(--ksfl-forest, #293920);
+  box-shadow: 0 6px 20px rgba(253, 226, 81, 0.4);
+}
+
+.carousel-arrow svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.5px;
+}
+
+.carousel-arrow.left-arrow {
+  left: 0;
+}
+
+.carousel-arrow.right-arrow {
+  right: 0;
+}
+
+.carousel-arrow:focus {
+  outline: none;
+}
+
