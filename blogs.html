@@ -925,8 +925,12 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 
+
+
+
+
 <style id="ksfl-header-nav-fix">
-/* ===== FORCE NAV LINKS VISIBLE ON DESKTOP ===== */
+/* ===== FORCE NAV VISIBLE ===== */
 .kirki-s220-dp425u34 {
   display: flex !important;
   visibility: visible !important;
@@ -936,6 +940,7 @@ window.addEventListener("DOMContentLoaded", function() {
   width: auto !important;
   height: auto !important;
   max-height: none !important;
+  min-height: unset !important;
   background: transparent !important;
   flex-direction: row !important;
   column-gap: 16px !important;
@@ -943,30 +948,153 @@ window.addEventListener("DOMContentLoaded", function() {
   overflow: visible !important;
   border: none !important;
   inset: unset !important;
-  min-height: unset !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .kirki-s220-dph9mfsm {
   display: flex !important;
   visibility: visible !important;
   overflow: visible !important;
 }
-/* Products dropdown: visible on hover */
+/* HIDE original kirki dropdown completely - we replace it */
 .kirki-s220-dpi8cdrc {
-  height: 0px;
-  overflow: hidden;
-  transition: height 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
-}
-li[data-kirki="dpkzemwd"]:hover .kirki-s220-dpi8cdrc,
-li[data-kirki="dpkzemwd"].submenu-open .kirki-s220-dpi8cdrc {
-  height: auto;
-  overflow: visible;
-  opacity: 1;
+  display: none !important;
 }
 /* Hamburger hidden on desktop */
 .kirki-s220-dpjglwhg { display: none !important; }
 
-/* ===== MOBILE NAV ===== */
+/* ===== MEGA MENU ===== */
+.ksfl-mega-wrapper {
+  position: relative;
+}
+.ksfl-mega-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 620px;
+  background: rgba(41, 57, 32, 0.97);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 16px;
+  border: 1px solid rgba(253,226,81,0.12);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  padding: 0;
+  z-index: 99999;
+  animation: ksflSlideIn 0.25s ease;
+  overflow: hidden;
+}
+@keyframes ksflSlideIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+/* Triangle pointer */
+.ksfl-mega-menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 8px solid rgba(41, 57, 32, 0.97);
+}
+.ksfl-mega-wrapper:hover .ksfl-mega-menu,
+.ksfl-mega-wrapper.ksfl-open .ksfl-mega-menu {
+  display: block;
+}
+
+/* Top nav links (Our Crops, Seeds, Micronutrients) */
+.ksfl-mega-nav {
+  display: flex;
+  border-bottom: 1px solid rgba(253,226,81,0.1);
+}
+.ksfl-mega-nav-item {
+  flex: 1;
+  padding: 16px 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none !important;
+  text-align: center;
+  transition: all 0.2s ease;
+  border-right: 1px solid rgba(253,226,81,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.ksfl-mega-nav-item:last-child { border-right: none; }
+.ksfl-mega-nav-item:hover,
+.ksfl-mega-nav-item.ksfl-active {
+  background: rgba(253,226,81,0.08);
+  color: #FDE251;
+}
+.ksfl-mega-nav-item .ksfl-chevron {
+  display: inline-flex;
+  width: 14px; height: 14px;
+  align-items: center; justify-content: center;
+  transition: transform 0.3s ease;
+}
+.ksfl-mega-nav-item.ksfl-active .ksfl-chevron {
+  transform: rotate(180deg);
+}
+
+/* Crops grid panel */
+.ksfl-crops-panel {
+  display: none;
+  padding: 20px 24px 16px;
+}
+.ksfl-crops-panel.ksfl-visible { display: block; }
+.ksfl-crops-heading {
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(253,226,81,0.6);
+  margin: 0 0 12px 4px;
+}
+.ksfl-crops-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px 6px;
+}
+.ksfl-crop-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  color: rgba(255,255,255,0.85) !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.ksfl-crop-link:hover {
+  background: rgba(253,226,81,0.1);
+  color: #FDE251 !important;
+  transform: translateX(2px);
+}
+.ksfl-crop-link .ksfl-ci { font-size: 14px; line-height: 1; flex-shrink: 0; }
+.ksfl-crop-link .ksfl-cn-bn { display: none; }
+
+/* Bangla mode */
+body.bn-active .ksfl-crop-link .ksfl-cn-en { display: none; }
+body.bn-active .ksfl-crop-link .ksfl-cn-bn { display: inline; }
+body.bn-active .ksfl-mega-nav-item .en-text { display: none; }
+body.bn-active .ksfl-mega-nav-item .bn-text { display: inline; }
+.ksfl-mega-nav-item .bn-text { display: none; }
+
+/* ===== MOBILE ===== */
 @media (max-width: 991px) {
   .kirki-s220-dpjglwhg {
     display: block !important;
@@ -978,17 +1106,16 @@ li[data-kirki="dpkzemwd"].submenu-open .kirki-s220-dpi8cdrc {
     display: none !important;
     position: fixed !important;
     top: 72px !important;
-    left: 0 !important;
-    right: 0 !important;
+    left: 0 !important; right: 0 !important;
     width: 100% !important;
     height: calc(100vh - 72px) !important;
     background: rgba(41,57,32,0.98) !important;
     backdrop-filter: blur(20px) !important;
     flex-direction: column !important;
-    padding: 24px 0 !important;
+    padding: 20px 0 !important;
     overflow-y: auto !important;
     z-index: 9998 !important;
-    border-top: 1px solid rgba(253,226,81,0.2) !important;
+    border-top: 1px solid rgba(253,226,81,0.15) !important;
     inset: 72px 0 0 0 !important;
   }
   .kirki-s220-dp425u34.ksfl-mobile-open {
@@ -996,38 +1123,41 @@ li[data-kirki="dpkzemwd"].submenu-open .kirki-s220-dpi8cdrc {
   }
   .kirki-s220-dplwwalk {
     width: 100% !important;
-    padding: 14px 32px !important;
-    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    padding: 14px 28px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
   }
   .kirki-s220-dpich0g0 {
     font-size: 20px !important;
     color: rgba(255,255,255,0.9) !important;
     letter-spacing: -0.5px !important;
   }
-  .kirki-s220-dpi8cdrc {
+  /* Mobile mega menu */
+  .ksfl-mega-menu {
     position: static !important;
+    transform: none !important;
     width: 100% !important;
-  }
-  li[data-kirki="dpkzemwd"]:hover .kirki-s220-dpi8cdrc {
-    height: 0px;
-    overflow: hidden;
-    opacity: 0;
-  }
-  li[data-kirki="dpkzemwd"].submenu-open .kirki-s220-dpi8cdrc {
-    height: auto;
-    overflow: visible;
-    opacity: 1;
-  }
-  /* Hide kirki triangle SVG on mobile */
-  .kirki-s220-dp5akxy5 { display: none !important; }
-  /* Products submenu container */
-  .kirki-s220-dp3xu5yf {
-    background: rgba(0,0,0,0.15) !important;
     border-radius: 12px !important;
     margin: 8px 0 0 0 !important;
-    padding: 16px !important;
     box-shadow: none !important;
+    border: 1px solid rgba(253,226,81,0.08) !important;
+    animation: none !important;
   }
+  .ksfl-mega-menu::before { display: none; }
+  .ksfl-mega-wrapper:hover .ksfl-mega-menu { display: none; }
+  .ksfl-mega-wrapper.ksfl-open .ksfl-mega-menu { display: block; }
+  .ksfl-mega-nav { flex-direction: column; }
+  .ksfl-mega-nav-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(253,226,81,0.06);
+    padding: 14px 20px;
+    justify-content: flex-start;
+    font-size: 16px;
+  }
+  .ksfl-crops-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2px 4px !important;
+  }
+  .ksfl-crop-link { font-size: 12px !important; padding: 7px 8px !important; }
 }
 @media (max-width: 575px) {
   .kirki-s220-dp425u34 {
@@ -1035,338 +1165,139 @@ li[data-kirki="dpkzemwd"].submenu-open .kirki-s220-dpi8cdrc {
     height: calc(100vh - 56px) !important;
     inset: 56px 0 0 0 !important;
   }
-  .kirki-s220-dplwwalk {
-    padding: 12px 20px !important;
-  }
-  .kirki-s220-dpich0g0 {
-    font-size: 18px !important;
-  }
-}
-
-/* ===== "OUR CROPS" EXPANDABLE INDICATOR ===== */
-.ksfl-crops-trigger {
-  position: relative !important;
-}
-.ksfl-crops-trigger > a {
-  display: flex !important;
-  align-items: center;
-  gap: 6px;
-}
-.ksfl-expand-chevron {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: rgba(253,226,81,0.15);
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  margin-left: 4px;
-}
-.ksfl-expand-chevron svg {
-  width: 10px;
-  height: 10px;
-  transition: transform 0.3s ease;
-  fill: none;
-  stroke: #FDE251;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.ksfl-crops-trigger:hover .ksfl-expand-chevron,
-.ksfl-crops-trigger.ksfl-expanded .ksfl-expand-chevron {
-  background: rgba(253,226,81,0.3);
-  transform: scale(1.1);
-}
-.ksfl-crops-trigger:hover .ksfl-expand-chevron svg,
-.ksfl-crops-trigger.ksfl-expanded .ksfl-expand-chevron svg {
-  transform: rotate(180deg);
-}
-
-/* ===== 3-COLUMN CROPS SUBMENU ===== */
-.ksfl-crops-submenu {
-  display: none;
-  background: linear-gradient(135deg, rgba(41, 57, 32, 0.98), rgba(35, 50, 27, 0.98));
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-radius: 16px;
-  border: 1px solid rgba(253,226,81,0.15);
-  box-shadow: 0 24px 80px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.04) inset;
-  padding: 22px 26px 18px;
-  margin-top: 10px;
-  z-index: 99999;
-  width: 560px;
-  animation: ksflFadeIn 0.25s ease;
-}
-@keyframes ksflFadeIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.ksfl-crops-submenu.ksfl-visible { display: block !important; }
-
-/* Desktop: absolute + auto-position via JS */
-@media (min-width: 992px) {
-  .ksfl-crops-submenu {
-    position: fixed;
-  }
-  .ksfl-crops-trigger:hover .ksfl-crops-submenu {
-    display: block !important;
-  }
-}
-
-.ksfl-crops-submenu-title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #FDE251;
-  margin: 0 0 16px 2px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(253,226,81,0.1);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.ksfl-crops-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px 8px;
-}
-.ksfl-crop-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 10px;
-  text-decoration: none !important;
-  color: rgba(255,255,255,0.88) !important;
-  font-family: 'Roboto', sans-serif;
-  font-size: 13.5px;
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-.ksfl-crop-link:hover {
-  background: rgba(253,226,81,0.1);
-  color: #FDE251 !important;
-  transform: translateX(3px);
-}
-.ksfl-crop-icon {
-  font-size: 15px;
-  flex-shrink: 0;
-  line-height: 1;
-}
-.ksfl-crop-name {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.ksfl-crops-bottom {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(253,226,81,0.08);
-  flex-wrap: wrap;
-}
-.ksfl-crops-bottom a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 16px;
-  border-radius: 50px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  text-decoration: none !important;
-  color: #293920 !important;
-  background: #FDE251;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-.ksfl-crops-bottom a:hover {
-  background: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-}
-
-/* ===== MOBILE CROPS SUBMENU ===== */
-@media (max-width: 991px) {
-  .ksfl-crops-submenu {
-    position: static !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    border-radius: 14px !important;
-    margin: 10px 0 4px !important;
-    padding: 16px 18px 14px !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2) !important;
-    backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(253,226,81,0.1) !important;
-  }
-  .ksfl-crops-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 2px 6px !important;
-  }
-  .ksfl-crop-link {
-    font-size: 13px !important;
-    padding: 8px 10px !important;
-  }
-  .ksfl-crops-bottom {
-    gap: 6px !important;
-  }
-  .ksfl-crops-bottom a {
-    font-size: 11px !important;
-    padding: 6px 12px !important;
-  }
-}
-@media (max-width: 575px) {
-  .ksfl-crops-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 2px 4px !important;
-  }
-  .ksfl-crop-link {
-    font-size: 12px !important;
-    padding: 7px 8px !important;
-    gap: 6px !important;
-  }
-  .ksfl-crop-icon { font-size: 13px !important; }
-  .ksfl-crops-bottom { flex-direction: column !important; }
-  .ksfl-crops-bottom a { justify-content: center; }
+  .ksfl-crops-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 </style>
 
 <script id="ksfl-header-nav-fix-js">
-document.addEventListener('DOMContentLoaded', function() {
-  var nav = document.querySelector('.kirki-s220-dp425u34');
-  if (!nav) return;
+(function() {
+  function initMegaMenu() {
+    var nav = document.querySelector('.kirki-s220-dp425u34');
+    if (!nav) return;
+    nav.removeAttribute('kirki-navigation-type');
 
-  // Remove close state so CSS can take over
-  nav.removeAttribute('kirki-navigation-type');
+    // Hamburger
+    var hamburger = document.querySelector('.kirki-s220-dpjglwhg');
+    if (hamburger) {
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.classList.toggle('ksfl-mobile-open');
+        document.body.style.overflow = nav.classList.contains('ksfl-mobile-open') ? 'hidden' : '';
+      });
+    }
 
-  // === Hamburger toggle ===
-  var hamburger = document.querySelector('.kirki-s220-dpjglwhg');
-  if (hamburger) {
-    hamburger.addEventListener('click', function(e) {
+    // Find the "Our Products" li
+    var productsLi = document.querySelector('li[data-kirki="dpkzemwd"]');
+    if (!productsLi) return;
+
+    // Add mega wrapper class
+    productsLi.classList.add('ksfl-mega-wrapper');
+
+    // Create mega menu HTML
+    var bp = './';
+    var megaMenu = document.createElement('div');
+    megaMenu.className = 'ksfl-mega-menu';
+    megaMenu.innerHTML =
+      '<div class="ksfl-mega-nav">' +
+        '<div class="ksfl-mega-nav-item ksfl-crops-toggle ksfl-active" data-panel="crops">' +
+          '<span class="en-text">🌾 Our Crops</span><span class="bn-text">🌾 আমাদের ফসল</span>' +
+          '<span class="ksfl-chevron"><svg viewBox="0 0 12 12" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="2,4 6,8 10,4"/></svg></span>' +
+        '</div>' +
+        '<a class="ksfl-mega-nav-item" href="' + bp + 'seeds.html"><span class="en-text">🌱 Seeds & Farm Goods</span><span class="bn-text">🌱 বীজ ও কৃষি পণ্য</span></a>' +
+        '<a class="ksfl-mega-nav-item" href="' + bp + 'products.html"><span class="en-text">🧪 Micronutrients</span><span class="bn-text">🧪 মাইক্রোনিউট্রিয়েন্ট</span></a>' +
+      '</div>' +
+      '<div class="ksfl-crops-panel ksfl-visible">' +
+        '<div class="ksfl-crops-heading">ALL CROPS</div>' +
+        '<div class="ksfl-crops-grid">' +
+          '<a href="' + bp + 'our-crops/rice/" class="ksfl-crop-link"><span class="ksfl-ci">🌾</span><span class="ksfl-cn-en">Rice</span><span class="ksfl-cn-bn">ধান</span></a>' +
+          '<a href="' + bp + 'our-crops/bottle-gourd/" class="ksfl-crop-link"><span class="ksfl-ci">🫛</span><span class="ksfl-cn-en">Bottle Gourd</span><span class="ksfl-cn-bn">লাউ</span></a>' +
+          '<a href="' + bp + 'our-crops/sweet-pumpkin/" class="ksfl-crop-link"><span class="ksfl-ci">🎃</span><span class="ksfl-cn-en">Sweet Pumpkin</span><span class="ksfl-cn-bn">মিষ্টি কুমড়া</span></a>' +
+          '<a href="' + bp + 'our-crops/cucumber/" class="ksfl-crop-link"><span class="ksfl-ci">🥒</span><span class="ksfl-cn-en">Cucumber</span><span class="ksfl-cn-bn">শসা</span></a>' +
+          '<a href="' + bp + 'our-crops/radish/" class="ksfl-crop-link"><span class="ksfl-ci">🥕</span><span class="ksfl-cn-en">Radish</span><span class="ksfl-cn-bn">মূলা</span></a>' +
+          '<a href="' + bp + 'our-crops/pointed-gourd/" class="ksfl-crop-link"><span class="ksfl-ci">🌿</span><span class="ksfl-cn-en">Pointed Gourd</span><span class="ksfl-cn-bn">পটল</span></a>' +
+          '<a href="' + bp + 'our-crops/okra/" class="ksfl-crop-link"><span class="ksfl-ci">🌱</span><span class="ksfl-cn-en">Okra</span><span class="ksfl-cn-bn">ঢেঁড়স</span></a>' +
+          '<a href="' + bp + 'our-crops/bitter-gourd/" class="ksfl-crop-link"><span class="ksfl-ci">🥬</span><span class="ksfl-cn-en">Bitter Gourd</span><span class="ksfl-cn-bn">করলা</span></a>' +
+          '<a href="' + bp + 'our-crops/eggplant/" class="ksfl-crop-link"><span class="ksfl-ci">🍆</span><span class="ksfl-cn-en">Eggplant</span><span class="ksfl-cn-bn">বেগুন</span></a>' +
+          '<a href="' + bp + 'our-crops/potato/" class="ksfl-crop-link"><span class="ksfl-ci">🥔</span><span class="ksfl-cn-en">Potato</span><span class="ksfl-cn-bn">গোল আলু</span></a>' +
+          '<a href="' + bp + 'our-crops/paddy-seeds/" class="ksfl-crop-link"><span class="ksfl-ci">🌱</span><span class="ksfl-cn-en">Paddy Seeds</span><span class="ksfl-cn-bn">ধানের বীজ</span></a>' +
+          '<a href="' + bp + 'our-crops/sweet-potato-seeds/" class="ksfl-crop-link"><span class="ksfl-ci">🍠</span><span class="ksfl-cn-en">Sweet Potato</span><span class="ksfl-cn-bn">মিষ্টি আলু</span></a>' +
+        '</div>' +
+      '</div>';
+    
+    productsLi.appendChild(megaMenu);
+
+    // Toggle crops panel
+    var cropsToggle = megaMenu.querySelector('.ksfl-crops-toggle');
+    var cropsPanel = megaMenu.querySelector('.ksfl-crops-panel');
+    cropsToggle.addEventListener('click', function(e) {
+      e.preventDefault();
       e.stopPropagation();
-      nav.classList.toggle('ksfl-mobile-open');
-      document.body.style.overflow = nav.classList.contains('ksfl-mobile-open') ? 'hidden' : '';
+      cropsToggle.classList.toggle('ksfl-active');
+      cropsPanel.classList.toggle('ksfl-visible');
     });
-  }
 
-  // === Products dropdown ===
-  var productsLi = document.querySelector('li[data-kirki="dpkzemwd"]');
-  if (productsLi) {
+    // Our Crops nav item click -> go to our-crops.html on desktop
+    cropsToggle.addEventListener('dblclick', function() {
+      window.location.href = bp + 'our-crops.html';
+    });
+
+    // Mobile: click "Our Products" text to toggle
     var productsLink = productsLi.querySelector('[data-kirki="dpx02odk"]');
-    var chevron = productsLi.querySelector('[data-kirki="dp6tu2j0"]');
-
-    // Toggle for mobile
-    function toggleProducts(e) {
+    var chevronSvg = productsLi.querySelector('[data-kirki="dp6tu2j0"]');
+    function toggleMobile(e) {
       if (window.innerWidth <= 991) {
         e.preventDefault();
-        productsLi.classList.toggle('submenu-open');
+        e.stopPropagation();
+        productsLi.classList.toggle('ksfl-open');
       }
     }
-    if (productsLink) productsLink.addEventListener('click', toggleProducts);
-    if (chevron) {
-      chevron.style.cursor = 'pointer';
-      chevron.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        productsLi.classList.toggle('submenu-open');
-      });
+    if (productsLink) productsLink.addEventListener('click', toggleMobile);
+    if (chevronSvg) {
+      chevronSvg.style.cursor = 'pointer';
+      chevronSvg.addEventListener('click', toggleMobile);
     }
 
-    // === Inject 3-column crops submenu ===
-    var ourCropsLink = productsLi.querySelector('a[href*="our-crops"]');
-    if (ourCropsLink) {
-      var parent = ourCropsLink.parentElement;
-      parent.classList.add('ksfl-crops-trigger');
+    // Viewport clamp for desktop
+    productsLi.addEventListener('mouseenter', function() {
+      if (window.innerWidth > 991) {
+        var rect = productsLi.getBoundingClientRect();
+        var menuW = 620;
+        var center = rect.left + rect.width / 2;
+        var left = center - menuW / 2;
+        if (left + menuW > window.innerWidth - 16) left = window.innerWidth - menuW - 16;
+        if (left < 16) left = 16;
+        megaMenu.style.left = (left - rect.left) + 'px';
+        megaMenu.style.transform = 'none';
+      }
+    });
 
-      // Add expand chevron indicator to "Our Crops" link
-      var chevronIndicator = document.createElement('span');
-      chevronIndicator.className = 'ksfl-expand-chevron';
-      chevronIndicator.innerHTML = '<svg viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg>';
-      ourCropsLink.appendChild(chevronIndicator);
-
-      // Create submenu
-      var submenu = document.createElement('div');
-      submenu.className = 'ksfl-crops-submenu';
-      submenu.innerHTML = `
-        <div class="ksfl-crops-submenu-title">🌱 Our Grown Crops</div>
-        <div class="ksfl-crops-grid">
-          <a href="./our-crops/rice/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🌾</span><span class="ksfl-crop-name">Rice</span></a>
-            <a href="./our-crops/bottle-gourd/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🫛</span><span class="ksfl-crop-name">Bottle Gourd</span></a>
-            <a href="./our-crops/sweet-pumpkin/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🎃</span><span class="ksfl-crop-name">Sweet Pumpkin</span></a>
-            <a href="./our-crops/cucumber/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🥒</span><span class="ksfl-crop-name">Cucumber</span></a>
-            <a href="./our-crops/radish/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🥕</span><span class="ksfl-crop-name">Radish</span></a>
-            <a href="./our-crops/pointed-gourd/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🌿</span><span class="ksfl-crop-name">Pointed Gourd</span></a>
-            <a href="./our-crops/okra/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🌱</span><span class="ksfl-crop-name">Okra</span></a>
-            <a href="./our-crops/bitter-gourd/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🥬</span><span class="ksfl-crop-name">Bitter Gourd</span></a>
-            <a href="./our-crops/eggplant/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🍆</span><span class="ksfl-crop-name">Eggplant</span></a>
-            <a href="./our-crops/potato/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🥔</span><span class="ksfl-crop-name">Potato</span></a>
-            <a href="./our-crops/paddy-seeds/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🌱</span><span class="ksfl-crop-name">Paddy Seeds</span></a>
-            <a href="./our-crops/sweet-potato-seeds/" class="ksfl-crop-link"><span class="ksfl-crop-icon">🍠</span><span class="ksfl-crop-name">Sweet Potato</span></a>
-        </div>
-        <div class="ksfl-crops-bottom">
-          <a href="./our-crops.html">🌾 View All Crops</a>
-          <a href="./seeds.html">🌱 Seeds & Farm Goods</a>
-          <a href="./products.html">🧪 Micronutrients</a>
-        </div>
-      `;
-      parent.appendChild(submenu);
-
-      // Desktop: position submenu within viewport on hover
-      parent.addEventListener('mouseenter', function() {
-        if (window.innerWidth > 991) {
-          var rect = parent.getBoundingClientRect();
-          submenu.style.top = (rect.bottom + 4) + 'px';
-          // Try to center under the link, but clamp within viewport
-          var left = rect.left;
-          var menuW = 560;
-          if (left + menuW > window.innerWidth - 16) {
-            left = window.innerWidth - menuW - 16;
-          }
-          if (left < 16) left = 16;
-          submenu.style.left = left + 'px';
-        }
-      });
-
-      // Mobile: toggle on click
-      ourCropsLink.addEventListener('click', function(e) {
-        if (window.innerWidth <= 991) {
-          e.preventDefault();
-          submenu.classList.toggle('ksfl-visible');
-          parent.classList.toggle('ksfl-expanded');
-        }
-      });
-    }
-  }
-
-  // === Close mobile nav on outside click ===
-  document.addEventListener('click', function(e) {
-    if (nav && nav.classList.contains('ksfl-mobile-open')) {
-      if (!nav.contains(e.target) && hamburger && !hamburger.contains(e.target)) {
+    // Close mobile nav on outside click
+    document.addEventListener('click', function(e) {
+      if (nav.classList.contains('ksfl-mobile-open') && !nav.contains(e.target) && hamburger && !hamburger.contains(e.target)) {
         nav.classList.remove('ksfl-mobile-open');
         document.body.style.overflow = '';
       }
-    }
-  });
-
-  // Close mobile nav on link click
-  nav.querySelectorAll('a[href]').forEach(function(link) {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 991 && link.getAttribute('href') && link.getAttribute('href') !== '#') {
-        setTimeout(function() {
-          nav.classList.remove('ksfl-mobile-open');
-          document.body.style.overflow = '';
-        }, 100);
-      }
     });
-  });
-});
+
+    // Close nav on link click (mobile)
+    megaMenu.querySelectorAll('a[href]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 991) {
+          setTimeout(function() {
+            nav.classList.remove('ksfl-mobile-open');
+            document.body.style.overflow = '';
+          }, 150);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMegaMenu);
+  } else {
+    initMegaMenu();
+  }
+})();
 </script>
 </body>
 
