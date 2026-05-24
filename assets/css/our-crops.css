@@ -17,8 +17,12 @@
 }
 
 /* 1. Global Translation Toggles */
-body:not(.lang-bn) .bn-text { display: none !important; }
+body:not(.lang-bn):not(.bn-active) .bn-text { display: none !important; }
 body.lang-bn .en-text { display: none !important; }
+body.bn-active .en-text { display: none !important; }
+body.lang-bn .bn-text { display: inline !important; }
+body.bn-active .bn-text { display: inline !important; }
+
 
 /* 2. Homepage Crops Showcase Grid Section */
 .crops-showcase-section {
