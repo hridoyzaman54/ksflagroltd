@@ -537,8 +537,8 @@ li[data-kirki="dpkzemwd"] {
           <span class="bn-text">🌾 সকল ফসল</span>
         </a>
         <a class="ksfl-megamenu-cat-link" href="${basePath}seeds.html">
-          <span class="en-text">🌱 Seeds & Farm Goods</span>
-          <span class="bn-text">🌱 বীজ ও খামারের পণ্য</span>
+          <span class="en-text">🌱 Pesticides</span>
+          <span class="bn-text">🌱 কীটনাশক</span>
         </a>
         <a class="ksfl-megamenu-cat-link" href="${basePath}products.html">
           <span class="en-text">🧪 Micronutrients</span>
