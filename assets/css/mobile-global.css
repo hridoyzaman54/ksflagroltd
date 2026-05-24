@@ -1,0 +1,290 @@
+/*
+ * =============================================================================
+ * KSFL Agro Ltd. — Global Mobile Responsiveness Fix
+ * Applies to ALL pages site-wide via parallax-animations.css @import
+ * =============================================================================
+ */
+
+/* ─── 1. UNIVERSAL SAFE DEFAULTS ─────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, video, svg, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─── 2. TABLET BREAKPOINT (≤ 991px) ──────────────────────────────────── */
+@media only screen and (max-width: 991px) {
+
+  /* --- Navigation / Drawer --- */
+  /* The drawer on main pages (kirki-based nav) already has inline styles.
+     This reinforces overflow safety. */
+  .kirki-s220-dp425u34 {
+    overflow-y: auto !important;
+    max-height: 100vh !important;
+  }
+
+  /* --- Blog article sub-page nav drawer --- */
+  .mobile-menu-drawer {
+    overflow-y: auto !important;
+  }
+
+  /* --- Footer grid: stack single-column on tablet --- */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  /* --- Footer logo text: prevent overflow on tablets --- */
+  .kirki-s219-dpv862q9 span[style*="font-size: 56px"],
+  .kirki-s219-dpv862q9 span[style*="font-size:56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size: 56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size:56px"] {
+    font-size: clamp(22px, 4vw, 40px) !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+
+  /* --- Footer logo img: scale down --- */
+  .kirki-s219-dpv862q9 img[style*="height: 80px"],
+  .kirki-s219-dpw3e732 img[style*="height: 80px"] {
+    height: 48px !important;
+  }
+
+  /* --- Footer subscribe form: stack vertically --- */
+  .footer-subscribe form,
+  .kirki-s219-dpkcbwft.kirki-s219-dpx265qk {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    row-gap: 10px !important;
+  }
+  .footer-subscribe input,
+  .kirki-s219-dpc5nmnu {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .footer-subscribe button,
+  .kirki-s219-dpa0z1yj {
+    width: 100% !important;
+  }
+
+  /* --- Contact page: video + info side by side becomes stacked --- */
+  .dpojqorn {
+    flex-direction: column !important;
+    row-gap: 16px !important;
+  }
+  .dpk0hnau {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .dpibgx29 {
+    max-width: 100% !important;
+  }
+
+  /* --- Map / location iframe --- */
+  .dpharcqq iframe,
+  .dpharcqq img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* --- Blog page grid: single column --- */
+  .blog-grid,
+  [class*="dpq1vc"],
+  [class*="dpwaz"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ─── 3. MOBILE LANDSCAPE BREAKPOINT (≤ 767px) ────────────────────────── */
+@media only screen and (max-width: 767px) {
+
+  /* --- Article hero banner: reduce huge h1 --- */
+  .blog-hero h1,
+  [style*="font-size: 48px"],
+  [style*="font-size:48px"] {
+    font-size: 28px !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.5px !important;
+  }
+
+  /* --- Hero banner padding on blog sub-pages --- */
+  .blog-hero {
+    padding-top: 96px !important;
+    padding-bottom: 40px !important;
+    min-height: auto !important;
+  }
+
+  /* --- Article main content padding --- */
+  main {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* --- Blockquote padding for small screens --- */
+  .article-content blockquote {
+    padding: 16px 20px !important;
+    font-size: 16px !important;
+  }
+
+  /* --- Bottom CTA section heading --- */
+  .bottom-cta h2 {
+    font-size: 26px !important;
+  }
+  .bottom-cta {
+    padding: 48px 16px !important;
+  }
+
+  /* --- Footer padding reduction --- */
+  .premium-footer {
+    padding: 48px 16px 32px 16px !important;
+  }
+
+  /* --- Horizontal flex rows become columns --- */
+  .dpzt1831 {
+    flex-direction: column !important;
+    row-gap: 24px !important;
+  }
+
+  /* --- About page: team layout stack --- */
+  .team-ceo-card {
+    flex-direction: column !important;
+  }
+  .team-ceo-card > div {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+
+/* ─── 4. SMALL MOBILE BREAKPOINT (≤ 575px) ────────────────────────────── */
+@media only screen and (max-width: 575px) {
+
+  /* --- Universal image safety --- */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* --- Typography scale (matches existing inline overrides) --- */
+  h1, .h1 { font-size: 26px !important; line-height: 1.2 !important; }
+  h2, .h2 { font-size: 22px !important; line-height: 1.25 !important; }
+  h3, .h3 { font-size: 18px !important; line-height: 1.3 !important; }
+
+  /* --- Article heading override --- */
+  .article-content h2 { font-size: 20px !important; }
+  .article-content h3 { font-size: 17px !important; }
+  .article-content     { font-size: 15px !important; }
+
+  /* --- Blog hero h1 at smallest screens --- */
+  .blog-hero h1 {
+    font-size: 22px !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  /* --- Blog hero meta info: wrap nicely --- */
+  .blog-hero [style*="display: flex"] {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+
+  /* --- Contact page: map height on small mobile --- */
+  .dpharcqq {
+    max-height: 220px !important;
+    aspect-ratio: auto !important;
+  }
+
+  /* --- Floating lang toggle: smaller on mobile --- */
+  .ai-lang-toggle {
+    bottom: 16px !important;
+    right: 16px !important;
+    padding: 4px !important;
+  }
+  #btn-en, #btn-bn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* --- Floating theme toggle: smaller on mobile --- */
+  .ai-theme-toggle {
+    bottom: 16px !important;
+    left: 16px !important;
+    right: auto !important;
+    width: 44px !important;
+    height: 44px !important;
+    padding: 8px !important;
+  }
+
+  /* --- Footer bottom bar text --- */
+  .footer-info-text,
+  .kirki-s219-dpgx9dvt.kirki-s219-dpksu24y.kirki-s219-dpo2pb78 {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    word-break: break-word !important;
+  }
+
+  /* --- Footer logo: tiny screens --- */
+  .kirki-s219-dpv862q9 img[style*="height: 80px"],
+  .kirki-s219-dpw3e732 img[style*="height: 80px"],
+  .footer-logo-link img {
+    height: 36px !important;
+  }
+  .kirki-s219-dpv862q9 span[style*="font-size: 56px"],
+  .kirki-s219-dpv862q9 span[style*="font-size:56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size: 56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size:56px"],
+  .footer-logo-link span {
+    font-size: 18px !important;
+    white-space: normal !important;
+  }
+
+  /* --- Products / Seeds page: single column product cards --- */
+  [class*="dpv3usej"],
+  [class*="dp1eiqqb"],
+  .dp1eiqqb {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* --- Prevent any fixed-width elements from overflowing --- */
+  [style*="min-width: 484px"],
+  [style*="min-width:484px"],
+  [style*="min-width: 300px"],
+  [style*="min-width:300px"] {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* --- Sections: reduce side padding --- */
+  section, .kirki-default-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* --- Form inputs: full-width tap targets --- */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  .kirki-input,
+  .kirki-textarea {
+    width: 100% !important;
+    font-size: 16px !important; /* prevents iOS zoom */
+  }
+
+  /* --- Submit buttons: full-width on mobile --- */
+  .kirki-submit-button,
+  button[type="submit"] {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
