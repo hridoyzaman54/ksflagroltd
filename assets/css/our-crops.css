@@ -1,0 +1,594 @@
+/*
+ * Premium Crops Showcase & Detail Pages Styling
+ * Matching KSFL Agro Ltd. color tokens & responsive typography
+ */
+
+:root {
+  --ksfl-forest: #293920;
+  --ksfl-green-accent: #5A6D3F;
+  --ksfl-light-green: #DCE7B6;
+  --ksfl-cream: #F3F0EB;
+  --ksfl-gold: #FDE251;
+  --ksfl-dark: #121A0F;
+  --ksfl-white: #FFFFFF;
+  --ksfl-card-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+  --ksfl-card-hover-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 1. Global Translation Toggles */
+body:not(.lang-bn) .bn-text { display: none !important; }
+body.lang-bn .en-text { display: none !important; }
+
+/* 2. Homepage Crops Showcase Grid Section */
+.crops-showcase-section {
+  padding: 100px 24px;
+  background-color: var(--ksfl-cream);
+  transition: var(--transition-smooth);
+}
+
+.crops-showcase-section .showcase-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.crops-showcase-section .showcase-subtitle {
+  color: var(--ksfl-green-accent);
+  font-size: 18px;
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.crops-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.crop-card {
+  background-color: var(--ksfl-white);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(90, 109, 63, 0.1);
+  box-shadow: var(--ksfl-card-shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: var(--transition-smooth);
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.crop-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--ksfl-green-accent);
+  box-shadow: var(--ksfl-card-hover-shadow);
+}
+
+.crop-image-wrapper {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+}
+
+.crop-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-smooth);
+}
+
+.crop-card:hover .crop-image-wrapper img {
+  transform: scale(1.06);
+}
+
+.crop-info {
+  padding: 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.crop-scientific {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ksfl-green-accent);
+  margin-bottom: 8px;
+}
+
+.crop-title {
+  font-family: 'Roboto', 'Hind Siliguri', sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--ksfl-forest);
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.crop-desc {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* Yellow circular arrow button on card bottom right */
+.crop-arrow-btn {
+  width: 44px;
+  height: 44px;
+  background-color: var(--ksfl-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  box-shadow: 0 4px 12px rgba(253, 226, 81, 0.3);
+  transition: var(--transition-smooth);
+}
+
+.crop-arrow-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--ksfl-forest);
+  transition: var(--transition-smooth);
+}
+
+.crop-card:hover .crop-arrow-btn {
+  background-color: var(--ksfl-forest);
+  box-shadow: 0 4px 12px rgba(41, 57, 32, 0.3);
+}
+
+.crop-card:hover .crop-arrow-btn svg {
+  stroke: var(--ksfl-gold);
+  transform: rotate(-45deg);
+}
+
+/* Dark Mode Overrides */
+body.dark-mode .crops-showcase-section {
+  background-color: var(--ksfl-dark);
+}
+
+body.dark-mode .crop-card {
+  background-color: #1A2417;
+  border-color: rgba(220, 231, 182, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .crop-card:hover {
+  border-color: var(--ksfl-gold);
+}
+
+body.dark-mode .crop-title {
+  color: var(--ksfl-cream);
+}
+
+body.dark-mode .crop-desc {
+  color: #BAC7B5;
+}
+
+body.dark-mode .crop-scientific {
+  color: var(--ksfl-gold);
+}
+
+/* Responsive Grid Breakpoints */
+@media (max-width: 1200px) {
+  .crops-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .crops-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .crops-showcase-section {
+    padding: 80px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .crops-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3. Crop Detail Page Layouts */
+.crop-detail-hero {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crop-detail-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(41, 57, 32, 0.2) 0%, rgba(41, 57, 32, 0.8) 100%);
+  z-index: 1;
+}
+
+.crop-detail-hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(1px);
+}
+
+.crop-detail-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--ksfl-white);
+  padding: 0 24px;
+}
+
+.crop-detail-hero-content h1 {
+  font-family: 'Roboto', 'Hind Siliguri', sans-serif;
+  font-weight: 800;
+  font-size: 64px;
+  margin: 0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.crop-detail-breadcrumbs {
+  font-size: 16px;
+  margin-top: 16px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.crop-detail-breadcrumbs a {
+  color: var(--ksfl-gold);
+  text-decoration: none;
+}
+
+.crop-detail-main {
+  background-color: var(--ksfl-cream);
+  padding: 80px 24px;
+  transition: var(--transition-smooth);
+}
+
+.crop-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.crop-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.crop-overview-img-wrap {
+  width: 100%;
+  height: 480px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: var(--ksfl-card-hover-shadow);
+  border: 1px solid rgba(90, 109, 63, 0.15);
+}
+
+.crop-overview-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.crop-overview-text h2 {
+  font-size: 38px;
+  color: var(--ksfl-forest);
+  margin-bottom: 20px;
+}
+
+.crop-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+.crop-meta-table td {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(41, 57, 32, 0.1);
+  font-size: 16px;
+}
+
+.crop-meta-table td.label {
+  font-weight: bold;
+  color: var(--ksfl-green-accent);
+  width: 40%;
+}
+
+.crop-meta-table td.val {
+  color: #333;
+}
+
+/* Quick Facts Icon Grid */
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.fact-tile {
+  background-color: var(--ksfl-white);
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid rgba(90, 109, 63, 0.1);
+  box-shadow: var(--ksfl-card-shadow);
+  display: flex;
+  align-items: flex-start;
+  column-gap: 20px;
+  transition: var(--transition-smooth);
+}
+
+.fact-tile:hover {
+  transform: translateY(-4px);
+  border-color: var(--ksfl-green-accent);
+}
+
+.fact-icon-wrap {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(90, 109, 63, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fact-icon-wrap svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--ksfl-green-accent);
+}
+
+.fact-info h4 {
+  font-size: 15px;
+  color: var(--ksfl-green-accent);
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fact-info p {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--ksfl-forest);
+  margin: 0;
+}
+
+/* Cultivation Guide Accordion */
+.cultivation-section {
+  margin-bottom: 80px;
+}
+
+.cultivation-section h2 {
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--ksfl-forest);
+}
+
+.accordion-item {
+  background-color: var(--ksfl-white);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid rgba(90, 109, 63, 0.1);
+  box-shadow: var(--ksfl-card-shadow);
+}
+
+.accordion-header {
+  padding: 24px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: var(--ksfl-white);
+  transition: var(--transition-smooth);
+  user-select: none;
+}
+
+.accordion-header:hover {
+  background-color: rgba(90, 109, 63, 0.05);
+}
+
+.accordion-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--ksfl-forest);
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.accordion-icon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--ksfl-forest);
+  transition: var(--transition-smooth);
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: 0 30px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+}
+
+.accordion-item.active .accordion-content {
+  padding: 10px 30px 30px 30px;
+  max-height: 500px;
+}
+
+.accordion-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+}
+
+/* Nutrition Profile */
+.nutrition-section {
+  background-color: var(--ksfl-white);
+  padding: 50px;
+  border-radius: 32px;
+  border: 1px solid rgba(90, 109, 63, 0.1);
+  box-shadow: var(--ksfl-card-shadow);
+  margin-bottom: 80px;
+}
+
+.nutrition-section h2 {
+  font-size: 38px;
+  color: var(--ksfl-forest);
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.nutrition-table th, .nutrition-table td {
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.nutrition-table th {
+  background-color: var(--ksfl-forest);
+  color: var(--ksfl-gold);
+  font-weight: bold;
+}
+
+.nutrition-table tr:nth-child(even) {
+  background-color: rgba(90, 109, 63, 0.05);
+}
+
+.nutrition-table td {
+  border-bottom: 1px solid rgba(41, 57, 32, 0.1);
+}
+
+/* Related Crops Showcase Carousel */
+.related-section h2 {
+  font-size: 38px;
+  text-align: center;
+  margin-bottom: 45px;
+  color: var(--ksfl-forest);
+}
+
+/* Dark Mode Crop Details Overrides */
+body.dark-mode .crop-detail-main {
+  background-color: var(--ksfl-dark);
+}
+
+body.dark-mode .crop-overview-text h2,
+body.dark-mode .cultivation-section h2,
+body.dark-mode .nutrition-section h2,
+body.dark-mode .related-section h2 {
+  color: var(--ksfl-cream);
+}
+
+body.dark-mode .crop-overview-text p,
+body.dark-mode .accordion-content p {
+  color: #BAC7B5;
+}
+
+body.dark-mode .crop-meta-table td {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .crop-meta-table td.val {
+  color: #BAC7B5;
+}
+
+body.dark-mode .fact-tile,
+body.dark-mode .accordion-item,
+body.dark-mode .accordion-header,
+body.dark-mode .nutrition-section {
+  background-color: #1A2417;
+  border-color: rgba(220, 231, 182, 0.1);
+}
+
+body.dark-mode .fact-info p,
+body.dark-mode .accordion-title {
+  color: var(--ksfl-cream);
+}
+
+body.dark-mode .accordion-icon {
+  stroke: var(--ksfl-cream);
+}
+
+body.dark-mode .nutrition-table tr:nth-child(even) {
+  background-color: rgba(220, 231, 182, 0.03);
+}
+
+body.dark-mode .nutrition-table td {
+  color: #BAC7B5;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Crop Details Responsiveness */
+@media (max-width: 900px) {
+  .crop-overview {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .crop-detail-hero {
+    height: 400px;
+  }
+  .crop-detail-hero-content h1 {
+    font-size: 44px;
+  }
+  .facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .nutrition-section {
+    padding: 30px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .facts-grid {
+    grid-template-columns: 1fr;
+  }
+  .crop-detail-hero {
+    height: 300px;
+  }
+  .crop-detail-hero-content h1 {
+    font-size: 32px;
+  }
+  .crop-overview-img-wrap {
+    height: 320px;
+  }
+}
