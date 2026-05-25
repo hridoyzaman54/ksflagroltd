@@ -244,13 +244,204 @@
   }
 
   /* =========================================================================
-     7. INITIALIZATION
+     7. HERO SLIDESHOW — Auto-rotating background images + text paragraphs
+     ========================================================================= */
+  function initHeroSlideshow() {
+    var wrapper = document.querySelector('.hero-image-wrapper');
+    if (!wrapper) return; // Not on homepage
+
+    var images = wrapper.querySelectorAll('.dpvmj3vk');
+    var paragraphs = document.querySelectorAll('.hero-paragraph');
+    var circleNavs = document.querySelectorAll('.custom-circle-nav');
+    var dividers = document.querySelectorAll('.custom-slide-divider');
+    var totalSlides = images.length;
+    if (totalSlides === 0) return;
+
+    var currentSlide = 0;
+    var autoTimer = null;
+    var INTERVAL = 5000; // 5 seconds
+
+    function goToSlide(index) {
+      currentSlide = index;
+
+      // Update images — show active, hide others
+      images.forEach(function(img, i) {
+        if (i === index) {
+          img.style.setProperty('opacity', '1', 'important');
+          img.style.setProperty('z-index', '3', 'important');
+        } else {
+          img.style.setProperty('opacity', '0', 'important');
+          img.style.setProperty('z-index', '1', 'important');
+        }
+      });
+
+      // Update paragraphs
+      paragraphs.forEach(function(p, i) {
+        if (i === index) {
+          p.classList.add('active-para');
+        } else {
+          p.classList.remove('active-para');
+        }
+      });
+
+      // Update circle navs
+      circleNavs.forEach(function(circle, i) {
+        if (i === index) {
+          circle.classList.add('active-circle');
+        } else {
+          circle.classList.remove('active-circle');
+        }
+      });
+
+      // Update dividers
+      dividers.forEach(function(div, i) {
+        if (i === index) {
+          div.classList.add('active-divider-nav');
+          // Animate the fill bar
+          var fill = div.querySelector('.active-nav-color');
+          if (fill) {
+            fill.style.transition = 'none';
+            fill.style.height = '0%';
+            // Force reflow then animate
+            void fill.offsetHeight;
+            fill.style.transition = 'height ' + (INTERVAL / 1000) + 's linear';
+            fill.style.height = '100%';
+          }
+        } else {
+          div.classList.remove('active-divider-nav');
+          var fill2 = div.querySelector('.active-nav-color');
+          if (fill2) {
+            fill2.style.transition = 'none';
+            fill2.style.height = '0%';
+          }
+        }
+      });
+    }
+
+    function nextSlide() {
+      goToSlide((currentSlide + 1) % totalSlides);
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoTimer = setInterval(nextSlide, INTERVAL);
+    }
+
+    function stopAutoplay() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    // Click handlers on circle navigations
+    circleNavs.forEach(function(circle, i) {
+      circle.style.cursor = 'pointer';
+      circle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        goToSlide(i);
+        startAutoplay(); // Reset timer
+      });
+    });
+
+    // Click handlers on dividers
+    dividers.forEach(function(div, i) {
+      div.style.cursor = 'pointer';
+      div.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        goToSlide(i);
+        startAutoplay();
+      });
+    });
+
+    // Initialize first slide and start
+    goToSlide(0);
+    startAutoplay();
+
+    // Pause when page is hidden, resume when visible
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    });
+  }
+
+  /* =========================================================================
+     8. GALLERY CAROUSEL KEEPALIVE — Restart CSS animations when re-entering viewport
+     ========================================================================= */
+  function initGalleryCarouselKeepAlive() {
+    var carousels = document.querySelectorAll('.discover-slider, .premade_template_infinity-slide-items, .carousel-track');
+    if (!carousels.length) return;
+
+    // Use IntersectionObserver to restart animations when scrolling back into view
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          var el = entry.target;
+          if (entry.isIntersecting) {
+            // Force re-trigger animation by removing and re-adding it
+            var anim = getComputedStyle(el).animationName;
+            if (anim && anim !== 'none') {
+              el.style.animationPlayState = 'running';
+            } else {
+              // Restart by toggling animation
+              el.style.animation = 'none';
+              void el.offsetHeight; // reflow
+              el.style.animation = '';
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+
+      carousels.forEach(function(c) { observer.observe(c); });
+    }
+
+    // Also ensure discover-slider always has enough content for infinite scroll
+    document.querySelectorAll('.discover-slider').forEach(function(slider) {
+      var items = slider.querySelectorAll('.discover-slider-img-wrapper');
+      // If we haven't already duplicated, duplicate items for seamless loop
+      if (items.length > 0 && !slider.dataset.ksflDuped) {
+        slider.dataset.ksflDuped = 'true';
+        // Content is already duplicated in the HTML, just ensure animation runs
+      }
+    });
+  }
+
+  /* =========================================================================
+     9. AUTOPLAY VIDEO KEEPALIVE — Re-play paused autoplay videos when visible
+     ========================================================================= */
+  function initAutoplayVideoKeepAlive() {
+    var videos = document.querySelectorAll('video[autoplay]');
+    if (!videos.length) return;
+
+    if ('IntersectionObserver' in window) {
+      var videoObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          var vid = entry.target;
+          if (entry.isIntersecting) {
+            if (vid.paused) {
+              vid.play().catch(function() {});
+            }
+          }
+        });
+      }, { threshold: 0.2 });
+
+      videos.forEach(function(v) { videoObserver.observe(v); });
+    }
+  }
+
+  /* =========================================================================
+     10. INITIALIZATION
      ========================================================================= */
   function init() {
     injectMegaMenu();
     initMobileMenu();
     fixFooter();
     optimizeLangToggle();
+    initHeroSlideshow();
+    initGalleryCarouselKeepAlive();
+    initAutoplayVideoKeepAlive();
   }
 
   if (document.readyState === 'loading') {

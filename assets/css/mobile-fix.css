@@ -1409,7 +1409,46 @@ img, video, iframe, canvas, svg, embed, object {
    KSFL Agro Ltd. — MOBILE VISIBILITY & EDGE-TO-EDGE OVERRIDES
    ========================================================================= */
 @media only screen and (max-width: 991px) {
-  /* 1. Force all reveal-on-scroll elements to be visible instantly on mobile */
+
+  /* ── A. HEADER FLEX LAYOUT — Logo Left, Hamburger Right ── */
+  .kirki-s220-dpwpyttv {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .kirki-s220-dpcc8piy {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    margin-right: auto !important;
+    order: 1 !important;
+  }
+
+  .kirki-s220-dph9mfsm {
+    flex: 0 0 auto !important;
+    min-width: auto !important;
+    max-width: none !important;
+    width: auto !important;
+    margin-left: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    order: 2 !important;
+  }
+
+  .kirki-s220-dpjglwhg {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    order: 99 !important;
+  }
+
+  /* ── B. FORCE SCROLL-REVEAL ELEMENTS VISIBLE (with hero slide exceptions) ── */
   .parallax-reveal,
   [data-kirki],
   [class*="kirki-"],
@@ -1420,7 +1459,61 @@ img, video, iframe, canvas, svg, embed, object {
     transition: none !important;
   }
 
-  /* 2. Absolute full-width edge-to-edge alignment with zero gutters */
+  /* EXEMPT hero slide images and paragraphs so the slideshow JS can control them */
+  .hero-paragraph,
+  .dpvmj3vk,
+  .hero-image-wrapper .dpvmj3vk,
+  img.dpvmj3vk {
+    opacity: unset !important;
+    visibility: visible !important;
+    transform: unset !important;
+    transition: opacity 0.6s ease !important;
+  }
+  /* Only the active paragraph should show */
+  .hero-paragraph { opacity: 0 !important; }
+  .hero-paragraph.active-para { opacity: 1 !important; }
+  /* Only the active image should show — controlled by JS inline styles */
+
+  /* ── C. HERO BACKGROUND STACKING FIX ── */
+  .dp9d5d9a { position: relative !important; overflow: hidden !important; }
+
+  .custom-slide-item {
+    isolation: isolate !important;
+  }
+  .custom-slide-item.first-slide {
+    isolation: isolate !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .hero-image-wrapper {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    display: block !important;
+  }
+
+  .dpvmj3vk {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    aspect-ratio: unset !important;
+  }
+
+  /* Raise hero text grid above hero background images */
+  .main-grid {
+    position: relative !important;
+    z-index: 5 !important;
+  }
+  .dp9n3v2z { z-index: 10 !important; }
+  .dp5f4y4l { z-index: 10 !important; }
+  .dp7mh8en { z-index: 10 !important; }
+
+  /* ── D. ABSOLUTE EDGE-TO-EDGE — Zero Gutters ── */
   .container,
   .kirki-default-container,
   .kirki-container,
@@ -1440,13 +1533,6 @@ img, video, iframe, canvas, svg, embed, object {
     box-sizing: border-box !important;
   }
 
-  /* Prevent text clipped at the edges by adding clean side padding to text blocks */
-  p, h1, h2, h3, h4, h5, h6, .dpe3526u, .dp04auyd, .awwards-item, .contact-info-card, .premium-helpline-card {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    box-sizing: border-box !important;
-  }
-
   /* Stretch hero section backgrounds and sliders fully edge-to-edge */
   .custom-slide-item, .first-slide, [class*="hero"], .hero-image-wrapper {
     width: 100% !important;
@@ -1456,4 +1542,43 @@ img, video, iframe, canvas, svg, embed, object {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
+
+  /* Clean internal padding for text readability */
+  p, h1, h2, h3, h4, h5, h6,
+  .dpe3526u, .dp04auyd, .awwards-item,
+  .contact-info-card, .premium-helpline-card {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ── E. GALLERY CAROUSEL — NEVER-STOP INFINITE ANIMATION ── */
+  .discover-slider {
+    animation: ksfl-carousel-scroll 30s linear infinite !important;
+    will-change: transform !important;
+  }
+  .discover-slider-wrapper {
+    overflow: hidden !important;
+    width: 100% !important;
+  }
+  .premade_template_infinity-slide-items {
+    animation: ksfl-logo-scroll 20s linear infinite !important;
+    will-change: transform !important;
+  }
+
+  /* ── F. AUTOPLAY VIDEOS — NEVER PAUSE ── */
+  video[autoplay] {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ── CAROUSEL KEYFRAMES (outside media query for global use) ── */
+@keyframes ksfl-carousel-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes ksfl-logo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
