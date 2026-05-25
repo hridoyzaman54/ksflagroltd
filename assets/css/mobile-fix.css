@@ -100,16 +100,16 @@ img, video, iframe, canvas, svg, embed, object {
   }
 
   /* Hamburger icon toggle - CORRECTED */
-  .kirki-s220-dpjglwhg div[kirki-nav-button="open"] {
+  .kirki-s220-dpjglwhg div[kirki-nav-button="close"] {
     display: block !important;
   }
-  .kirki-s220-dpjglwhg div[kirki-nav-button="close"] {
-    display: none !important;
-  }
-  .kirki-s220-dpjglwhg.kirki-hamburger-active div[kirki-nav-button="open"] {
+  .kirki-s220-dpjglwhg div[kirki-nav-button="open"] {
     display: none !important;
   }
   .kirki-s220-dpjglwhg.kirki-hamburger-active div[kirki-nav-button="close"] {
+    display: none !important;
+  }
+  .kirki-s220-dpjglwhg.kirki-hamburger-active div[kirki-nav-button="open"] {
     display: block !important;
   }
 

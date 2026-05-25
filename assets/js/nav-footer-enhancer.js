@@ -71,7 +71,12 @@
         '</a>' +
       '</div>' +
       '<div class="ksfl-crops-panel ksfl-panel-open">' +
-        '<div class="ksfl-crops-label"><span class="ksfl-mega-en">ALL CROPS</span><span class="ksfl-mega-bn" style="display:none">সকল ফসল</span></div>' +
+        '<div class="ksfl-crops-label-wrap" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(253,226,81,0.15); padding-bottom: 8px; margin-bottom: 12px;">' +
+          '<span class="ksfl-crops-label" style="margin: 0; font-family: \'Roboto\', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(253,226,81,0.45);"><span class="ksfl-mega-en">ALL CROPS</span><span class="ksfl-mega-bn" style="display:none">সকল ফসল</span></span>' +
+          '<a href="' + bp + 'our-crops.html" class="ksfl-view-all-link" style="color: #FDE251 !important; text-decoration: none !important; font-family: \'Roboto\', sans-serif; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 4px; padding-right: 4px;">' +
+            '<span class="ksfl-mega-en">View All ➔</span><span class="ksfl-mega-bn" style="display:none">সব দেখুন ➔</span>' +
+          '</a>' +
+        '</div>' +
         '<div class="ksfl-crops-grid">' +
           crops.map(function(c) {
             return '<a href="' + bp + 'our-crops/' + c.slug + '/" class="ksfl-crop-link">' +
