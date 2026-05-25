@@ -57,6 +57,12 @@
   position: relative;
 }
 
+/* Suppress Old Buggy Submenu Expansion */
+.ksfl-megamenu-wrapper .kirki-s220-dpi8cdrc,
+.ksfl-megamenu-wrapper .dpi8cdrc {
+  display: none !important;
+}
+
 .ksfl-megamenu {
   display: none;
   position: absolute;

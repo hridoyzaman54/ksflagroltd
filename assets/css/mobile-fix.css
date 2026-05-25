@@ -728,6 +728,13 @@ img, video, iframe, canvas, svg, embed, object {
     font-size: 16px !important;
   }
 
+  @media only screen and (max-width: 480px) {
+    .kirki-s220-dpi1u8z3 span,
+    .dpi1u8z3 span {
+      display: none !important;
+    }
+  }
+
   /* ── 4b. Mega menu single column ── */
   .ksfl-megamenu-grid {
     grid-template-columns: 1fr !important;

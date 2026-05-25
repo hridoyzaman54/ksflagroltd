@@ -18,6 +18,9 @@
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <!-- START MOBILE OPTIMIZATIONS -->
 <style>
 @media screen and (max-width: 768px) {
@@ -258,8 +261,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 /*# sourceURL=global-styles-inline-css */
 </style>
 
-<link rel="stylesheet" id="kirki-css" href="./assets/wp-content/plugins/kirki-pro/assets/css/kirki.min_ver%3D6.0.0.css" media="all">
-<link rel="stylesheet" id="kirkibase-main-css" href="./assets/wp-content/themes/kirkibase/assets/css/style.min_ver%3D1777476781.css" media="all">
+<link rel="stylesheet" id="kirki-css" href="./assets/wp-content/plugins/kirki-pro/assets/css/kirki.min_ver%3D6.0.0.css?v=20260525" media="all">
+<link rel="stylesheet" id="kirkibase-main-css" href="./assets/wp-content/themes/kirkibase/assets/css/style.min_ver%3D1777476781.css?v=20260525" media="all">
 <link rel="https://api.w.org/" href="./wp-json/"><link rel="alternate" title="JSON" type="application/json" href="./wp-json/wp/v2/pages/15"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="./xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 6.9.4">
 <link rel="canonical" href="./index.html">
@@ -268,8 +271,8 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel="icon" href="./assets/wp-content/uploads/2025/10/kirki-favicon-300x300.png" sizes="192x192">
 <link rel="apple-touch-icon" href="./assets/wp-content/uploads/2025/10/kirki-favicon-300x300.png">
 <meta name="msapplication-TileImage" content="./wp-content/uploads/2025/10/kirki-favicon-300x300.png">
-<style id="kirki-inline-styles"></style><script src="./assets/wp-includes/js/wp-emoji-release.min_ver%3D6.9.4.js" defer=""></script>  <link rel="stylesheet" href="./assets/css/parallax-animations.css">
-  <link rel="stylesheet" href="./assets/css/our-crops.css">
+<style id="kirki-inline-styles"></style><script src="./assets/wp-includes/js/wp-emoji-release.min_ver%3D6.9.4.js?v=20260525" defer=""></script>  <link rel="stylesheet" href="./assets/css/parallax-animations.css?v=20260525">
+  <link rel="stylesheet" href="./assets/css/our-crops.css?v=20260525">
 
 <style id="ksfl-footer-fix">
 /* Footer section styles - matching homepage */
@@ -1102,7 +1105,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     });
     </script>
   
-<script src="./assets/js/nav-footer-enhancer.js" defer></script>
+<script src="./assets/js/nav-footer-enhancer.js?v=20260525" defer></script>
 
 
 
@@ -1565,7 +1568,18 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
   }
 })();
 </script>
-<link rel="stylesheet" href="./assets/css/mobile-fix.css">
+<link rel="stylesheet" href="./assets/css/mobile-fix.css?v=20260525">
+<!-- Cache Buster & bfcache Fix -->
+<script>
+(function(){
+  // Force reload when page is restored from bfcache (back/forward nav)
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+      window.location.reload();
+    }
+  });
+})();
+</script>
 </body>
 </html>
   

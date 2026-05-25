@@ -20,11 +20,14 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
     <title>Starting Your First Organic Garden: A Beginner’s Guide</title>
     <!-- Premium Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/parallax-animations.css">
-    <script src="../assets/js/parallax-animations.js" defer></script>
+    <link rel="stylesheet" href="../assets/css/parallax-animations.css?v=20260525">
+    <script src="../assets/js/parallax-animations.js?v=20260525" defer></script>
     
     <style>
         :root {
@@ -987,7 +990,7 @@
         }
     </script>
 
-<script src="../assets/js/nav-footer-enhancer.js" defer></script>
+<script src="../assets/js/nav-footer-enhancer.js?v=20260525" defer></script>
 
 
 
@@ -1450,7 +1453,18 @@
   }
 })();
 </script>
-<link rel="stylesheet" href="../assets/css/mobile-fix.css">
+<link rel="stylesheet" href="../assets/css/mobile-fix.css?v=20260525">
+<!-- Cache Buster & bfcache Fix -->
+<script>
+(function(){
+  // Force reload when page is restored from bfcache (back/forward nav)
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) {
+      window.location.reload();
+    }
+  });
+})();
+</script>
 </body>
 </html>
 
