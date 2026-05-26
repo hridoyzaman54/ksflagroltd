@@ -23,6 +23,13 @@
   --ksfl-header-height-mobile: 56px;
 }
 
+/* Global viewport safety overrides to prevent any horizontal scroll/overflow */
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+
 /* ============================================================
    1. DESKTOP HEADER — Glassmorphic sticky bar
    ============================================================ */
@@ -239,6 +246,7 @@
   }
 
   .kirki-s220-dpcc8piy {
+    width: auto !important;
     flex: 0 1 auto !important;
     margin-right: auto !important;
     order: 1 !important;
