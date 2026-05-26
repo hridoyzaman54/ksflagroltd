@@ -66,9 +66,11 @@ html, body {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Delay hiding so brief mouse movements don't instantly close the menu */
+  transition-delay: 180ms;
   z-index: 10010;
   padding: 0;
   overflow: hidden;
@@ -81,6 +83,21 @@ html, body {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transition-delay: 0ms; /* show instantly */
+  }
+
+  /* Transparent hover bridge: fills the gap between trigger text and dropdown
+     so the mouse doesn't lose :hover when crossing the 8px empty space */
+  .ksfl-mega-wrapper::before {
+    content: '';
+    position: absolute;
+    bottom: -12px; /* slightly more than the 8px gap */
+    left: -20px;
+    right: -20px;
+    height: 20px;
+    background: transparent;
+    pointer-events: auto;
+    z-index: 10009;
   }
 }
 
