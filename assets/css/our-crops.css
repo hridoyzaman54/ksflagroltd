@@ -74,6 +74,117 @@ body.bn-active .bn-text { display: inline !important; }
   box-shadow: var(--ksfl-card-hover-shadow);
 }
 
+/* =========================================================================
+   Homepage Showcase Premium Animations
+   ========================================================================= */
+
+/* JS-Active Reveal Container Hidden State */
+.crops-showcase-section.js-reveal-active .crop-card {
+  opacity: 0;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+/* Alternating entrance trajectories for a premium parallax wave flow */
+.crops-showcase-section.js-reveal-active .crop-card:nth-child(odd) {
+  transform: translate3d(-40px, 60px, 0) rotate(-2deg) scale(0.96);
+}
+
+.crops-showcase-section.js-reveal-active .crop-card:nth-child(even) {
+  transform: translate3d(40px, 60px, 0) rotate(2deg) scale(0.96);
+}
+
+/* Staggered entrance active reveal class */
+.crops-showcase-section.js-reveal-active .crop-card.revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dynamic 3D mouse parallax tilt styling */
+.crop-card.hover-ready {
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+/* Reduce transition delay to track cursor instantly with sub-pixel precision */
+.crop-card.hover-ready.tilt-active {
+  transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 3D tilt rotation mapping and vertical translation lift */
+.crop-card.hover-ready:hover {
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translate3d(0, -8px, 15px);
+  border-color: var(--ksfl-green-accent);
+  box-shadow: var(--ksfl-card-hover-shadow);
+}
+
+/* Specular glass-shine reflection overlay tracking cursor coordinates */
+.crop-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle 240px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 255, 255, 0.12), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+}
+
+.crop-card.hover-ready:hover::after {
+  opacity: 1;
+}
+
+/* Dark mode overrides for card boundaries and glow tone */
+body.dark-mode .crop-card::after {
+  background: radial-gradient(circle 240px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(253, 226, 81, 0.08), transparent 80%);
+}
+
+body.dark-mode .crop-card.hover-ready:hover {
+  border-color: var(--ksfl-gold);
+}
+
+/* Multi-layered parallax depth assignments */
+.crop-card.hover-ready .crop-scientific,
+.crop-card.hover-ready .crop-title,
+.crop-card.hover-ready .crop-desc,
+.crop-card.hover-ready .crop-image-wrapper {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.crop-card.hover-ready:hover .crop-scientific {
+  transform: translateZ(8px);
+}
+
+.crop-card.hover-ready:hover .crop-title {
+  transform: translateZ(12px);
+}
+
+.crop-card.hover-ready:hover .crop-desc {
+  transform: translateZ(10px);
+}
+
+.crop-card.hover-ready:hover .crop-image-wrapper img {
+  transform: scale(1.06) translateZ(12px);
+}
+
+.crop-card.hover-ready .crop-arrow-btn {
+  transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.crop-card.hover-ready:hover .crop-arrow-btn {
+  transform: translateZ(20px);
+}
+
+
 .crop-image-wrapper {
   width: 100%;
   height: 260px;

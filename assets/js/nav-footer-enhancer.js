@@ -553,6 +553,125 @@
   }
 
   /* =========================================================================
+     12a. HOMEPAGE CROPS SECTION PREMIUM ANIMATIONS (SCROLL + PARALLAX)
+     ========================================================================= */
+  function initCropsAnimations() {
+    var section = document.querySelector('.crops-showcase-section');
+    if (!section) return;
+
+    var cards = section.querySelectorAll('.crop-card');
+    if (!cards.length) return;
+
+    // Apply active reveal container class to hide cards initially
+    section.classList.add('js-reveal-active');
+
+    // Scroll Reveal Stagger Configuration
+    var revealQueue = [];
+    var revealTimeout = null;
+
+    function processQueue() {
+      if (revealQueue.length === 0) return;
+      
+      revealQueue.forEach(function (card, index) {
+        setTimeout(function () {
+          card.classList.add('revealed');
+          
+          // Mark hover ready after initial entry animation completes
+          setTimeout(function () {
+            card.classList.add('hover-ready');
+          }, 1300);
+        }, index * 120); // 120ms elegant staggered cadence
+      });
+      
+      revealQueue = [];
+    }
+
+    if ('IntersectionObserver' in window) {
+      var observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80px 0px', // slightly offset trigger threshold
+        threshold: 0.05
+      };
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var card = entry.target;
+            if (!card.classList.contains('revealed') && revealQueue.indexOf(card) === -1) {
+              revealQueue.push(card);
+              observer.unobserve(card);
+            }
+          }
+        });
+
+        if (revealQueue.length > 0) {
+          if (revealTimeout) clearTimeout(revealTimeout);
+          revealTimeout = setTimeout(processQueue, 30);
+        }
+      }, observerOptions);
+
+      cards.forEach(function (card) {
+        observer.observe(card);
+      });
+    } else {
+      // Fallback if IntersectionObserver is not supported
+      cards.forEach(function (card) {
+        card.classList.add('revealed', 'hover-ready');
+      });
+    }
+
+    // 3D Parallax Tilt Effect with cursor-tracking specular glare
+    // Exclude touch devices / match pointer devices with hover capability for optimal performance
+    var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    // We add mouse listeners only on desktop screens
+    if (!isTouchDevice && window.innerWidth > 991) {
+      cards.forEach(function (card) {
+        var rect = null;
+
+        card.addEventListener('mouseenter', function () {
+          // Cache bounding box dimensions on enter to completely prevent reflow inside mousemove
+          rect = card.getBoundingClientRect();
+          card.classList.add('tilt-active');
+        });
+
+        card.addEventListener('mousemove', function (e) {
+          if (!rect) {
+            rect = card.getBoundingClientRect();
+          }
+
+          // Relative mouse coordinate calculations
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+
+          // Normalized percentages (-0.5 to 0.5 range)
+          var pctX = (x / rect.width) - 0.5;
+          var pctY = (y / rect.height) - 0.5;
+
+          // Rotation calculation mapping (limit to max 14 degrees for elegant tilt)
+          var rotY = pctX * 14;
+          var rotX = -pctY * 14;
+
+          card.style.setProperty('--tilt-x', rotX.toFixed(2) + 'deg');
+          card.style.setProperty('--tilt-y', rotY.toFixed(2) + 'deg');
+          card.style.setProperty('--glow-x', (x / rect.width * 100).toFixed(2) + '%');
+          card.style.setProperty('--glow-y', (y / rect.height * 100).toFixed(2) + '%');
+        });
+
+        card.addEventListener('mouseleave', function () {
+          // Smooth center alignment rest
+          card.classList.remove('tilt-active');
+          card.style.removeProperty('--tilt-x');
+          card.style.removeProperty('--tilt-y');
+          card.style.removeProperty('--glow-x');
+          card.style.removeProperty('--glow-y');
+          rect = null;
+        });
+      });
+    }
+  }
+
+  /* =========================================================================
      13. INITIALIZATION
      ========================================================================= */
   function init() {
@@ -566,6 +685,7 @@
     initGalleryCarouselKeepAlive();
     initAutoplayVideoKeepAlive();
     initCustomAccordion();
+    initCropsAnimations();
 
     // Re-kill kirki dropdown after a delay (kirki may reinit)
     setTimeout(killKirkiDropdown, 500);
@@ -578,3 +698,4 @@
     init();
   }
 })();
+
