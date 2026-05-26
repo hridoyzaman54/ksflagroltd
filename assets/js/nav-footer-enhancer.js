@@ -135,7 +135,7 @@
       '<div class="ksfl-mega-arrow"></div>' +
       '<div class="ksfl-mega-tabs">' +
         '<div class="ksfl-mega-tab ksfl-tab-active ksfl-crops-btn">' +
-          '<span class="ksfl-tab-icon">🌾</span> <span class="ksfl-mega-en">Our Crops</span><span class="ksfl-mega-bn" style="display:none">আমাদের ফসল</span>' +
+          '<span class="ksfl-tab-icon">🌾</span> <span class="ksfl-mega-en">Our Crops & Seeds</span><span class="ksfl-mega-bn" style="display:none">আমাদের ফসল ও বীজ</span>' +
           ' <span class="ksfl-chev"><svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="2,4 6,8 10,4"/></svg></span>' +
         '</div>' +
         '<a class="ksfl-mega-tab" href="' + bp + 'seeds.html">' +
