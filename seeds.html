@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -336,6 +336,20 @@ html body.lang-bn h6 {
     line-height: 1.5 !important;
 }
 .ai-lang-toggle:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+/* Fix Bangla font for bn-active toggle class (same as lang-bn) */
+html body.bn-active, html body.bn-active *,
+html body.bn-active span, html body.bn-active p,
+html body.bn-active a, html body.bn-active div,
+html body.bn-active h1, html body.bn-active h2,
+html body.bn-active h3, html body.bn-active h4,
+html body.bn-active h5, html body.bn-active h6 {
+    font-family: 'Hind Siliguri', 'Noto Serif Bengali', Arial, sans-serif !important;
+    letter-spacing: 0px !important;
+    word-spacing: 0px !important;
+    text-transform: none !important;
+    font-style: normal !important;
+    line-height: 1.6 !important;
+}
 </style>
 
 <script>
@@ -415,20 +429,6 @@ window.addEventListener("DOMContentLoaded", function() {
         "©KSFL Agro Ltd. 2026. All rights reserved.": "©কেএসএফএল এগ্রো লিঃ ২০২৬। সর্বস্বত্ব সংরক্ষিত।",
         "Blogs &#8211; KSFL Agro Ltd.": "ব্লগ – কেএসএফএল এগ্রো লিঃ",
         "Blogs Articles": "ব্লগ ও নিবন্ধ",
-        "News & Insight": "News & Insight",
-        "Subscribe to learn about new product features, the latest in technology, solutions, and updates.": "নতুন পণ্যের ফিচার, সর্বশেষ প্রযুক্তি, সমাধান এবং আপডেট সম্পর্কে জানতে সাবস্ক্রাইব করুন।",
-        "Featured Blog": "নির্বাচিত ব্লগ",
-        "November 14, 2025": "১৪ নভেম্বর, ২০২৫",
-        "Gardening Tips": "বাগান করার টিপস",
-        "Eco-Friendly Habits: Small Changes for a Greener Life": "পরিবেশ-বান্ধব অভ্যাস: সবুজ জীবনের জন্য ছোট পরিবর্তন",
-        "Read More": "আরও পড়ুন",
-        "All Blogs": "সব ব্লগ",
-        "Organic Farming": "জৈব কৃষি",
-        "Farm Life": "খামার জীবন",
-        
-        "Sustainable Living": "টেকসই জীবনযাপন",
-        "KSFL Agro Ltd.’s Guide to ZeroWaste Farming": "কেএসএফএল এগ্রো লিঃ এর শূন্য-বর্জ্য চাষ নির্দেশিকা",
-        "KSFL Agro's Guide to Zero-Waste Farming": "কেএসএফএল এগ্রো-এর জিরো-ওয়েস্ট ফার্মিং নির্দেশিকা",
         "Starting Your First Organic Garden: A Beginner’s Guide": "আপনার প্রথম জৈব বাগান শুরু করা: নতুনদের নির্দেশিকা",
         "November 13, 2025": "১৩ নভেম্বর, ২০২৫",
         "Top 5 Lessons Learned from Our Organic Farming Workshops": "আমাদের জৈব কৃষি কর্মশালা থেকে শেখা সেরা ৫টি শিক্ষা",
@@ -468,8 +468,8 @@ window.addEventListener("DOMContentLoaded", function() {
         "Packed for You": "আপনার জন্য প্যাক করা",
         "Each jar and bottle is freshly sealed with love, ready to bring organic purity straight to your pantry.": "প্রতিটি জার এবং বোতল সতেজভাবে সিল করা হয়, যা সরাসরি আপনার কাছে পৌঁছে দেওয়ার জন্য প্রস্তুত।",
         "Behind the scene": "পেছনের দৃশ্য",
-        "Witness the Pure Process Behind Our Onions": "Witness the Pure Process Behind Our Onions",
-        "Explore our fresh goods": "Explore our fresh goods",
+        "Witness the Pure Process Behind Our Onions": "\u0986\u09ae\u09be\u09a6\u09c7\u09b0 \u09aa\u09a3\u09cd\u09af\u09c7\u09b0 \u09aa\u09c7\u099b\u09a8\u09c7\u09b0 \u09ac\u09bf\u09b6\u09c1\u09a6\u09cd\u09a7 \u09aa\u09cd\u09b0\u0995\u09cd\u09b0\u09bf\u09af\u09bc\u09be\u099f\u09bf \u09a6\u09c7\u0996\u09c1\u09a8",
+        "Explore our fresh goods": "\u0986\u09ae\u09be\u09a6\u09c7\u09b0 \u09a4\u09be\u099c\u09be \u09aa\u09a3\u09cd\u09af \u09a6\u09c7\u0996\u09c1\u09a8",
         "Explore our collection of organic pantry essentials, made fresh from our own farm.": "আমাদের নিজস্ব খামারের তাজা জৈব খাদ্যসামগ্রীর সংগ্রহ দেখুন।",
         "Testimonials": "প্রশংসাপত্র",
         "What People Say About Us": "What People Say About Us",
