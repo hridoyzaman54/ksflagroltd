@@ -795,3 +795,111 @@ body.dark-mode .nutrition-table td {
   outline: none;
 }
 
+/* ==========================================================================
+   WORK PROCESS SECTION — Premium Scroll Reveal & Parallax Animations
+   Applied to #work-process .work-process-img elements
+   ========================================================================== */
+
+/* --- Baseline hidden state (JS adds .js-reveal-active to parent section) --- */
+#work-process.js-reveal-active .work-process-img {
+  opacity: 0;
+  transform: translate3d(80px, 0, 0) scale(0.96);
+  will-change: transform, opacity;
+}
+
+/* --- Staggered entrance: each row enters 150ms after the previous --- */
+#work-process.js-reveal-active .row-wrapper:nth-child(1) .work-process-img.wp-revealed {
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0ms,
+              transform 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0ms;
+}
+#work-process.js-reveal-active .row-wrapper:nth-child(2) .work-process-img.wp-revealed {
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 150ms,
+              transform 1.0s cubic-bezier(0.16, 1, 0.3, 1) 150ms;
+}
+#work-process.js-reveal-active .row-wrapper:nth-child(3) .work-process-img.wp-revealed {
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 300ms,
+              transform 1.0s cubic-bezier(0.16, 1, 0.3, 1) 300ms;
+}
+#work-process.js-reveal-active .row-wrapper:nth-child(4) .work-process-img.wp-revealed {
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 450ms,
+              transform 1.0s cubic-bezier(0.16, 1, 0.3, 1) 450ms;
+}
+
+/* --- Revealed final state --- */
+#work-process.js-reveal-active .work-process-img.wp-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* --- Inner image: slight scale + vertical parallax displacement --- */
+.work-process-img {
+  overflow: hidden;
+  border-radius: inherit;
+  position: relative;
+}
+
+.work-process-img img {
+  transform: scale(1.12) translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
+  transition: transform 0.1s linear;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- 3D tilt on desktop hover --- */
+.work-process-img.wp-tilt-ready {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: inherit;
+}
+
+.work-process-img.wp-tilt-ready.wp-tilt-active {
+  transition: transform 0.09s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-process-img.wp-tilt-ready:hover {
+  transform: perspective(900px) rotateX(var(--wp-tilt-x, 0deg)) rotateY(var(--wp-tilt-y, 0deg)) translate3d(0, -4px, 10px) scale(1);
+  box-shadow: 0 24px 48px rgba(41, 57, 32, 0.18);
+}
+
+/* Specular shine overlay on tilt */
+.work-process-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 200px at var(--wp-glow-x, 50%) var(--wp-glow-y, 50%),
+    rgba(255, 255, 255, 0.10),
+    transparent 80%
+  );
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
+  border-radius: inherit;
+}
+
+.work-process-img.wp-tilt-ready:hover::after {
+  opacity: 1;
+}
+
+/* --- Reduce motion: respect user preference --- */
+@media (prefers-reduced-motion: reduce) {
+  #work-process.js-reveal-active .work-process-img,
+  #work-process.js-reveal-active .work-process-img.wp-revealed {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .work-process-img img {
+    transform: none !important;
+    transition: none !important;
+  }
+  .work-process-img.wp-tilt-ready:hover {
+    transform: none !important;
+  }
+}
+

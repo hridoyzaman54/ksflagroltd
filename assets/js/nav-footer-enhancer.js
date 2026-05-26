@@ -672,7 +672,137 @@
   }
 
   /* =========================================================================
-     13. INITIALIZATION
+     13. WORK PROCESS SECTION — Scroll Reveal + Parallax + Mouse Tilt
+     ========================================================================= */
+  function initWorkProcessAnimations() {
+    var section = document.getElementById('work-process');
+    if (!section) return;
+
+    var imgWrappers = section.querySelectorAll('.work-process-img');
+    if (!imgWrappers.length) return;
+
+    // Activate JS-controlled hidden state (prevents FOUC before JS runs)
+    section.classList.add('js-reveal-active');
+
+    // ---- 1. Scroll-reveal with IntersectionObserver ----
+    if ('IntersectionObserver' in window) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var img = entry.target;
+            img.classList.add('wp-revealed');
+            // Enable tilt only after reveal is complete
+            var delay = parseInt(img.getAttribute('data-wp-delay') || '0', 10);
+            setTimeout(function () {
+              img.classList.add('wp-tilt-ready');
+            }, delay + 1000);
+            revealObserver.unobserve(img);
+          }
+        });
+      }, { root: null, rootMargin: '0px 0px -60px 0px', threshold: 0.08 });
+
+      imgWrappers.forEach(function (img, i) {
+        img.setAttribute('data-wp-delay', String(i * 150));
+        revealObserver.observe(img);
+      });
+    } else {
+      // Fallback: immediately reveal all
+      imgWrappers.forEach(function (img) {
+        img.classList.add('wp-revealed', 'wp-tilt-ready');
+      });
+    }
+
+    // ---- 2. Scroll parallax — vertical displacement on inner images ----
+    var activePool = []; // only track elements visible in viewport
+    var rafScheduled = false;
+
+    function updateParallax() {
+      rafScheduled = false;
+      var vMid = window.innerHeight / 2;
+      activePool.forEach(function (img) {
+        var rect = img.getBoundingClientRect();
+        // Element is still in/near view
+        var elMid = rect.top + rect.height / 2;
+        var distFromCenter = elMid - vMid;
+        // Clamp to ±25px max displacement for subtle premium feel
+        var offset = Math.max(-25, Math.min(25, distFromCenter * 0.045));
+        var inner = img.querySelector('img');
+        if (inner) {
+          inner.style.setProperty('--parallax-y', offset.toFixed(2) + 'px');
+        }
+      });
+    }
+
+    // Viewport intersection tracker to maintain the active pool
+    if ('IntersectionObserver' in window) {
+      var poolObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var img = entry.target;
+          if (entry.isIntersecting) {
+            if (activePool.indexOf(img) === -1) activePool.push(img);
+          } else {
+            var idx = activePool.indexOf(img);
+            if (idx !== -1) activePool.splice(idx, 1);
+          }
+        });
+      }, { root: null, rootMargin: '10% 0px 10% 0px', threshold: 0 });
+
+      imgWrappers.forEach(function (img) {
+        poolObserver.observe(img);
+      });
+    } else {
+      imgWrappers.forEach(function (img) { activePool.push(img); });
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!rafScheduled && activePool.length) {
+        rafScheduled = true;
+        requestAnimationFrame(updateParallax);
+      }
+    }, { passive: true });
+
+    // Initial parallax calculation
+    requestAnimationFrame(updateParallax);
+
+    // ---- 3. Desktop 3D Mouse Tilt + Specular Shine ----
+    var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isTouchDevice && window.innerWidth > 991) {
+      imgWrappers.forEach(function (wrapper) {
+        var rect = null;
+
+        wrapper.addEventListener('mouseenter', function () {
+          rect = wrapper.getBoundingClientRect();
+          wrapper.classList.add('wp-tilt-active');
+        });
+
+        wrapper.addEventListener('mousemove', function (e) {
+          if (!rect) rect = wrapper.getBoundingClientRect();
+          var x = e.clientX - rect.left;
+          var y = e.clientY - rect.top;
+          var pctX = (x / rect.width) - 0.5;
+          var pctY = (y / rect.height) - 0.5;
+          var rotY = pctX * 10;
+          var rotX = -pctY * 10;
+          wrapper.style.setProperty('--wp-tilt-x', rotX.toFixed(2) + 'deg');
+          wrapper.style.setProperty('--wp-tilt-y', rotY.toFixed(2) + 'deg');
+          wrapper.style.setProperty('--wp-glow-x', (x / rect.width * 100).toFixed(2) + '%');
+          wrapper.style.setProperty('--wp-glow-y', (y / rect.height * 100).toFixed(2) + '%');
+        });
+
+        wrapper.addEventListener('mouseleave', function () {
+          wrapper.classList.remove('wp-tilt-active');
+          wrapper.style.removeProperty('--wp-tilt-x');
+          wrapper.style.removeProperty('--wp-tilt-y');
+          wrapper.style.removeProperty('--wp-glow-x');
+          wrapper.style.removeProperty('--wp-glow-y');
+          rect = null;
+        });
+      });
+    }
+  }
+
+  /* =========================================================================
+     14. INITIALIZATION
      ========================================================================= */
   function init() {
     killKirkiDropdown();
@@ -686,6 +816,7 @@
     initAutoplayVideoKeepAlive();
     initCustomAccordion();
     initCropsAnimations();
+    initWorkProcessAnimations();
 
     // Re-kill kirki dropdown after a delay (kirki may reinit)
     setTimeout(killKirkiDropdown, 500);
