@@ -439,24 +439,13 @@ html, body {
   .ksfl-mega-wrapper.ksfl-open .ksfl-mega-menu {
     opacity: 1 !important;
     visibility: visible !important;
-    max-height: 800px !important;
+    max-height: 1200px !important;
+    overflow: visible !important;
     pointer-events: auto !important;
     padding: 0 !important;
   }
 
-  /* Prevent desktop hover from triggering on mobile */
-  .ksfl-mega-wrapper:hover .ksfl-mega-menu {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    max-height: 0 !important;
-    pointer-events: none !important;
-  }
-  .ksfl-mega-wrapper.ksfl-open:hover .ksfl-mega-menu {
-    opacity: 1 !important;
-    visibility: visible !important;
-    max-height: 800px !important;
-    pointer-events: auto !important;
-  }
+  
 
   .ksfl-mega-arrow {
     display: none !important;
