@@ -116,6 +116,12 @@
     var productsLi = document.querySelector('li[data-kirki="dpkzemwd"]');
     if (!productsLi) return;
 
+    // Clone and replace to strip all of Kirki's buggy click/hover event listeners
+    var newProductsLi = productsLi.cloneNode(true);
+    productsLi.parentNode.replaceChild(newProductsLi, productsLi);
+    productsLi = newProductsLi;
+
+
     // Remove any existing mega menus (prevent duplicates)
     var existing = productsLi.querySelector('.ksfl-mega-menu');
     if (existing) existing.remove();
@@ -224,6 +230,12 @@
     var nav = document.querySelector('.kirki-s220-dp425u34');
     var hamburger = document.querySelector('.kirki-s220-dpjglwhg');
     if (!hamburger || !nav) return;
+
+    // Clone and replace to strip all of Kirki's buggy mobile menu event listeners
+    var newHamburger = hamburger.cloneNode(true);
+    hamburger.parentNode.replaceChild(newHamburger, hamburger);
+    hamburger = newHamburger;
+
 
     // Remove kirki's navigation-type attribute that interferes
     nav.removeAttribute('kirki-navigation-type');

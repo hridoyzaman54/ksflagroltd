@@ -612,3 +612,11 @@ body.lang-bn .ksfl-mega-en { display: none !important; }
 body.bn-active .ksfl-mega-en { display: none !important; }
 body.lang-bn .ksfl-mega-bn { display: inline !important; }
 body.bn-active .ksfl-mega-bn { display: inline !important; }
+
+/* Ensure the logo area and link are always fully visible, overriding any buggy Kirki opacity changes */
+[data-kirki="dp321gpx"],
+.kirki-s220-dpcc8piy {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
