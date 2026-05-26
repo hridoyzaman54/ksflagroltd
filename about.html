@@ -205,13 +205,13 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
     <style>
         .team-member-card {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important, box-shadow 0.3s ease !important;
+            transform: translateY(120px) scale(0.88) rotate(-1.5deg);
+            transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important, transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important, box-shadow 0.3s ease !important;
             will-change: opacity, transform;
         }
         .team-member-card.revealed {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1) rotate(0deg);
         }
         .team-member-card.revealed:hover {
             transform: translateY(-10px) !important;
@@ -248,7 +248,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
             const visibleEntries = entries.filter(entry => entry.isIntersecting);
             visibleEntries.forEach((entry, index) => {
                 const card = entry.target;
-                card.style.transitionDelay = `${index * 120}ms`;
+                card.style.transitionDelay = `${index * 160}ms`;
                 card.classList.add("revealed");
                 observer.unobserve(card);
             });
