@@ -476,7 +476,84 @@
   }
 
   /* =========================================================================
-     12. INITIALIZATION
+     12. CUSTOM PREMIUM ACCORDION HANDLER (FIXES BUGGY KIRKI STATE INITIALIZATION)
+     ========================================================================= */
+  function initCustomAccordion() {
+    var tabs = document.querySelectorAll('.kirki-tab');
+    if (!tabs.length) return;
+
+    tabs.forEach(function (tab) {
+      var wrapper = tab.querySelector('.ans-wrapper');
+      var content = tab.querySelector('.dp04auyd');
+      var line2 = tab.querySelector('.line-2');
+      var bg = tab.querySelector('.dpjz04yi');
+
+      // Initialize to collapsed state
+      if (wrapper) {
+        wrapper.style.height = '0px';
+        wrapper.style.overflow = 'hidden';
+        wrapper.style.transition = 'height 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+      }
+      if (line2) {
+        line2.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease';
+      }
+      if (bg) {
+        bg.style.transition = 'background-color 0.35s ease';
+      }
+
+      tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
+        var isOpen = wrapper && wrapper.style.height !== '0px';
+
+        // Collapse all other tabs
+        tabs.forEach(function (otherTab) {
+          if (otherTab === tab) return;
+          var otherWrapper = otherTab.querySelector('.ans-wrapper');
+          var otherLine2 = otherTab.querySelector('.line-2');
+          var otherBg = otherTab.querySelector('.dpjz04yi');
+          if (otherWrapper) otherWrapper.style.height = '0px';
+          if (otherLine2) {
+            otherLine2.style.transform = 'rotateZ(90deg)';
+            otherLine2.style.opacity = '1';
+          }
+          if (otherBg) otherBg.style.backgroundColor = 'rgba(220, 231, 182, 0)';
+        });
+
+        // Toggle current tab
+        if (isOpen) {
+          if (wrapper) wrapper.style.height = '0px';
+          if (line2) {
+            line2.style.transform = 'rotateZ(90deg)';
+            line2.style.opacity = '1';
+          }
+          if (bg) bg.style.backgroundColor = 'rgba(220, 231, 182, 0)';
+        } else {
+          if (wrapper && content) wrapper.style.height = content.scrollHeight + 'px';
+          if (line2) {
+            line2.style.transform = 'rotateZ(0deg)';
+            line2.style.opacity = '0';
+          }
+          if (bg) bg.style.backgroundColor = 'rgba(220, 231, 182, 1)';
+        }
+      }, true); // Capture phase to intercept buggy framework click bubble listeners
+
+      // Listen to language changes to recalculate container height on the fly
+      var observer = new MutationObserver(function () {
+        if (wrapper && wrapper.style.height !== '0px' && content) {
+          setTimeout(function () {
+            wrapper.style.height = content.scrollHeight + 'px';
+          }, 80);
+        }
+      });
+      observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    });
+  }
+
+  /* =========================================================================
+     13. INITIALIZATION
      ========================================================================= */
   function init() {
     killKirkiDropdown();
@@ -488,6 +565,7 @@
     initHeroSlideshow();
     initGalleryCarouselKeepAlive();
     initAutoplayVideoKeepAlive();
+    initCustomAccordion();
 
     // Re-kill kirki dropdown after a delay (kirki may reinit)
     setTimeout(killKirkiDropdown, 500);
