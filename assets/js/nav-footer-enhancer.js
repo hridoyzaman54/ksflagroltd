@@ -1,9 +1,18 @@
 /**
- * KSFL Agro Ltd. — Centralized Navigation & Footer Enhancer
- * Dynamically injects the premium tabbed "Our Crops" mega-menu on desktop and mobile.
- * Manages unified mobile hamburger toggling, scroll locking, and outside clicks.
- * Cleans up and fixes subpage footer link prefixes dynamically.
- * Works perfectly on all pages and devices.
+ * KSFL Agro Ltd. — Centralized Navigation & Footer Enhancer v2.0
+ * ==============================================================
+ * Single source of truth for header navigation on ALL pages.
+ *
+ * Features:
+ * 1. Detects depth (root, 1-deep, 2-deep) for relative paths
+ * 2. Replaces the Kirki Products dropdown with a premium tabbed mega-menu
+ * 3. Fixes all nav link hrefs and labels to be consistent
+ * 4. Manages mobile hamburger open/close with body scroll lock
+ * 5. Handles Products submenu expand/collapse on mobile
+ * 6. Fixes footer links on subpages
+ * 7. Language toggle sync
+ * 8. Hero slideshow
+ * 9. Gallery/Video keepalive
  */
 (function () {
   'use strict';
@@ -41,14 +50,74 @@
   ];
 
   /* =========================================================================
-     3. INJECT PREMIUM TABBED MEGA-MENU
+     3. FIX ALL NAV LINKS — Ensure consistent hrefs and labels across pages
+     ========================================================================= */
+  function fixNavLinks() {
+    var bp = basePath;
+
+    // Fix logo link — should always go to index.html
+    var logoLink = document.querySelector('[data-kirki="dp321gpx"]');
+    if (logoLink) {
+      logoLink.setAttribute('href', bp + 'index.html');
+    }
+
+    // Fix Home link
+    var homeLink = document.querySelector('[data-kirki="dpp2fc2o"]');
+    if (homeLink) {
+      homeLink.setAttribute('href', bp + 'index.html');
+      homeLink.textContent = 'Home';
+    }
+
+    // Fix Our Story link
+    var storyLink = document.querySelector('[data-kirki="dp41kxod"]');
+    if (storyLink) {
+      storyLink.setAttribute('href', bp + 'about.html');
+      storyLink.textContent = 'Our Story';
+    }
+
+    // Fix Blogs link
+    var blogsLink = document.querySelector('[data-kirki="dpec2r3z"]');
+    if (blogsLink) {
+      blogsLink.setAttribute('href', bp + 'blogs.html');
+      blogsLink.textContent = 'Blogs';
+    }
+
+    // Fix Contact link
+    var contactLink = document.querySelector('[data-kirki="dpogns08"]');
+    if (contactLink) {
+      contactLink.setAttribute('href', bp + 'contact.html');
+    }
+    // Fix contact button text
+    var contactText = document.querySelector('[data-kirki="dppaxh2l"]');
+    if (contactText) {
+      contactText.textContent = 'Contact us';
+    }
+  }
+
+  /* =========================================================================
+     4. KILL KIRKI'S PRODUCTS DROPDOWN ANIMATIONS
+     ========================================================================= */
+  function killKirkiDropdown() {
+    // Remove kirki interaction data that causes buggy animations
+    if (window.kirkiInteractions && window.kirkiInteractions.dpkzemwd) {
+      delete window.kirkiInteractions.dpkzemwd;
+    }
+    // Force-hide the original kirki dropdown container
+    var dd = document.querySelector('.kirki-s220-dpi8cdrc');
+    if (dd) {
+      dd.style.cssText = 'display:none!important;height:0!important;overflow:hidden!important;pointer-events:none!important;';
+    }
+  }
+
+  /* =========================================================================
+     5. INJECT PREMIUM TABBED MEGA-MENU
      ========================================================================= */
   function injectMegaMenu() {
     var productsLi = document.querySelector('li[data-kirki="dpkzemwd"]');
     if (!productsLi) return;
 
-    // Remove any existing older mega menus
-    var existing = productsLi.querySelector('.ksfl-mega-menu') || productsLi.querySelector('.ksfl-megamenu');
+    // Remove any existing mega menus (prevent duplicates)
+    var existing = productsLi.querySelector('.ksfl-mega-menu');
     if (existing) existing.remove();
 
     productsLi.classList.add('ksfl-mega-wrapper');
@@ -71,9 +140,9 @@
         '</a>' +
       '</div>' +
       '<div class="ksfl-crops-panel ksfl-panel-open">' +
-        '<div class="ksfl-crops-label-wrap" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(253,226,81,0.15); padding-bottom: 8px; margin-bottom: 12px;">' +
-          '<span class="ksfl-crops-label" style="margin: 0; font-family: \'Roboto\', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(253,226,81,0.45);"><span class="ksfl-mega-en">ALL CROPS</span><span class="ksfl-mega-bn" style="display:none">সকল ফসল</span></span>' +
-          '<a href="' + bp + 'our-crops.html" class="ksfl-view-all-link" style="color: #FDE251 !important; text-decoration: none !important; font-family: \'Roboto\', sans-serif; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 4px; padding-right: 4px;">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(253,226,81,0.15);padding-bottom:8px;margin-bottom:12px;">' +
+          '<span class="ksfl-crops-label"><span class="ksfl-mega-en">ALL CROPS</span><span class="ksfl-mega-bn" style="display:none">সকল ফসল</span></span>' +
+          '<a href="' + bp + 'our-crops.html" class="ksfl-view-all-link">' +
             '<span class="ksfl-mega-en">View All ➔</span><span class="ksfl-mega-bn" style="display:none">সব দেখুন ➔</span>' +
           '</a>' +
         '</div>' +
@@ -93,10 +162,10 @@
     // Sync Bangla/English mode
     function syncLang() {
       var isBn = document.body.classList.contains('bn-active') || document.body.classList.contains('lang-bn');
-      mm.querySelectorAll('.ksfl-mega-en, .en-text').forEach(function(el) {
+      mm.querySelectorAll('.ksfl-mega-en').forEach(function(el) {
         el.style.setProperty('display', isBn ? 'none' : 'inline', 'important');
       });
-      mm.querySelectorAll('.ksfl-mega-bn, .bn-text').forEach(function(el) {
+      mm.querySelectorAll('.ksfl-mega-bn').forEach(function(el) {
         el.style.setProperty('display', isBn ? 'inline' : 'none', 'important');
       });
     }
@@ -106,7 +175,7 @@
     var obs = new MutationObserver(syncLang);
     obs.observe(document.body, { attributes: true, attributeFilter: ['class'] });
 
-    // Toggle crops panel in mobile view or when crops button is clicked
+    // Toggle crops panel (both desktop click and mobile)
     var cropsBtn = mm.querySelector('.ksfl-crops-btn');
     var cropsPanel = mm.querySelector('.ksfl-crops-panel');
     if (cropsBtn && cropsPanel) {
@@ -118,82 +187,131 @@
       });
     }
 
-    // Mobile view chevron and click toggles for Products link
-    var productsLink = productsLi.querySelector('[data-kirki="dpx02odk"]') || productsLi.querySelector('a');
+    // Mobile: click "Our Products" text or chevron to toggle mega-menu
+    var productsTextLink = productsLi.querySelector('[data-kirki="dpx02odk"]');
     var chevronSvg = productsLi.querySelector('[data-kirki="dp6tu2j0"]') || productsLi.querySelector('.kirki-s220-dpjmen6g');
-    
-    function toggleMobile(e) {
+    var productsTrigger = productsLi.querySelector('.kirki-s220-dpjf4k6u');
+
+    function toggleMobileProducts(e) {
       if (window.innerWidth <= 991) {
         e.preventDefault();
         e.stopPropagation();
+        var isOpen = productsLi.classList.contains('ksfl-open');
         productsLi.classList.toggle('ksfl-open');
+        // Rotate chevron
+        if (chevronSvg) {
+          chevronSvg.style.transform = isOpen ? 'rotateZ(180deg)' : 'rotateZ(0deg)';
+        }
       }
     }
-    if (productsLink) productsLink.addEventListener('click', toggleMobile);
-    if (chevronSvg) {
-      chevronSvg.style.cursor = 'pointer';
-      chevronSvg.addEventListener('click', toggleMobile);
+
+    // Attach to the entire trigger row (text + chevron) for reliable mobile taps
+    if (productsTrigger) {
+      productsTrigger.addEventListener('click', toggleMobileProducts);
+    } else {
+      if (productsTextLink) productsTextLink.addEventListener('click', toggleMobileProducts);
+      if (chevronSvg) {
+        chevronSvg.style.cursor = 'pointer';
+        chevronSvg.addEventListener('click', toggleMobileProducts);
+      }
     }
   }
 
   /* =========================================================================
-     4. UNIFIED HAMBURGER INTERACTIVE EVENT HANDLERS
+     6. UNIFIED MOBILE HAMBURGER MENU
      ========================================================================= */
   function initMobileMenu() {
     var nav = document.querySelector('.kirki-s220-dp425u34');
-    if (nav) nav.removeAttribute('kirki-navigation-type');
-
     var hamburger = document.querySelector('.kirki-s220-dpjglwhg');
     if (!hamburger || !nav) return;
 
-    // Bind clean hamburger click event
-    hamburger.addEventListener('click', function (e) {
+    // Remove kirki's navigation-type attribute that interferes
+    nav.removeAttribute('kirki-navigation-type');
+
+    // Track scroll position for body lock
+    var scrollY = 0;
+
+    function openMenu() {
+      scrollY = window.scrollY;
+      nav.classList.add('ksfl-mobile-open');
+      hamburger.classList.add('ksfl-hamburger-active');
+      document.body.classList.add('ksfl-nav-open');
+      document.body.style.top = '-' + scrollY + 'px';
+    }
+
+    function closeMenu() {
+      nav.classList.remove('ksfl-mobile-open');
+      hamburger.classList.remove('ksfl-hamburger-active');
+      document.body.classList.remove('ksfl-nav-open');
+      document.body.style.top = '';
+      window.scrollTo(0, scrollY);
+
+      // Also close products submenu
+      var productsLi = document.querySelector('.ksfl-mega-wrapper');
+      if (productsLi) {
+        productsLi.classList.remove('ksfl-open');
+        var chev = productsLi.querySelector('.kirki-s220-dpjmen6g');
+        if (chev) chev.style.transform = 'rotateZ(180deg)';
+      }
+    }
+
+    function isMenuOpen() {
+      return nav.classList.contains('ksfl-mobile-open');
+    }
+
+    // Hamburger click — toggle open/close
+    hamburger.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      
-      var isOpen = nav.classList.contains('ksfl-mobile-open') || nav.classList.contains('kirki-mobile-open');
-      if (isOpen) {
-        nav.classList.remove('ksfl-mobile-open', 'kirki-mobile-open');
-        hamburger.classList.remove('kirki-hamburger-active');
-        document.body.style.overflow = '';
-        document.body.classList.remove('mobile-menu-open', 'ksfl-nav-open');
+      if (isMenuOpen()) {
+        closeMenu();
       } else {
-        nav.classList.add('ksfl-mobile-open', 'kirki-mobile-open');
-        hamburger.classList.add('kirki-hamburger-active');
-        document.body.style.overflow = 'hidden';
-        document.body.classList.add('mobile-menu-open', 'ksfl-nav-open');
+        openMenu();
       }
     });
 
-    // Close mobile nav drawer when clicking outside
-    document.addEventListener('click', function (e) {
-      if ((nav.classList.contains('ksfl-mobile-open') || nav.classList.contains('kirki-mobile-open'))) {
-        if (!nav.contains(e.target) && hamburger && !hamburger.contains(e.target)) {
-          nav.classList.remove('ksfl-mobile-open', 'kirki-mobile-open');
-          hamburger.classList.remove('kirki-hamburger-active');
-          document.body.style.overflow = '';
-          document.body.classList.remove('mobile-menu-open', 'ksfl-nav-open');
-        }
+    // Close when clicking outside the nav drawer
+    document.addEventListener('click', function(e) {
+      if (isMenuOpen() && !nav.contains(e.target) && !hamburger.contains(e.target)) {
+        closeMenu();
       }
     });
 
-    // Close mobile nav drawer immediately when navigating through a link
-    nav.querySelectorAll('a[href]').forEach(function (link) {
-      link.addEventListener('click', function () {
+    // Close when clicking a navigation link (except products toggle)
+    nav.querySelectorAll('a[href]').forEach(function(link) {
+      link.addEventListener('click', function() {
         if (window.innerWidth <= 991) {
-          setTimeout(function () {
-            nav.classList.remove('ksfl-mobile-open', 'kirki-mobile-open');
-            hamburger.classList.remove('kirki-hamburger-active');
-            document.body.style.overflow = '';
-            document.body.classList.remove('mobile-menu-open', 'ksfl-nav-open');
-          }, 150);
+          setTimeout(closeMenu, 100);
         }
       });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isMenuOpen()) {
+        closeMenu();
+      }
+    });
+
+    // Handle orientation change — close menu
+    window.addEventListener('orientationchange', function() {
+      if (isMenuOpen()) closeMenu();
+    });
+
+    // Handle resize crossing mobile/desktop breakpoint
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        if (window.innerWidth > 991 && isMenuOpen()) {
+          closeMenu();
+        }
+      }, 150);
     });
   }
 
   /* =========================================================================
-     5. FOOTER SUBPAGE RELATIVE PATH & LAYOUT RESOLUTION
+     7. FOOTER SUBPAGE RELATIVE PATH & LAYOUT RESOLUTION
      ========================================================================= */
   function fixFooter() {
     // Remove Others/Terms of Service section via DOM
@@ -214,41 +332,31 @@
       var footer = document.getElementById('footer') || document.querySelector('footer') || document.querySelector('.kirki-s219-dpbrehze');
       if (footer) {
         footer.querySelectorAll('a[href^="./"]').forEach(function(a) {
-          var originalHref = a.getAttribute('href');
-          a.href = originalHref.replace('./', basePath);
+          a.href = a.getAttribute('href').replace('./', basePath);
         });
         footer.querySelectorAll('img[src^="./"]').forEach(function(img) {
-          var originalSrc = img.getAttribute('src');
-          img.src = originalSrc.replace('./', basePath);
+          img.src = img.getAttribute('src').replace('./', basePath);
         });
       }
     }
   }
 
   /* =========================================================================
-     6. CONTEXT-AWARE TRANSLATOR HARMONIZATION (Touch Pointer Lock fix)
+     8. CONTEXT-AWARE TRANSLATOR HARMONIZATION
      ========================================================================= */
   function optimizeLangToggle() {
-    const btnEn = document.getElementById('btn-en');
-    const btnBn = document.getElementById('btn-bn');
-    
-    // Fix active pointer events to prevent touch latency / double taps
-    if (btnEn) {
-      btnEn.style.pointerEvents = 'auto';
-      btnEn.style.cursor = 'pointer';
-    }
-    if (btnBn) {
-      btnBn.style.pointerEvents = 'auto';
-      btnBn.style.cursor = 'pointer';
-    }
+    var btnEn = document.getElementById('btn-en');
+    var btnBn = document.getElementById('btn-bn');
+    if (btnEn) { btnEn.style.pointerEvents = 'auto'; btnEn.style.cursor = 'pointer'; }
+    if (btnBn) { btnBn.style.pointerEvents = 'auto'; btnBn.style.cursor = 'pointer'; }
   }
 
   /* =========================================================================
-     7. HERO SLIDESHOW — Auto-rotating background images + text paragraphs
+     9. HERO SLIDESHOW — Auto-rotating background images + text paragraphs
      ========================================================================= */
   function initHeroSlideshow() {
     var wrapper = document.querySelector('.hero-image-wrapper');
-    if (!wrapper) return; // Not on homepage
+    if (!wrapper) return;
 
     var images = wrapper.querySelectorAll('.dpvmj3vk');
     var paragraphs = document.querySelectorAll('.hero-paragraph');
@@ -259,182 +367,108 @@
 
     var currentSlide = 0;
     var autoTimer = null;
-    var INTERVAL = 5000; // 5 seconds
+    var INTERVAL = 5000;
 
     function goToSlide(index) {
       currentSlide = index;
-
-      // Update images — show active, hide others
       images.forEach(function(img, i) {
-        if (i === index) {
-          img.style.setProperty('opacity', '1', 'important');
-          img.style.setProperty('z-index', '3', 'important');
-        } else {
-          img.style.setProperty('opacity', '0', 'important');
-          img.style.setProperty('z-index', '1', 'important');
-        }
+        img.style.setProperty('opacity', i === index ? '1' : '0', 'important');
+        img.style.setProperty('z-index', i === index ? '3' : '1', 'important');
       });
-
-      // Update paragraphs
       paragraphs.forEach(function(p, i) {
-        if (i === index) {
-          p.classList.add('active-para');
-        } else {
-          p.classList.remove('active-para');
-        }
+        p.classList.toggle('active-para', i === index);
       });
-
-      // Update circle navs
       circleNavs.forEach(function(circle, i) {
-        if (i === index) {
-          circle.classList.add('active-circle');
-        } else {
-          circle.classList.remove('active-circle');
-        }
+        circle.classList.toggle('active-circle', i === index);
       });
-
-      // Update dividers
       dividers.forEach(function(div, i) {
+        var fill = div.querySelector('.active-nav-color');
         if (i === index) {
           div.classList.add('active-divider-nav');
-          // Animate the fill bar
-          var fill = div.querySelector('.active-nav-color');
           if (fill) {
             fill.style.transition = 'none';
             fill.style.height = '0%';
-            // Force reflow then animate
             void fill.offsetHeight;
             fill.style.transition = 'height ' + (INTERVAL / 1000) + 's linear';
             fill.style.height = '100%';
           }
         } else {
           div.classList.remove('active-divider-nav');
-          var fill2 = div.querySelector('.active-nav-color');
-          if (fill2) {
-            fill2.style.transition = 'none';
-            fill2.style.height = '0%';
-          }
+          if (fill) { fill.style.transition = 'none'; fill.style.height = '0%'; }
         }
       });
     }
 
-    function nextSlide() {
-      goToSlide((currentSlide + 1) % totalSlides);
-    }
+    function nextSlide() { goToSlide((currentSlide + 1) % totalSlides); }
+    function startAutoplay() { stopAutoplay(); autoTimer = setInterval(nextSlide, INTERVAL); }
+    function stopAutoplay() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
 
-    function startAutoplay() {
-      stopAutoplay();
-      autoTimer = setInterval(nextSlide, INTERVAL);
-    }
-
-    function stopAutoplay() {
-      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
-    }
-
-    // Click handlers on circle navigations
     circleNavs.forEach(function(circle, i) {
       circle.style.cursor = 'pointer';
-      circle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        goToSlide(i);
-        startAutoplay(); // Reset timer
-      });
+      circle.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); goToSlide(i); startAutoplay(); });
     });
-
-    // Click handlers on dividers
     dividers.forEach(function(div, i) {
       div.style.cursor = 'pointer';
-      div.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        goToSlide(i);
-        startAutoplay();
-      });
+      div.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); goToSlide(i); startAutoplay(); });
     });
 
-    // Initialize first slide and start
     goToSlide(0);
     startAutoplay();
-
-    // Pause when page is hidden, resume when visible
     document.addEventListener('visibilitychange', function() {
-      if (document.hidden) {
-        stopAutoplay();
-      } else {
-        startAutoplay();
-      }
+      if (document.hidden) stopAutoplay(); else startAutoplay();
     });
   }
 
   /* =========================================================================
-     8. GALLERY CAROUSEL KEEPALIVE — Restart CSS animations when re-entering viewport
+     10. GALLERY CAROUSEL KEEPALIVE
      ========================================================================= */
   function initGalleryCarouselKeepAlive() {
     var carousels = document.querySelectorAll('.discover-slider, .premade_template_infinity-slide-items, .carousel-track');
     if (!carousels.length) return;
-
-    // Use IntersectionObserver to restart animations when scrolling back into view
     if ('IntersectionObserver' in window) {
       var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
           var el = entry.target;
           if (entry.isIntersecting) {
-            // Force re-trigger animation by removing and re-adding it
             var anim = getComputedStyle(el).animationName;
             if (anim && anim !== 'none') {
               el.style.animationPlayState = 'running';
             } else {
-              // Restart by toggling animation
               el.style.animation = 'none';
-              void el.offsetHeight; // reflow
+              void el.offsetHeight;
               el.style.animation = '';
             }
           }
         });
       }, { threshold: 0.1 });
-
       carousels.forEach(function(c) { observer.observe(c); });
     }
-
-    // Also ensure discover-slider always has enough content for infinite scroll
-    document.querySelectorAll('.discover-slider').forEach(function(slider) {
-      var items = slider.querySelectorAll('.discover-slider-img-wrapper');
-      // If we haven't already duplicated, duplicate items for seamless loop
-      if (items.length > 0 && !slider.dataset.ksflDuped) {
-        slider.dataset.ksflDuped = 'true';
-        // Content is already duplicated in the HTML, just ensure animation runs
-      }
-    });
   }
 
   /* =========================================================================
-     9. AUTOPLAY VIDEO KEEPALIVE — Re-play paused autoplay videos when visible
+     11. AUTOPLAY VIDEO KEEPALIVE
      ========================================================================= */
   function initAutoplayVideoKeepAlive() {
     var videos = document.querySelectorAll('video[autoplay]');
     if (!videos.length) return;
-
     if ('IntersectionObserver' in window) {
       var videoObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          var vid = entry.target;
-          if (entry.isIntersecting) {
-            if (vid.paused) {
-              vid.play().catch(function() {});
-            }
+          if (entry.isIntersecting && entry.target.paused) {
+            entry.target.play().catch(function() {});
           }
         });
       }, { threshold: 0.2 });
-
       videos.forEach(function(v) { videoObserver.observe(v); });
     }
   }
 
   /* =========================================================================
-     10. INITIALIZATION
+     12. INITIALIZATION
      ========================================================================= */
   function init() {
+    killKirkiDropdown();
+    fixNavLinks();
     injectMegaMenu();
     initMobileMenu();
     fixFooter();
@@ -442,6 +476,10 @@
     initHeroSlideshow();
     initGalleryCarouselKeepAlive();
     initAutoplayVideoKeepAlive();
+
+    // Re-kill kirki dropdown after a delay (kirki may reinit)
+    setTimeout(killKirkiDropdown, 500);
+    setTimeout(killKirkiDropdown, 2000);
   }
 
   if (document.readyState === 'loading') {

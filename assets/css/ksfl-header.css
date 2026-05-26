@@ -1,0 +1,606 @@
+/*
+ * KSFL Agro Ltd. — Centralized Header Navigation Styles
+ * =====================================================
+ * Single source of truth for header/nav on ALL pages.
+ * Covers: desktop nav, mobile hamburger drawer, products mega-menu,
+ *         body scroll lock, and all responsive breakpoints.
+ *
+ * Color tokens used:
+ *   --ksfl-forest:  #293920
+ *   --ksfl-gold:    #FDE251
+ *   --ksfl-cream:   #F3F0EB
+ */
+
+/* ============================================================
+   0. ROOT VARIABLES (shared with our-crops.css)
+   ============================================================ */
+:root {
+  --ksfl-forest: #293920;
+  --ksfl-gold: #FDE251;
+  --ksfl-cream: #F3F0EB;
+  --ksfl-green-accent: #5A6D3F;
+  --ksfl-header-height: 72px;
+  --ksfl-header-height-mobile: 56px;
+}
+
+/* ============================================================
+   1. DESKTOP HEADER — Glassmorphic sticky bar
+   ============================================================ */
+
+/* Fix z-index so header is always on top */
+.kirki-s220-dp3o6qiv {
+  z-index: 9999 !important;
+}
+
+/* Hide the old kirki dropdown (replaced by ksfl-mega-menu) */
+.kirki-s220-dpi8cdrc {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ============================================================
+   2. DESKTOP MEGA-MENU — Premium dropdown for "Our Products"
+   ============================================================ */
+.ksfl-mega-wrapper {
+  position: relative;
+}
+
+.ksfl-mega-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  background: var(--ksfl-forest, #293920);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(253, 226, 81, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10010;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Desktop: show on hover */
+@media (min-width: 992px) {
+  .ksfl-mega-wrapper:hover .ksfl-mega-menu,
+  .ksfl-mega-wrapper:focus-within .ksfl-mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/* Arrow */
+.ksfl-mega-arrow {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--ksfl-forest, #293920);
+  border-radius: 2px;
+  transform: translateX(-50%) rotate(45deg);
+  z-index: 1;
+}
+
+/* Tabs row */
+.ksfl-mega-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(253, 226, 81, 0.08);
+}
+
+.ksfl-mega-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  background: transparent;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ksfl-mega-tab:last-child {
+  border-right: none;
+}
+
+.ksfl-mega-tab:hover {
+  color: var(--ksfl-gold, #FDE251);
+  background: rgba(253, 226, 81, 0.06);
+}
+
+.ksfl-mega-tab.ksfl-tab-active {
+  color: var(--ksfl-gold, #FDE251);
+  background: rgba(253, 226, 81, 0.08);
+}
+
+.ksfl-tab-icon {
+  font-size: 16px;
+}
+
+.ksfl-chev {
+  display: inline-flex;
+  transition: transform 0.3s ease;
+}
+
+.ksfl-tab-active .ksfl-chev {
+  transform: rotate(180deg);
+}
+
+/* Crops panel */
+.ksfl-crops-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.3s ease;
+  padding: 0 20px;
+}
+
+.ksfl-crops-panel.ksfl-panel-open {
+  max-height: 600px;
+  padding: 16px 20px 20px;
+}
+
+.ksfl-crops-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.ksfl-crop-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.ksfl-crop-link:hover {
+  background: rgba(253, 226, 81, 0.1);
+  color: var(--ksfl-gold, #FDE251) !important;
+  transform: translateX(2px);
+}
+
+.ksfl-crop-link .ci {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.ksfl-view-all-link {
+  color: var(--ksfl-gold, #FDE251) !important;
+  text-decoration: none !important;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-right: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.ksfl-view-all-link:hover {
+  opacity: 0.8;
+}
+
+.ksfl-crops-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: rgba(253, 226, 81, 0.45);
+  margin: 0;
+}
+
+/* ============================================================
+   3. MOBILE (≤991px) — Hamburger & Full-Screen Drawer
+   ============================================================ */
+@media only screen and (max-width: 991px) {
+
+  /* --- Header bar layout: logo left, hamburger right --- */
+  .kirki-s220-dpwpyttv {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  .kirki-s220-dpcc8piy {
+    flex: 0 1 auto !important;
+    margin-right: auto !important;
+    order: 1 !important;
+    border: none !important;
+  }
+
+  .kirki-s220-dph9mfsm {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin-left: auto !important;
+    order: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    min-width: auto !important;
+    border: none !important;
+  }
+
+  .kirki-s220-dpcc8piy img {
+    max-height: 36px !important;
+    width: auto !important;
+  }
+
+  /* --- Hamburger button: ALWAYS visible on mobile --- */
+  .kirki-s220-dpjglwhg {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    position: relative !important;
+    z-index: 10005 !important;
+    width: 44px !important;
+    height: 44px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: auto !important;
+    order: 99 !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Hamburger icon toggle logic:
+     Default state (menu closed): show hamburger lines (close), hide X (open)
+     Active state (menu open):    show X (open), hide hamburger lines (close) */
+  .kirki-s220-dpjglwhg div[kirki-nav-button="open"] {
+    display: none !important;
+  }
+  .kirki-s220-dpjglwhg div[kirki-nav-button="close"] {
+    display: block !important;
+  }
+  .kirki-s220-dpjglwhg.ksfl-hamburger-active div[kirki-nav-button="open"] {
+    display: block !important;
+  }
+  .kirki-s220-dpjglwhg.ksfl-hamburger-active div[kirki-nav-button="close"] {
+    display: none !important;
+  }
+
+  /* --- Navigation drawer: full-screen overlay --- */
+  .kirki-s220-dp425u34 {
+    display: none !important;
+    flex-direction: column !important;
+    background-color: var(--ksfl-forest, #293920) !important;
+    background-image: linear-gradient(180deg, #293920 0%, #1e2d16 100%) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    padding: 90px 24px 40px 24px !important;
+    margin: 0 !important;
+    z-index: 10000 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch;
+    /* Override any kirki inline styles */
+    inset: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    border: none !important;
+    row-gap: 0 !important;
+    column-gap: 0 !important;
+  }
+
+  .kirki-s220-dp425u34.ksfl-mobile-open {
+    display: flex !important;
+  }
+
+  /* --- Nav items inside drawer --- */
+  .kirki-s220-dp425u34 li {
+    width: 100% !important;
+    padding: 16px 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: transparent !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    list-style: none !important;
+  }
+
+  .kirki-s220-dp425u34 li:last-child {
+    border-bottom: none !important;
+  }
+
+  .kirki-s220-dp425u34 li a,
+  .kirki-s220-dp425u34 li .kirki-s220-dpich0g0 {
+    font-size: 22px !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    display: block !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.3px !important;
+    line-height: 1.4 !important;
+    padding: 0 !important;
+  }
+
+  .kirki-s220-dp425u34 li a:active,
+  .kirki-s220-dp425u34 li .kirki-s220-dpich0g0:active {
+    opacity: 0.7;
+  }
+
+  /* Active link highlight */
+  .kirki-s220-dp425u34 li a.kirki-active-link {
+    color: var(--ksfl-gold, #FDE251) !important;
+  }
+
+  /* --- Products item: vertical layout with chevron --- */
+  .kirki-s220-dplwwalk.kirki-s220-dpc2yp2a {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    row-gap: 0 !important;
+    padding: 16px 0 !important;
+  }
+
+  .kirki-s220-dpjf4k6u {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+  }
+
+  .kirki-s220-dpjmen6g {
+    width: 20px !important;
+    height: 20px !important;
+    transition: transform 0.3s ease !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* --- Contact us button in mobile drawer --- */
+  .kirki-s220-dplwwalk.kirki-s220-dpxgsmtj {
+    margin: 24px 0 0 0 !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .kirki-s220-dplwwalk.kirki-s220-dpxgsmtj .kirki-s220-dpeid32n {
+    background-color: var(--ksfl-gold, #FDE251) !important;
+    color: var(--ksfl-forest, #293920) !important;
+    justify-content: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 16px 24px !important;
+    border-radius: 12px !important;
+  }
+
+  /* --- Mega-menu in mobile: full-width inline accordion --- */
+  .ksfl-mega-menu {
+    position: static !important;
+    width: 100% !important;
+    transform: none !important;
+    border-radius: 12px !important;
+    margin: 12px 0 0 0 !important;
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    /* Initially hidden in mobile; toggled by JS */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s ease, max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease !important;
+    padding: 0 !important;
+  }
+
+  .ksfl-mega-wrapper.ksfl-open .ksfl-mega-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: 800px !important;
+    pointer-events: auto !important;
+    padding: 0 !important;
+  }
+
+  /* Prevent desktop hover from triggering on mobile */
+  .ksfl-mega-wrapper:hover .ksfl-mega-menu {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    max-height: 0 !important;
+    pointer-events: none !important;
+  }
+  .ksfl-mega-wrapper.ksfl-open:hover .ksfl-mega-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: 800px !important;
+    pointer-events: auto !important;
+  }
+
+  .ksfl-mega-arrow {
+    display: none !important;
+  }
+
+  .ksfl-mega-tabs {
+    flex-direction: column !important;
+    background: transparent !important;
+    border-bottom: none !important;
+  }
+
+  .ksfl-mega-tab {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 14px 16px !important;
+    justify-content: flex-start !important;
+    font-size: 15px !important;
+  }
+
+  .ksfl-mega-tab:last-child {
+    border-bottom: none !important;
+  }
+
+  .ksfl-crops-panel {
+    padding: 0 12px !important;
+  }
+
+  .ksfl-crops-panel.ksfl-panel-open {
+    padding: 12px 12px 16px !important;
+    max-height: 500px;
+  }
+
+  .ksfl-crops-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 4px !important;
+  }
+
+  .ksfl-crop-link {
+    font-size: 13px !important;
+    padding: 10px 10px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  /* Body scroll lock when menu is open */
+  body.ksfl-nav-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Hide the decorative overlay element from kirki */
+  .kirki-s220-dptni53r {
+    display: none !important;
+  }
+}
+
+/* ============================================================
+   4. SMALL MOBILE (≤575px) — Tighter spacing
+   ============================================================ */
+@media only screen and (max-width: 575px) {
+  .kirki-s220-dp3o6qiv {
+    min-height: var(--ksfl-header-height-mobile) !important;
+  }
+
+  .kirki-s220-dpwpyttv {
+    min-height: var(--ksfl-header-height-mobile) !important;
+  }
+
+  .kirki-s220-dpcc8piy {
+    min-height: var(--ksfl-header-height-mobile) !important;
+  }
+
+  .kirki-s220-dph9mfsm {
+    min-height: var(--ksfl-header-height-mobile) !important;
+  }
+
+  .kirki-s220-dpi1u8z3 {
+    padding: 0 8px !important;
+  }
+
+  .kirki-s220-dpwbffl9 {
+    max-width: 151px !important;
+    max-height: 24px !important;
+  }
+
+  .kirki-s220-dp425u34 {
+    padding: 70px 20px 30px 20px !important;
+  }
+
+  .kirki-s220-dp425u34 li a,
+  .kirki-s220-dp425u34 li .kirki-s220-dpich0g0 {
+    font-size: 20px !important;
+  }
+
+  .ksfl-crops-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* ============================================================
+   5. DESKTOP (≥992px) — Ensure nav items are horizontal
+   ============================================================ */
+@media (min-width: 992px) {
+  .kirki-s220-dpjglwhg {
+    display: none !important;
+  }
+
+  .kirki-s220-dp425u34 {
+    display: flex !important;
+    flex-direction: row !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    background-image: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  .kirki-s220-dp425u34 li {
+    border-bottom: none !important;
+    padding: 10px !important;
+  }
+
+  .kirki-s220-dplwwalk.kirki-s220-dpc2yp2a {
+    flex-direction: row !important;
+    align-items: center !important;
+  }
+  
+  .kirki-s220-dph9mfsm {
+    min-width: auto !important;
+  }
+
+  /* Products: chevron rotation on hover */
+  .ksfl-mega-wrapper:hover .kirki-s220-dpjmen6g,
+  .ksfl-mega-wrapper:focus-within .kirki-s220-dpjmen6g {
+    transform: rotateZ(0deg) !important;
+  }
+
+  .kirki-s220-dpjmen6g {
+    transform: rotateZ(180deg) !important;
+    transition: transform 0.3s ease !important;
+  }
+}
+
+/* ============================================================
+   6. LANGUAGE TOGGLE SYNC
+   ============================================================ */
+body:not(.lang-bn):not(.bn-active) .ksfl-mega-bn { display: none !important; }
+body.lang-bn .ksfl-mega-en { display: none !important; }
+body.bn-active .ksfl-mega-en { display: none !important; }
+body.lang-bn .ksfl-mega-bn { display: inline !important; }
+body.bn-active .ksfl-mega-bn { display: inline !important; }
