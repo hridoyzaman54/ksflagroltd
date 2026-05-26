@@ -625,6 +625,17 @@ body.bn-active .ksfl-mega-en { display: none !important; }
 body.lang-bn .ksfl-mega-bn { display: inline !important; }
 body.bn-active .ksfl-mega-bn { display: inline !important; }
 
+/* Desktop Contact button — shrink for Bangla text so it never clips */
+@media (min-width: 992px) {
+  body.lang-bn .kirki-s220-dpeid32n,
+  body.bn-active .kirki-s220-dpeid32n {
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+    letter-spacing: 0px !important;
+    white-space: nowrap !important;
+  }
+}
+
 /* Ensure the logo area and link are always fully visible, overriding any buggy Kirki opacity changes */
 [data-kirki="dp321gpx"],
 .kirki-s220-dpcc8piy {
