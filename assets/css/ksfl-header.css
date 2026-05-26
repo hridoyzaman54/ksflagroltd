@@ -672,3 +672,59 @@ body.bn-active .ksfl-mega-bn { display: inline !important; }
   transition: transform 0.08s ease-in-out !important;
 }
 
+/* ============================================================
+   8. FOOTER MOBILE LOGO OVERFLOW RESOLUTION
+   ============================================================ */
+@media only screen and (max-width: 991px) {
+  /* Direct high-priority override for the large inline-styled footer span */
+  .kirki-s219-dpv862q9 span[style*="font-size: 56px"],
+  .kirki-s219-dpv862q9 span[style*="font-size:56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size: 56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size:56px"],
+  .kirki-s219-dpw3e732 div span,
+  [class*="dpv862q9"] span,
+  [class*="dpw3e732"] span {
+    font-size: clamp(24px, 5.5vw, 36px) !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+    word-break: break-word !important;
+    text-align: center !important;
+  }
+
+  /* Make sure the flex container wraps nicely on tablets and small screens */
+  .kirki-s219-dpw3e732 div,
+  [class*="dpw3e732"] div {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  /* Tighten spacing even further on small mobile */
+  .kirki-s219-dpv862q9 span[style*="font-size: 56px"],
+  .kirki-s219-dpv862q9 span[style*="font-size:56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size: 56px"],
+  .kirki-s219-dpw3e732 span[style*="font-size:56px"],
+  .kirki-s219-dpw3e732 div span,
+  [class*="dpv862q9"] span,
+  [class*="dpw3e732"] span {
+    font-size: clamp(18px, 5vw, 24px) !important;
+    text-align: center !important;
+  }
+
+  .kirki-s219-dpw3e732 img,
+  [class*="dpw3e732"] img {
+    height: 48px !important; /* Scale down the logo image to match the text on small screens */
+  }
+
+  .kirki-s219-dpw3e732 div,
+  [class*="dpw3e732"] div {
+    flex-direction: column !important; /* Stack vertically on very small mobile for a cleaner look */
+    text-align: center !important;
+    gap: 8px !important;
+  }
+}
+
