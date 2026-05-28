@@ -82,6 +82,17 @@
       blogsLink.textContent = 'Blogs';
     }
 
+    // Fix Testimonials link
+    var testimonialsLink = document.querySelector('[data-kirki="dpec2r3z-testi"]');
+    if (testimonialsLink) {
+      testimonialsLink.setAttribute('href', bp + 'testimonials.html');
+      testimonialsLink.textContent = 'Testimonials';
+      // Sync active state programmatically based on pathname
+      if (window.location.pathname.indexOf('testimonials.html') !== -1) {
+        testimonialsLink.classList.add('kirki-active-link');
+      }
+    }
+
     // Fix Contact link
     var contactLink = document.querySelector('[data-kirki="dpogns08"]');
     if (contactLink) {
