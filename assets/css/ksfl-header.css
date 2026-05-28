@@ -297,6 +297,23 @@ html, body {
     width: auto !important;
   }
 
+  /* Prevent logo text from overlapping with hamburger button on mobile */
+  .kirki-s220-dpcc8piy a span,
+  .kirki-s220-dpi1u8z3 span,
+  [data-kirki="dp321gpx"] span {
+    font-size: clamp(16px, 4.5vw, 20px) !important;
+  }
+
+  /* For Bangla translation, which is longer, reduce font size even further to avoid overlap */
+  body.lang-bn .kirki-s220-dpcc8piy a span,
+  body.lang-bn .kirki-s220-dpi1u8z3 span,
+  body.lang-bn [data-kirki="dp321gpx"] span,
+  body.bn-active .kirki-s220-dpcc8piy a span,
+  body.bn-active .kirki-s220-dpi1u8z3 span,
+  body.bn-active [data-kirki="dp321gpx"] span {
+    font-size: clamp(14px, 3.8vw, 17px) !important;
+  }
+
   /* --- Hamburger button: ALWAYS visible on mobile --- */
   .kirki-s220-dpjglwhg {
     display: flex !important;
@@ -559,6 +576,31 @@ html, body {
 
   .kirki-s220-dpi1u8z3 {
     padding: 0 8px !important;
+  }
+
+  .kirki-s220-dpcc8piy img {
+    max-height: 28px !important;
+  }
+
+  .kirki-s220-dpcc8piy a > div,
+  .kirki-s220-dpi1u8z3 > div,
+  [data-kirki="dp321gpx"] > div {
+    gap: 6px !important;
+  }
+
+  .kirki-s220-dpcc8piy a span,
+  .kirki-s220-dpi1u8z3 span,
+  [data-kirki="dp321gpx"] span {
+    font-size: clamp(13.5px, 4.2vw, 16px) !important;
+  }
+
+  body.lang-bn .kirki-s220-dpcc8piy a span,
+  body.lang-bn .kirki-s220-dpi1u8z3 span,
+  body.lang-bn [data-kirki="dp321gpx"] span,
+  body.bn-active .kirki-s220-dpcc8piy a span,
+  body.bn-active .kirki-s220-dpi1u8z3 span,
+  body.bn-active [data-kirki="dp321gpx"] span {
+    font-size: clamp(11.5px, 3.8vw, 13.5px) !important;
   }
 
   .kirki-s220-dpwbffl9 {
