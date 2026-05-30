@@ -55,17 +55,17 @@ const htmlContent = `
                 </div>
             </div>
             
-            <!-- MD ASADUZZAMAN -->
+            <!-- MD. MUZAMMEL HAQ -->
             <div class="team-member-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: calc(33.333% - 20px); max-width: 380px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <div class="team-member-img-wrap" style="height: 380px; overflow: hidden;">
-                    <img src="./assets/GALLERY/gallery%20homepage%20(4).png" alt="Md Asaduzzaman" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <img src="./assets/GALLERY/gallery%20homepage%20(4).png" alt="MD. Muzammel Haq" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
                 </div>
                 <div class="team-member-info" style="padding: 24px; text-align: center;">
-                    <h3 style="color: #293920; margin: 0 0 8px 0; font-size: 20px; font-weight: 500;">Md Asaduzzaman</h3>
+                    <h3 style="color: #293920; margin: 0 0 8px 0; font-size: 20px; font-weight: 500;">MD. Muzammel Haq</h3>
                     <p style="color: #657B46; font-weight: 500; margin: 0 0 16px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Director</p>
                     <div style="font-size: 14px; color: #555; display: flex; flex-direction: column; gap: 6px;">
-                        <p style="margin: 0;"><strong>E-mail:</strong> <a href="mailto:asadzaman665@gmail.com" style="color: inherit; text-decoration: none;">asadzaman665@gmail.com</a></p>
-                        <p style="margin: 0;"><strong>Phone:</strong> <a href="tel:01761302602" style="color: inherit; text-decoration: none;">01761-302602</a></p>
+                        <p style="margin: 0;"><strong>E-mail:</strong> <a href="mailto:muzahaq@gmail.com" style="color: inherit; text-decoration: none;">muzahaq@gmail.com</a></p>
+                        <p style="margin: 0;"><strong>Phone:</strong> <a href="tel:01768031225" style="color: inherit; text-decoration: none;">01768-031225</a></p>
                     </div>
                 </div>
             </div>
