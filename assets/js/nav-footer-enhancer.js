@@ -470,19 +470,28 @@
   }
 
   /* =========================================================================
-     11. AUTOPLAY VIDEO KEEPALIVE
+     11. UNIFIED VIDEO PLAYBACK CONTROLLER (PAUSE OFF-SCREEN)
      ========================================================================= */
-  function initAutoplayVideoKeepAlive() {
-    var videos = document.querySelectorAll('video[autoplay]');
+  function initVideoPlaybackController() {
+    var videos = document.querySelectorAll('video');
     if (!videos.length) return;
     if ('IntersectionObserver' in window) {
       var videoObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
-          if (entry.isIntersecting && entry.target.paused) {
-            entry.target.play().catch(function() {});
+          var video = entry.target;
+          if (entry.isIntersecting) {
+            // Automatically resume background autoplay loops when they enter the screen
+            if (video.hasAttribute('autoplay') && video.paused) {
+              video.play().catch(function() {});
+            }
+          } else {
+            // Stop/pause all videos (both autoplay loops and manual ones) immediately when scrolled past
+            if (!video.paused) {
+              video.pause();
+            }
           }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.01 }); // Pause immediately as soon as scrolled off-screen even by a single pixel
       videos.forEach(function(v) { videoObserver.observe(v); });
     }
   }
@@ -825,7 +834,7 @@
     optimizeLangToggle();
     initHeroSlideshow();
     initGalleryCarouselKeepAlive();
-    initAutoplayVideoKeepAlive();
+    initVideoPlaybackController();
     initCustomAccordion();
     initCropsAnimations();
     initWorkProcessAnimations();
