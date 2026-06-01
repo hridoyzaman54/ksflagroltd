@@ -36,18 +36,107 @@ html, body {
    1. DESKTOP HEADER — Glassmorphic sticky bar
    ============================================================ */
 
-/* Fix z-index, box-sizing and bounds so header is always on top and fits screen perfectly */
+/* Fix layout, z-index, box-sizing and bounds so header is always on top and fits screen perfectly */
 .kirki-s220-dp3o6qiv {
-  z-index: 9999 !important;
-  box-sizing: border-box !important;
+  min-height: var(--ksfl-header-height, 72px) !important;
+  display: flex !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  width: 100% !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
+  height: var(--ksfl-header-height, 72px) !important;
+  max-height: none !important;
+  align-items: center !important;
+  position: fixed !important;
+  top: 0 !important;
   left: 0 !important;
   right: 0 !important;
-  width: auto !important;
-  padding: 0 24px !important;
+  z-index: 9999 !important;
+  background-image: none !important;
+  background-color: rgba(41, 57, 32, 0.5) !important;
+  padding: 0px 24px 0px 24px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Dark mode override for the header container */
+body.dark-mode .kirki-s220-dp3o6qiv {
+  background-color: rgba(18, 26, 15, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .kirki-s220-dpwpyttv {
+  display: flex !important;
+  column-gap: 0px !important;
+  row-gap: 0px !important;
+  width: 100% !important;
+  align-items: center !important;
+  max-width: 1620px !important;
+  height: 100% !important;
+  justify-content: space-between !important;
+  min-height: var(--ksfl-header-height, 72px) !important;
+  overflow: visible !important;
+  padding: 0px !important;
+  margin: 0px auto 0px auto !important;
   box-sizing: border-box !important;
+}
+
+.kirki-s220-dpcc8piy {
+  height: 100% !important;
+  width: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  min-height: var(--ksfl-header-height, 72px) !important;
+  padding: 0px !important;
+  box-sizing: border-box !important;
+}
+
+.kirki-s220-dpi1u8z3 {
+  position: static !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0px 24px 0px 24px !important;
+  box-sizing: border-box !important;
+}
+
+.kirki-s220-dph9mfsm {
+  width: 33.58% !important;
+  min-height: var(--ksfl-header-height, 72px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-width: 484px !important;
+  height: 100% !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.6) !important;
+  padding: 0px 0px 0px 8px !important;
+  margin: 0px 0px 0px auto !important;
+  box-sizing: border-box !important;
+}
+
+.kirki-s220-dp425u34 {
+  display: flex !important;
+  column-gap: 16px !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: auto !important;
+  flex-direction: row !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.kirki-s220-dplwwalk {
+  min-width: fit-content !important;
+  font-size: 1vw !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
+  list-style: none !important;
 }
 
 /* Hide the old kirki dropdown (replaced by ksfl-mega-menu) */
