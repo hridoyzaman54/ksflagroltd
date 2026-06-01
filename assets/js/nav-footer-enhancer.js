@@ -45,8 +45,9 @@
     { name: 'Bitter Gourd', bn: 'করলা', icon: '🥬', slug: 'bitter-gourd' },
     { name: 'Eggplant', bn: 'বেগুন', icon: '🍆', slug: 'eggplant' },
     { name: 'Potato', bn: 'গোল আলু', icon: '🥔', slug: 'potato' },
-    { name: 'Paddy Seeds', bn: 'ধানের বীজ', icon: '🌱', slug: 'paddy-seeds' },
-    { name: 'Sweet Potato Seeds', bn: 'মিষ্টি আলুর বীজ', icon: '🍠', slug: 'sweet-potato-seeds' }
+    { name: 'Paddy-OP & HY Variety', bn: 'প্যাডি-ওপি ও এইচওয়াই জাত', icon: '🌱', slug: 'paddy-seeds' },
+    { name: 'Sweet Potato Seeds', bn: 'মিষ্টি আলুর বীজ', icon: '🍠', slug: 'sweet-potato-seeds' },
+    { name: 'Onion Seeds', bn: 'পেঁয়াজ বীজ', icon: '🧅', slug: 'onion-seeds' }
   ];
 
   /* =========================================================================
