@@ -55,6 +55,7 @@
      ========================================================================= */
   function fixNavLinks() {
     var bp = basePath;
+    var isBn = document.body.classList.contains('bn-active') || document.body.classList.contains('lang-bn');
 
     // Fix logo link — should always go to index.html
     var logoLink = document.querySelector('[data-kirki="dp321gpx"]');
@@ -66,28 +67,28 @@
     var homeLink = document.querySelector('[data-kirki="dpp2fc2o"]');
     if (homeLink) {
       homeLink.setAttribute('href', bp + 'index.html');
-      homeLink.textContent = 'Home';
+      homeLink.textContent = isBn ? 'হোম' : 'Home';
     }
 
     // Fix Our Story link
     var storyLink = document.querySelector('[data-kirki="dp41kxod"]');
     if (storyLink) {
       storyLink.setAttribute('href', bp + 'about.html');
-      storyLink.textContent = 'Our Story';
+      storyLink.textContent = isBn ? 'আমাদের কথা' : 'Our Story';
     }
 
     // Fix Blogs link
     var blogsLink = document.querySelector('[data-kirki="dpec2r3z"]');
     if (blogsLink) {
       blogsLink.setAttribute('href', bp + 'blogs.html');
-      blogsLink.textContent = 'Blogs';
+      blogsLink.textContent = isBn ? 'ব্লগ' : 'Blogs';
     }
 
     // Fix Testimonials link
     var testimonialsLink = document.querySelector('[data-kirki="dpec2r3z-testi"]');
     if (testimonialsLink) {
       testimonialsLink.setAttribute('href', bp + 'testimonials.html');
-      testimonialsLink.textContent = 'Testimonials';
+      testimonialsLink.textContent = isBn ? 'প্রশংসাপত্র' : 'Testimonials';
       // Sync active state programmatically based on pathname
       if (window.location.pathname.indexOf('testimonials.html') !== -1) {
         testimonialsLink.classList.add('kirki-active-link');
@@ -102,7 +103,7 @@
     // Fix contact button text
     var contactText = document.querySelector('[data-kirki="dppaxh2l"]');
     if (contactText) {
-      contactText.textContent = 'Contact us';
+      contactText.textContent = isBn ? 'যোগাযোগ করুন' : 'Contact us';
     }
   }
 
@@ -186,6 +187,7 @@
       mm.querySelectorAll('.ksfl-mega-bn').forEach(function(el) {
         el.style.setProperty('display', isBn ? 'inline' : 'none', 'important');
       });
+      fixNavLinks();
     }
     syncLang();
 
