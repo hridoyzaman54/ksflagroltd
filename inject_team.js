@@ -73,7 +73,7 @@ const htmlContent = `
             <!-- MD NURZAMAN -->
             <div class="team-member-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: calc(33.333% - 20px); max-width: 380px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
                 <div class="team-member-img-wrap" style="height: 380px; overflow: hidden;">
-                    <img src="./assets/GALLERY/gallery%20homepage%20(5).png" alt="Md Nurzaman" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                    <img src="./assets/images/team/nurzaman.jpg" alt="Md Nurzaman" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
                 </div>
                 <div class="team-member-info" style="padding: 24px; text-align: center;">
                     <h3 style="color: #293920; margin: 0 0 8px 0; font-size: 20px; font-weight: 500;">Md Nurzaman</h3>
@@ -81,6 +81,50 @@ const htmlContent = `
                     <div style="font-size: 14px; color: #555; display: flex; flex-direction: column; gap: 6px;">
                         <p style="margin: 0;"><strong>E-mail:</strong> <a href="mailto:zamankbd@gmail.com" style="color: inherit; text-decoration: none;">zamankbd@gmail.com</a></p>
                         <p style="margin: 0;"><strong>Phone:</strong> <a href="tel:01796930738" style="color: inherit; text-decoration: none;">01796-930738</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MD NAZMUL HASAN -->
+            <div class="team-member-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: calc(33.333% - 20px); max-width: 380px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="team-member-img-wrap" style="height: 380px; overflow: hidden;">
+                    <img src="./assets/images/team/Md.%20Nazmul%20Hasan.jpg" alt="Md Nazmul Hasan" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                </div>
+                <div class="team-member-info" style="padding: 24px; text-align: center;">
+                    <h3 style="color: #293920; margin: 0 0 8px 0; font-size: 20px; font-weight: 500;">Md Nazmul Hasan</h3>
+                    <p style="color: #657B46; font-weight: 500; margin: 0 0 16px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Director</p>
+                    <div style="font-size: 14px; color: #555; display: flex; flex-direction: column; gap: 6px;">
+                        <p style="margin: 0;"><strong>Phone:</strong> <a href="tel:01711477359" style="color: inherit; text-decoration: none;">01711-477359</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DR. BIJON DAS -->
+            <div class="team-member-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: calc(33.333% - 20px); max-width: 380px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="team-member-img-wrap" style="height: 380px; overflow: hidden;">
+                    <img src="./assets/images/team/Dr.%20Bijon%20Das.jpg" alt="Dr. Bijon Das" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                </div>
+                <div class="team-member-info" style="padding: 24px; text-align: center;">
+                    <h3 style="color: #293920; margin: 0 0 8px 0; font-size: 20px; font-weight: 500;">Dr. Bijon Das</h3>
+                    <p style="color: #657B46; font-weight: 500; margin: 0 0 16px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Director</p>
+                    <div style="font-size: 14px; color: #555; display: flex; flex-direction: column; gap: 6px;">
+                        <p style="margin: 0;"><strong>E-mail:</strong> <a href="mailto:drbkdas73@gmail.com" style="color: inherit; text-decoration: none;">drbkdas73@gmail.com</a></p>
+                        <p style="margin: 0;"><strong>Phone:</strong> <a href="tel:01824047554" style="color: inherit; text-decoration: none;">01824-047554</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DR. ZAKIR HOSSAIN -->
+            <div class="team-member-card" style="background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: calc(33.333% - 20px); max-width: 380px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <div class="team-member-img-wrap" style="height: 380px; overflow: hidden;">
+                    <img src="./assets/images/team/Dr.%20Zakir%20Hossain.jpg" alt="Dr. Zakir Hossain" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                </div>
+                <div class="team-member-info" style="padding: 24px; text-align: center;">
+                    <h3 style="color: #293920; margin: 0 0 8px 0; font-size: 20px; font-weight: 500;">Dr. Zakir Hossain</h3>
+                    <p style="color: #657B46; font-weight: 500; margin: 0 0 16px 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Director</p>
+                    <div style="font-size: 14px; color: #555; display: flex; flex-direction: column; gap: 6px;">
+                        <p style="margin: 0;"><strong>E-mail:</strong> <a href="mailto:drzakir.hossain11@gmail.com" style="color: inherit; text-decoration: none;">drzakir.hossain11@gmail.com</a></p>
+                        <p style="margin: 0;"><strong>Phone:</strong> <a href="tel:01713009911" style="color: inherit; text-decoration: none;">01713-009911</a></p>
                     </div>
                 </div>
             </div>
